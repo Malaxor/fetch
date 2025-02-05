@@ -1,0 +1,21 @@
+nav {
+  height: 15rem;
+  background-color: #300d38;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5rem;
+}
+img {
+  height: 10rem;
+}
+p {
+  color: white;
+  font-size: 5rem;
+}
+form {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}

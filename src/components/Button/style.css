@@ -1,0 +1,12 @@
+button {
+  font-size: 1.6rem;
+  background-color: #fba919;
+  color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+button:disabled {
+  background-color: rgb(203, 201, 201);
+  cursor: default;
+}
