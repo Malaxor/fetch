@@ -53,7 +53,7 @@ export function Navbar () {
  return ( 
   <nav>
     <img src={fetchLogo} alt="fetch logo" />
-    <p>Unconditional Love Starts Here</p>
+    <p>Paws for a Cause</p>
     <form onSubmit={onFormSubmit}>
       {!isLoggedIn && <>
       <NavbarInput
