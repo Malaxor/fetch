@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.css'
 
-function NavbarInput ({ name, value, onChange, placeholder }) {
+export function Input ({ name, value, onChange, placeholder, borderBottom }) {
   return (
     <input
-      className='input'
+      className={`input ${borderBottom ? 'border-bottom' : ''}`}
       type='text'
       placeholder={placeholder}
       name={name}
@@ -13,4 +13,3 @@ function NavbarInput ({ name, value, onChange, placeholder }) {
     />
   )
 }
-export { NavbarInput }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import './style.css'
 import fetchLogo from '../../assets/images/fetch-logo.png'
-import { NavbarInput } from '../Input'
+import { Input } from '../Input'
 import { Button } from '../Button'
 
 const baseURL = 'https://frontend-take-home-service.fetch.com'
@@ -56,13 +56,13 @@ export function Navbar () {
     <p id='navbar__slogan'>Paws for a Cause</p>
     <form id='navbar__form' onSubmit={onFormSubmit}>
       {!isLoggedIn && <>
-      <NavbarInput
+      <Input
         placeholder='name'
         value={name}
         name='name'
         onChange={onSetFormData}
       />      
-      <NavbarInput
+      <Input
         placeholder='email'
         value={email}
         name='email'

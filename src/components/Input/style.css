@@ -5,3 +5,7 @@
   border: #fba919 .3rem solid;
   font-size: 1.6rem;
 }
+.input.border-bottom {
+  border: none;
+  border-bottom: black .3rem solid;
+}

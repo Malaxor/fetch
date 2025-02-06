@@ -1,12 +1,12 @@
 import './style/global-style.css'
 import { Navbar } from './components/Navbar'
-import { DogList } from './components/DogList'
+import { MainContent } from './components/MainContent'
 
 function App() {
   return (
     <>
       <Navbar />
-      <DogList/>
+      <MainContent/>
     </>
   )
 }
