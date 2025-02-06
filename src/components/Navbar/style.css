@@ -1,4 +1,4 @@
-nav {
+#navbar {
   height: 10rem;
   background-color: #300d38;
   display: flex;
@@ -6,15 +6,15 @@ nav {
   align-items: center;
   padding: 0 5rem;
 }
-img {
+
+#navbar__logo {
   height: 10rem;
 }
-p {
+#navbar__slogan {
   color: white;
   font-size: 5rem;
 }
-form {
-  width: 30%;
+#navbar__form {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;

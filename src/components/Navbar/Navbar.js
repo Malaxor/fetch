@@ -51,10 +51,10 @@ export function Navbar () {
   }
   
  return ( 
-  <nav>
-    <img src={fetchLogo} alt="fetch logo" />
-    <p>Paws for a Cause</p>
-    <form onSubmit={onFormSubmit}>
+  <nav id='navbar'>
+    <img id='navbar__logo' src={fetchLogo} alt="fetch logo" />
+    <p id='navbar__slogan'>Paws for a Cause</p>
+    <form id='navbar__form' onSubmit={onFormSubmit}>
       {!isLoggedIn && <>
       <NavbarInput
         placeholder='name'
