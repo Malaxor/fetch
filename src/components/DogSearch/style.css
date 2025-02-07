@@ -1,4 +1,8 @@
 #dog-search {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
+  margin: 5rem 0 0 5rem;
+  width: 10%;
+  height: 100vh;
 }

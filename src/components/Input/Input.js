@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.css'
 
-export function Input ({ name, value, onChange, placeholder, borderBottom }) {
+export function Input ({ name, value, onChange, placeholder }) {
   return (
     <input
-      className={`input ${borderBottom ? 'border-bottom' : ''}`}
+      className={'input'}
       type='text'
       placeholder={placeholder}
       name={name}

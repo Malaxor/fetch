@@ -5,6 +5,7 @@ button {
   padding: 1rem;
   border-radius: 1rem;
   cursor: pointer;
+  border: none;
 }
 button:disabled {
   background-color: rgb(203, 201, 201);

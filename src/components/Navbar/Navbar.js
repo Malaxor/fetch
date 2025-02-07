@@ -2,14 +2,11 @@ import { useState } from 'react'
 import axios from 'axios'
 import './style.css'
 import fetchLogo from '../../assets/images/fetch-logo.png'
+import { baseURL } from '../../constants'
 import { Input } from '../Input'
 import { Button } from '../Button'
 
-const baseURL = 'https://frontend-take-home-service.fetch.com'
-const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-export function Navbar () {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+export function Navbar ({ setIsLoggedIn, isLoggedIn }) {
   const [formData, setFormData] = useState({
     name: '',
     email: ''
@@ -17,12 +14,13 @@ export function Navbar () {
   const { name, email } = formData
 
   const config = { withCredentials: true }
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   
   async function login () {
     try {
       await axios.post(`${baseURL}/auth/login`, { name, email }, config)
     } catch (err) {
-      console.log(err.message)
+      console.log(err)
     }
   }
 
@@ -30,7 +28,7 @@ export function Navbar () {
     try {
       await axios.post(`${baseURL}/auth/logout`, {}, config)
     } catch (err) {
-      console.log(err.message)
+      console.log(err)
     }
   }
   
