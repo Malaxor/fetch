@@ -4,6 +4,7 @@ import './style.css'
 import { baseURL } from '../../constants'
 import { Input } from '../Input'
 import { Button } from '../Button'
+import { capitalize } from '../../utils';
 export function DogSearch ({ isLoggedIn }) {
   const[formData, setFormData] = useState({
     breed: '',
@@ -28,11 +29,11 @@ export function DogSearch ({ isLoggedIn }) {
       
       if (breed) {
         config.params.breeds = []
-        config.params.breeds.push(breed)
+        config.params.breeds.push(capitalize(breed.toLowerCase()))
       }
       if (zipCode) {
         config.params.zipdCodes = []
-        config.params.zipdCodes.push(breed)
+        config.params.zipdCodes.push(zipCode)
       }
       if (ageMin) {
         config.params.ageMin = ageMin
