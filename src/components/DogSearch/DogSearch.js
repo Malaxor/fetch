@@ -5,7 +5,7 @@ import { baseURL } from '../../constants'
 import { Input } from '../Input'
 import { Button } from '../Button'
 import { capitalize } from '../../utils';
-export function DogSearch ({ isLoggedIn }) {
+export function DogSearch ({ isLoggedIn, setDogs }) {
   const[formData, setFormData] = useState({
     breed: '',
     ageMax: '',
@@ -13,7 +13,6 @@ export function DogSearch ({ isLoggedIn }) {
     zipCode: ''
   })
   const { breed, ageMin, ageMax, zipCode } = formData
-
 
   function onSetFormData (e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -26,14 +25,14 @@ export function DogSearch ({ isLoggedIn }) {
         withCredentials: true,
         params: {}
       }
-      
+  
       if (breed) {
         config.params.breeds = []
         config.params.breeds.push(capitalize(breed.toLowerCase()))
       }
       if (zipCode) {
-        config.params.zipdCodes = []
-        config.params.zipdCodes.push(zipCode)
+        config.params.zipCodes = []
+        config.params.zipCodes.push(zipCode)
       }
       if (ageMin) {
         config.params.ageMin = ageMin
@@ -43,45 +42,47 @@ export function DogSearch ({ isLoggedIn }) {
       }
 
       const { data: searchData } = await axios.get(`${baseURL}/dogs/search`, config)
-      console.log(searchData)
       setFormData({ breed: '', zipCode: '', ageMin: '', ageMax: '' })
-      const res = await axios.post(`${baseURL}/dogs`, [...searchData.resultIds], { withCredentials: true })
-      console.log(res.data)
+      const { data: dogs } = await axios
+        .post(`${baseURL}/dogs`, searchData.resultIds, { withCredentials: true })
+      setDogs(dogs)
     } catch (err) {
       console.log(err)
     }
   }
 
-  return ( 
-    <form id='dog-search' onSubmit={onFormSubmit}>
-      <Input
-        placeholder='breed'
-        name='breed'
-        onChange={onSetFormData}
-        value={breed}
-      />
-      <Input
-        placeholder='zip code'
-        name='zipCode'
-        onChange={onSetFormData}
-        value={zipCode}
-      />
-      <Input
-        placeholder='max age'
-        name='ageMax'
-        onChange={onSetFormData}
-        value={ageMax}
-      />
-      <Input
-        placeholder='min age'
-        name='ageMin'
-        onChange={onSetFormData}
-        value={ageMin}
-      />
-      <Button
-        content='Search'
-        disabled={!isLoggedIn}
-      />
-    </form>
+  return (
+    <>
+      <form id='dog-search' onSubmit={onFormSubmit}>
+        <Input
+          placeholder='breed'
+          name='breed'
+          onChange={onSetFormData}
+          value={breed}
+        />
+        <Input
+          placeholder='zip code'
+          name='zipCode'
+          onChange={onSetFormData}
+          value={zipCode}
+        />
+        <Input
+          placeholder='max age'
+          name='ageMax'
+          onChange={onSetFormData}
+          value={ageMax}
+        />
+        <Input
+          placeholder='min age'
+          name='ageMin'
+          onChange={onSetFormData}
+          value={ageMin}
+        />
+        <Button
+          content='Search'
+          disabled={!isLoggedIn}
+        />
+      </form>
+      </>
   )
 }
