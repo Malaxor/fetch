@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios'
 import './style.css'
 import { baseURL } from '../../constants'
-import { Input } from '../Input'
+import { Input, Select } from '../Controls'
 import { Button } from '../Button'
 import { capitalize } from '../../utils';
 export function DogSearch ({ isLoggedIn, setDogs }) {
@@ -10,9 +10,16 @@ export function DogSearch ({ isLoggedIn, setDogs }) {
     breed: '',
     ageMax: '',
     ageMin: '',
-    zipCode: ''
+    zipCode: '',
+    sort: 'breed:asc'
   })
-  const { breed, ageMin, ageMax, zipCode } = formData
+  const {
+    breed, 
+    ageMin, 
+    ageMax, 
+    zipCode, 
+    sort 
+  } = formData
 
   function onSetFormData (e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -23,7 +30,9 @@ export function DogSearch ({ isLoggedIn, setDogs }) {
     try {
       const config = {
         withCredentials: true,
-        params: {}
+        params: {
+          sort
+        }
       }
   
       if (breed) {
@@ -54,6 +63,12 @@ export function DogSearch ({ isLoggedIn, setDogs }) {
   return (
     <>
       <form id='dog-search' onSubmit={onFormSubmit}>
+        <Select
+          disabled={!isLoggedIn}
+          name='sort'
+          value={sort}
+          onChange={onSetFormData} 
+        />
         <Input
           placeholder='breed'
           name='breed'
@@ -83,6 +98,6 @@ export function DogSearch ({ isLoggedIn, setDogs }) {
           disabled={!isLoggedIn}
         />
       </form>
-      </>
+    </>
   )
 }

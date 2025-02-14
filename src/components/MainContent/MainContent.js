@@ -13,6 +13,11 @@ export function MainContent ({ isLoggedIn }) {
    
   return ( 
     <main id='main-content'>
+      {!isLoggedIn 
+        ? <p id="sign-in-message">Sign in to find a loving dog to adopt.</p>
+        : <p id='search-instructions'>Omitting all the search parameters will still return results.</p>
+      }
+
       <DogSearch
         isLoggedIn={isLoggedIn}
         setDogs={setDogs}

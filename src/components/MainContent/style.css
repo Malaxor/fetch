@@ -1,9 +1,13 @@
 #dog-list {
-  width: 100%;
-  padding: 0 5rem;
+  padding: 0 5rem 5rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, 30rem);
-  grid-template-rows: repeat(auto-fit, 41.5rem);
   justify-content: center;
   gap: 2rem;
+}
+#sign-in-message,
+#search-instructions {
+  font-size: 2.5rem;
+  text-align: center;
+  padding-top: 2rem;
 }

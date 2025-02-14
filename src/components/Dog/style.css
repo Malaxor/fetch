@@ -2,8 +2,6 @@
   display: flex;
   flex-direction: column;
   border: .2rem solid black;
-  height: auto;
-  width: 30rem;
 }
 .dog__image {
   height: 30rem;

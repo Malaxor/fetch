@@ -19,6 +19,9 @@ export function Navbar ({ setIsLoggedIn, isLoggedIn }) {
   async function login () {
     try {
       await axios.post(`${baseURL}/auth/login`, { name, email }, config)
+      setTimeout(() => { 
+        setIsLoggedIn(false)
+      }, 3600000)
     } catch (err) {
       console.log(err)
     }

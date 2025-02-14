@@ -1,11 +1,10 @@
-.input {
+.input, .select {
   padding: .8rem;
   border-radius: .7rem;
   outline: none;
   border: #fba919 .3rem solid;
   font-size: 1.6rem;
 }
-.input.border-bottom {
-  border: none;
-  border-bottom: black .3rem solid;
+.input::placeholder {
+  color: rgb(185, 184, 184);
 }
