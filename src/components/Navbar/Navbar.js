@@ -3,7 +3,7 @@ import axios from 'axios'
 import './style.css'
 import fetchLogo from '../../assets/images/fetch-logo.png'
 import { baseURL } from '../../constants'
-import { Input } from '../Input'
+import { Input } from '../Controls'
 import { Button } from '../Button'
 
 export function Navbar ({ setIsLoggedIn, isLoggedIn }) {
