@@ -13,9 +13,23 @@ export function MainContent ({ isLoggedIn }) {
     }
   },[isLoggedIn])
 
+  useEffect(() => {
+    if (likedDogs?.length) {
+      console.log('liked dogs exist')
+      if (localStorage.getItem('storedLikedDogs')) {
+        console.log('storedLikedDogs exists')
+        localStorage.setItem('storedLikedDogs',JSON.stringify(likedDogs)) 
+      } else {
+        localStorage.setItem('storedLikedDogs', JSON.stringify(likedDogs))
+      }
+    }
+  }, [likedDogs])
+
+
   function handleClick (dogId) {
     setLikedDogs(likedDogs => [...likedDogs, dogId])
   }
+  console.log(localStorage)
    
   return ( 
     <main id='main-content'>
@@ -30,8 +44,9 @@ export function MainContent ({ isLoggedIn }) {
       <section id='dog-list'>
         {dogs.map(dog =>
           <Dog
-            handleClick={handleClick}
+            key={dog.id}
             id={dog.id}
+            handleClick={handleClick}
             image={dog.img}
             name={dog.name}
             age={dog.age}

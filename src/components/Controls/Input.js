@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.css'
 
-function Input ({ name, value, onChange, placeholder }) {
+function Input ({ name, value, onChange, placeholder, size }) {
   return (
     <input
-      className='input'
+      className={`input ${size}`}
       type='text'
       placeholder={placeholder}
       name={name}

@@ -48,6 +48,8 @@ export function Navbar ({ setIsLoggedIn, isLoggedIn }) {
     } else {
       await logout()
       setIsLoggedIn(false)
+      localStorage.removeItem('storedLikedDogs')
+      console.log(localStorage)
     }
   }
   

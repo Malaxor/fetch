@@ -1,5 +1,5 @@
 #navbar {
-  height: 10rem;
+  height: 16rem;
   background-color: #300d38;
   display: flex;
   justify-content: space-between;
@@ -8,14 +8,17 @@
 }
 
 #navbar__logo {
-  height: 10rem;
+  height: 13rem;
+  margin-top: 3rem;
 }
 #navbar__slogan {
   color: white;
-  font-size: 5rem;
+  font-size: 6rem;
 }
 #navbar__form {
   display: flex;
+  flex-direction: column;
   justify-content: flex-end;
   gap: 1rem;
+  width: 25rem;
 }

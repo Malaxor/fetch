@@ -3,8 +3,8 @@ import './style.css'
 
 export function Dog ({ id, image, name, age, zipCode, breed, handleClick }) {
   return ( 
-    <figure className='dog' key={id} onClick={() => handleClick(id)}>
-      <img className='dog__image' src={image} />
+    <figure className='dog' onClick={() => handleClick(id)}>
+      <img className='dog__image' src={image} alt={`image of a ${breed}`} />
       <ul className='dog__details'>
         <li className='dog__detail--breed'>Breed - {breed}</li>
         <li className='dog__detail--name'>Name - {name}</li>

@@ -76,19 +76,23 @@ export function DogSearch ({ isLoggedIn, setDogs }) {
           value={breed}
         />
         <Input
-          placeholder='zip code'
+          size='medium'
+          placeholder='zip'
           name='zipCode'
           onChange={onSetFormData}
           value={zipCode}
         />
         <Input
-          placeholder='max age'
+          size='small'
+          placeholder='max'
           name='ageMax'
           onChange={onSetFormData}
           value={ageMax}
+
         />
         <Input
-          placeholder='min age'
+          size='small'
+          placeholder='min'
           name='ageMin'
           onChange={onSetFormData}
           value={ageMin}

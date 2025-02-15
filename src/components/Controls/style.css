@@ -8,3 +8,11 @@
 .input::placeholder {
   color: rgb(185, 184, 184);
 }
+.input.small {
+  text-align: center;
+  padding: 0;
+  width: 6rem;
+}
+.input.medium {
+  width: 10rem;
+}
