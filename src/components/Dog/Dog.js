@@ -1,7 +1,18 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import './style.css'
 
-export function Dog ({ id, image, name, age, zipCode, breed, handleClick }) {
+export function Dog ({ 
+  id, 
+  image, 
+  name, 
+  age, 
+  zipCode, 
+  breed, 
+  handleClick,
+  isLiked 
+}) {
   return ( 
     <figure className='dog' onClick={() => handleClick(id)}>
       <img className='dog__image' src={image} alt={`image of a ${breed}`} />
@@ -11,6 +22,7 @@ export function Dog ({ id, image, name, age, zipCode, breed, handleClick }) {
         <li className='dog__detail--age'>Age - {age}</li>
         <li className='dog__detail--zipCode'>Zip - {zipCode}</li>
       </ul>
+      {isLiked && <FontAwesomeIcon icon={faHeart} className='heart' />}
     </figure>
   )
 }

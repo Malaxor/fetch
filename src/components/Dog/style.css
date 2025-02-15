@@ -1,7 +1,9 @@
 .dog {
+  position: relative;
   display: flex;
   flex-direction: column;
   border: .2rem solid black;
+  cursor: pointer;
 }
 .dog__image {
   height: 30rem;
@@ -9,4 +11,11 @@
 .dog__details {
   padding: 1rem;
   font-size: 2rem;
+}
+.heart {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  color: red;
+  font-size: 4rem;
 }

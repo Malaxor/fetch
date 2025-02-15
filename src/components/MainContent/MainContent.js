@@ -14,23 +14,25 @@ export function MainContent ({ isLoggedIn }) {
   },[isLoggedIn])
 
   useEffect(() => {
-    if (likedDogs?.length) {
-      console.log('liked dogs exist')
+    if (likedDogs.length) {
       if (localStorage.getItem('storedLikedDogs')) {
-        console.log('storedLikedDogs exists')
-        localStorage.setItem('storedLikedDogs',JSON.stringify(likedDogs)) 
+        localStorage.setItem('storedLikedDogs',JSON.stringify([...likedDogs]))
       } else {
-        localStorage.setItem('storedLikedDogs', JSON.stringify(likedDogs))
+        localStorage.setItem('storedLikedDogs', JSON.stringify([...likedDogs]))
       }
     }
   }, [likedDogs])
 
 
   function handleClick (dogId) {
-    setLikedDogs(likedDogs => [...likedDogs, dogId])
+    setLikedDogs(likedDogs => {
+      if (likedDogs.find(likedDog => likedDog === dogId)) {
+        return likedDogs.filter(likedDog => likedDog !== dogId)
+      }
+      return [...likedDogs, dogId]
+    })
   }
-  console.log(localStorage)
-   
+
   return ( 
     <main id='main-content'>
       {!isLoggedIn 
@@ -54,6 +56,7 @@ export function MainContent ({ isLoggedIn }) {
             age={dog.age}
             breed={dog.breed}
             zipCode={dog.zip_code}
+            isLiked={likedDogs.find((likedDog) => likedDog === dog.id)}
           />)
         }
       </section>
