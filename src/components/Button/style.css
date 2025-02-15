@@ -1,4 +1,4 @@
-button {
+.button {
   font-size: 1.6rem;
   background-color: #fba919;
   color: white;
@@ -7,7 +7,7 @@ button {
   cursor: pointer;
   border: none;
 }
-button:disabled {
-  background-color: rgb(203, 201, 201);
+.button:disabled {
+  background-color: #cbc9c9;
   cursor: default;
 }

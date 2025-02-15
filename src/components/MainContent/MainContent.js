@@ -37,10 +37,12 @@ export function MainContent ({ isLoggedIn }) {
         ? <p id="sign-in-message">Sign in and search for loving dog to adopt.</p>
         : <p id='search-instructions'>Omitting all the search parameters will still return results.</p>
       }
-      <DogSearch
-        isLoggedIn={isLoggedIn}
-        setDogs={setDogs}
-      />
+      {isLoggedIn && 
+        <DogSearch
+          isLoggedIn={isLoggedIn}
+          setDogs={setDogs}
+        />
+      }
       <section id='dog-list'>
         {dogs.map(dog =>
           <Dog
