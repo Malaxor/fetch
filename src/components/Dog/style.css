@@ -16,6 +16,11 @@
   position: absolute;
   bottom: 1.5rem;
   right: 1.5rem;
-  color: red;
   font-size: 4rem;
+}
+.heart.red {
+  color: red;
+}
+.heart.white {
+  color: rgb(185, 185, 185);
 }

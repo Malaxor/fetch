@@ -13,19 +13,16 @@ export function MainContent ({ isLoggedIn }) {
     }
   },[isLoggedIn])
 
-  useEffect(() => {
-    if (likedDogs.length) {
-      if (localStorage.getItem('storedLikedDogs')) {
-        localStorage.setItem('storedLikedDogs',JSON.stringify([...likedDogs]))
-      } else {
-        localStorage.setItem('storedLikedDogs', JSON.stringify([...likedDogs]))
-      }
-    }
-  }, [likedDogs])
+  // useEffect(() => {
+  //   if (likedDogs.length) {
+  //     localStorage.setItem('storedLikedDogs', JSON.stringify([...likedDogs]))
+  //   }
+  // }, [likedDogs])
 
 
   function handleClick (dogId) {
     setLikedDogs(likedDogs => {
+      // unlike a dog
       if (likedDogs.find(likedDog => likedDog === dogId)) {
         return likedDogs.filter(likedDog => likedDog !== dogId)
       }
@@ -56,7 +53,7 @@ export function MainContent ({ isLoggedIn }) {
             age={dog.age}
             breed={dog.breed}
             zipCode={dog.zip_code}
-            isLiked={likedDogs.find((likedDog) => likedDog === dog.id)}
+            isLiked={likedDogs.find(likedDog => likedDog === dog.id)}
           />)
         }
       </section>

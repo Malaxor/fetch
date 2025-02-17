@@ -52,9 +52,9 @@ export function DogSearch ({ isLoggedIn, setDogs }) {
 
       const { data: searchData } = await axios.get(`${baseURL}/dogs/search`, config)
       setFormData({ breed: '', zipCode: '', ageMin: '', ageMax: '' })
-      const { data: dogs } = await axios
+      const { data } = await axios
         .post(`${baseURL}/dogs`, searchData.resultIds, { withCredentials: true })
-      setDogs(dogs)
+      setDogs(data)
     } catch (err) {
       console.log(err)
     }
