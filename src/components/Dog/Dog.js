@@ -14,7 +14,7 @@ export function Dog ({
   isLiked 
 }) {
   return ( 
-    <figure className='dog' onClick={() => handleClick(id)}>
+    <li className='dog'>
       <img className='dog__image' src={image} alt={`a ${age}-year-old ${breed} named ${name}`} />
       <ul className='dog__details'>
         <li className='dog__detail--breed'>Breed - {breed}</li>
@@ -22,10 +22,11 @@ export function Dog ({
         <li className='dog__detail--age'>Age - {age}</li>
         <li className='dog__detail--zipCode'>Zip - {zipCode}</li>
       </ul>
-      {isLiked
-        ? <FontAwesomeIcon icon={faHeart} className='red heart' />
-        : <FontAwesomeIcon icon={faHeart} className='white heart' />
-      }
-    </figure>
+      <FontAwesomeIcon 
+        icon={faHeart} 
+        className={`heart ${isLiked ? 'red' : 'white'}`} 
+        onClick={() => handleClick(id)}
+      />
+    </li>
   )
 }

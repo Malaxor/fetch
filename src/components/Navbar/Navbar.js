@@ -4,7 +4,7 @@ import './style.css'
 import fetchLogo from '../../assets/images/fetch-logo.png'
 import { baseURL } from '../../constants'
 import { Input } from '../Controls'
-import { Button } from '../Button'
+import { FormButton } from '../Buttons'
 
 export function Navbar ({ setIsLoggedIn, isLoggedIn }) {
   const [formData, setFormData] = useState({
@@ -48,8 +48,6 @@ export function Navbar ({ setIsLoggedIn, isLoggedIn }) {
     } else {
       await logout()
       setIsLoggedIn(false)
-      localStorage.removeItem('storedLikedDogs')
-      console.log(localStorage)
     }
   }
   
@@ -71,7 +69,7 @@ export function Navbar ({ setIsLoggedIn, isLoggedIn }) {
         name='email'
         onChange={onSetFormData}
       /></>}
-      <Button
+      <FormButton
         disabled={(!name || !email || !regexEmail.test(email)) && !isLoggedIn}
         content={!isLoggedIn ? 'Sign In' : 'Sign Out'} 
       />

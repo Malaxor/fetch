@@ -1,0 +1,22 @@
+.form-button {
+  font-size: 1.6rem;
+  background-color: #fba919;
+  color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  border: none;
+}
+.form-button:disabled {
+  background-color: #cbc9c9;
+  cursor: default;
+}
+.prev-next-button {
+  border:none;
+  background-color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.prev-next-button:disabled {
+  cursor: default;
+}

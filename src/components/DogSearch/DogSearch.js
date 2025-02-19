@@ -3,9 +3,14 @@ import axios from 'axios'
 import './style.css'
 import { baseURL } from '../../constants'
 import { Input, Select } from '../Controls'
-import { Button } from '../Button'
-import { capitalize } from '../../utils';
-export function DogSearch ({ isLoggedIn, setDogs }) {
+import { FormButton } from '../Buttons'
+import { capitalizeFirstLetter } from '../../utils';
+export function DogSearch ({ 
+  isLoggedIn, 
+  setDogs, 
+  setNextSearchQuery,
+  setPrevSearchQuery, 
+}) {
   const[formData, setFormData] = useState({
     breed: '',
     ageMax: '',
@@ -18,7 +23,7 @@ export function DogSearch ({ isLoggedIn, setDogs }) {
     ageMin, 
     ageMax, 
     zipCode, 
-    sort 
+    sort
   } = formData
 
   function onSetFormData (e) {
@@ -31,13 +36,14 @@ export function DogSearch ({ isLoggedIn, setDogs }) {
       const config = {
         withCredentials: true,
         params: {
-          sort
+          sort,
+          size: 25
         }
       }
   
       if (breed) {
         config.params.breeds = []
-        config.params.breeds.push(capitalize(breed.toLowerCase()))
+        config.params.breeds.push(capitalizeFirstLetter(breed.toLowerCase()))
       }
       if (zipCode) {
         config.params.zipCodes = []
@@ -50,9 +56,20 @@ export function DogSearch ({ isLoggedIn, setDogs }) {
         config.params.ageMax = ageMax
       }
 
+      // restet shared state
+      setNextSearchQuery('')
+      setPrevSearchQuery('')
+
       const { data: searchData } = await axios.get(`${baseURL}/dogs/search`, config)
       setFormData({ breed: '', zipCode: '', ageMin: '', ageMax: '' })
-      const { data } = await axios
+      const next = new URLSearchParams(searchData.next)
+      // console.log(searchData.next.includes('size=25'))
+      // console.log({'form search': searchData, 'size': next.get('size'), numDogs: searchData.resultIds.length })
+      if (searchData.resultIds.length == config.params.size) {
+        console.log('at least 25 dogs')
+        setNextSearchQuery(searchData.next)
+      }
+      const { data  } = await axios
         .post(`${baseURL}/dogs`, searchData.resultIds, { withCredentials: true })
       setDogs(data)
     } catch (err) {
@@ -62,9 +79,8 @@ export function DogSearch ({ isLoggedIn, setDogs }) {
 
   return (
     <>
-      <form id='dog-search' onSubmit={onFormSubmit}>
+      <form id='dog-search-form' onSubmit={onFormSubmit}>
         <Select
-          disabled={!isLoggedIn}
           name='sort'
           value={sort}
           onChange={onSetFormData} 
@@ -97,7 +113,7 @@ export function DogSearch ({ isLoggedIn, setDogs }) {
           onChange={onSetFormData}
           value={ageMin}
         />
-        <Button
+        <FormButton
           content='Search'
           disabled={!isLoggedIn}
         />

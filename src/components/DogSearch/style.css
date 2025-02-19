@@ -1,13 +1,6 @@
-#dog-search {
+#dog-search-form {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  padding: 3rem 0;
-}
-#age-min-max-container {
-  display: flex;
-  gap: 1rem;
-}
-label {
-  font-size: 2rem;
+  padding: 3rem 0 2rem;
 }
