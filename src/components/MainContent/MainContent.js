@@ -3,41 +3,36 @@ import axios from 'axios'
 import './style.css'
 import { DogSearch } from '../DogSearch'
 import { Dog } from '../Dog'
-import { PrevNextButton } from '../Buttons'
+import { PrevNextButton, FormButton } from '../Buttons'
 import { baseURL } from '../../constants'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
-export function MainContent ({ isLoggedIn }) {
+
+export function MainContent ({ isLoggedIn, setLikedDogs, likedDogs }) {
   const [dogs, setDogs] = useState([])
-  const [likedDogs, setLikedDogs] = useState([])
   const [nextSearchQuery, setNextSearchQuery] = useState('')
   const [prevSearchQuery, setPrevSearchQuery] = useState('')
-
 
   useEffect(() => {
     if (!isLoggedIn) {
       setDogs([])
       setLikedDogs([])
     }
-  },[isLoggedIn])
+  }, [isLoggedIn])
 
-  function handleClick (dogId) {
+  function onDogHeartClick (dog) {
     setLikedDogs(likedDogs => {
       // unlike a dog
-      if (likedDogs.find(likedDog => likedDog === dogId)) {
-        return likedDogs.filter(likedDog => likedDog !== dogId)
+      if (likedDogs.find(likedDog => likedDog.id === dog.id)) {
+        return likedDogs.filter(likedDog => likedDog.id !== dog.id)
       }
-      return [...likedDogs, dogId]
+      return [...likedDogs, dog]
     })
   }
 
   async function onNextButtonClick () {
-    console.log(nextSearchQuery)
     if (nextSearchQuery) {
       const { data: searchData } = await axios.get(`${baseURL}${nextSearchQuery}`, 
         { withCredentials: true }
       )
-      console.log('next button', searchData)
       setNextSearchQuery(searchData.next ? searchData.next : '')
       setPrevSearchQuery(searchData.prev ? searchData.prev : '')
       const { data } = await axios
@@ -51,10 +46,8 @@ export function MainContent ({ isLoggedIn }) {
       const { data: searchData } = await axios.get(`${baseURL}${prevSearchQuery}`, 
         { withCredentials: true }
       )
-
       setNextSearchQuery(searchData.next ? searchData.next : '')
       setPrevSearchQuery(searchData.prev ? searchData.prev : '')
-
       const { data } = await axios
         .post(`${baseURL}/dogs`, searchData.resultIds, { withCredentials: true })
       setDogs(data)
@@ -64,7 +57,7 @@ export function MainContent ({ isLoggedIn }) {
   return ( 
     <main id='main-content'>
       <p id="message-for-user">{!isLoggedIn 
-        ? 'Sign in and find a loveing dog to adopt.' 
+        ? 'Sign in and find a loving dog to adopt.' 
         : 'Omitting all the search parameters will return results.'}
       </p>
       {isLoggedIn && 
@@ -75,9 +68,12 @@ export function MainContent ({ isLoggedIn }) {
             setNextSearchQuery={setNextSearchQuery}
             setPrevSearchQuery={setPrevSearchQuery}
           />
-          <p className={'liked-dogs-container'}>
-            <span id='liked-dogs-counter'>{likedDogs.length}</span>
-            <FontAwesomeIcon icon={faHeart} color='red' size='3x' />
+          <p id='liked-dogs-btn-container'>
+            <FormButton
+              wide='wide'
+              disabled={!likedDogs.length} 
+              content={`Liked Dogs ${likedDogs.length}`}
+            />
           </p>
           <p className={`previous-next-container ${!dogs.length ? 'hidden' : ''}`}>
             <PrevNextButton
@@ -97,14 +93,9 @@ export function MainContent ({ isLoggedIn }) {
         {dogs.map(dog =>
           <Dog
             key={dog.id}
-            id={dog.id}
-            handleClick={handleClick}
-            image={dog.img}
-            name={dog.name}
-            age={dog.age}
-            breed={dog.breed}
-            zipCode={dog.zip_code}
-            isLiked={likedDogs.find(likedDog => likedDog === dog.id)}
+            dog={dog}
+            onDogHeartClick={onDogHeartClick}
+            isLiked={likedDogs.find(likedDog => likedDog.id === dog.id)}
           />)
         }
       </ol>

@@ -6,6 +6,10 @@
   border-radius: 1rem;
   cursor: pointer;
   border: none;
+  width: 10rem;
+}
+.form-button.wide {
+  width: 16rem;
 }
 .form-button:disabled {
   background-color: #cbc9c9;

@@ -16,17 +16,10 @@
   gap: 3rem;
   margin-bottom: 2rem;
 }
-.liked-dogs-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-#liked-dogs-counter {
-  font-size: 3rem;
-}
-.previous-next-container.hidden,
-.liked-dogs-container.hidden {
+.previous-next-container.hidden {
   display: none;
+}
+#liked-dogs-btn-container {
+  margin-bottom: 2rem;
+  text-align: center;
 }

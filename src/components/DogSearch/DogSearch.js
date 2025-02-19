@@ -62,11 +62,7 @@ export function DogSearch ({
 
       const { data: searchData } = await axios.get(`${baseURL}/dogs/search`, config)
       setFormData({ breed: '', zipCode: '', ageMin: '', ageMax: '' })
-      const next = new URLSearchParams(searchData.next)
-      // console.log(searchData.next.includes('size=25'))
-      // console.log({'form search': searchData, 'size': next.get('size'), numDogs: searchData.resultIds.length })
       if (searchData.resultIds.length == config.params.size) {
-        console.log('at least 25 dogs')
         setNextSearchQuery(searchData.next)
       }
       const { data  } = await axios

@@ -5,8 +5,10 @@ import fetchLogo from '../../assets/images/fetch-logo.png'
 import { baseURL } from '../../constants'
 import { Input } from '../Controls'
 import { FormButton } from '../Buttons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
-export function Navbar ({ setIsLoggedIn, isLoggedIn }) {
+export function Navbar ({ setIsLoggedIn, isLoggedIn, likedDogs }) {
   const [formData, setFormData] = useState({
     name: '',
     email: ''
@@ -57,18 +59,19 @@ export function Navbar ({ setIsLoggedIn, isLoggedIn }) {
     <p id='navbar__slogan'>Paws for a Cause</p>
     <form id='navbar__form' onSubmit={onFormSubmit}>
       {!isLoggedIn && <>
-      <Input
-        placeholder='name'
-        value={name}
-        name='name'
-        onChange={onSetFormData}
-      />      
-      <Input
-        placeholder='email'
-        value={email}
-        name='email'
-        onChange={onSetFormData}
-      /></>}
+        <Input
+          placeholder='name'
+          value={name}
+          name='name'
+          onChange={onSetFormData}
+        />      
+        <Input
+          placeholder='email'
+          value={email}
+          name='email'
+          onChange={onSetFormData}
+        />
+      </>}
       <FormButton
         disabled={(!name || !email || !regexEmail.test(email)) && !isLoggedIn}
         content={!isLoggedIn ? 'Sign In' : 'Sign Out'} 

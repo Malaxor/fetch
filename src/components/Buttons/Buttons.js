@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.css'
 
-function FormButton ({ disabled, content }) {
+function FormButton ({ disabled, content, wide }) {
   return (
     <button
-      className='form-button'
+      className={`form-button ${wide}`}
       disabled={disabled}
     >
       {content}
