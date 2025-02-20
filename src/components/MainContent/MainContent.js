@@ -3,7 +3,8 @@ import axios from 'axios'
 import './style.css'
 import { DogSearch } from '../DogSearch'
 import { DogList } from '../DogList'
-import { PrevNextButton, FormButton } from '../Buttons'
+import { FormButton } from '../Buttons'
+import { PrevNextBtns } from '../PrevNextBtns'
 import { baseURL } from '../../constants'
 
 export function MainContent ({ isLoggedIn, setLikedDogs, likedDogs }) {
@@ -65,18 +66,14 @@ export function MainContent ({ isLoggedIn, setLikedDogs, likedDogs }) {
             content={`${likedDogs.length} Liked Dogs`}
           />
         </p>
-        <p className={`previous-next-container ${!dogs.length ? 'hidden' : ''}`}>
-          <PrevNextButton
-            disabled={prevSearchQuery ? false : true}
-            content='Previous'
-            onPrevButtonClick={onPrevButtonClick} 
-          />
-          <PrevNextButton
-            disabled={nextSearchQuery ? false : true}
-            content='Next'
-            onNextButtonClick={onNextButtonClick} 
-          />
-        </p>
+        {dogs.length > 0 && 
+          <PrevNextBtns
+            setDogs={setDogs}
+            setNextSearchQuery={setNextSearchQuery}
+            setPrevSearchQuery={setPrevSearchQuery} 
+            prevSearchQuery={prevSearchQuery}
+            nextSearchQuery={nextSearchQuery}
+          />}
       </>}
       <DogList
         dogs={dogs}

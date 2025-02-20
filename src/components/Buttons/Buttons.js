@@ -11,11 +11,11 @@ function FormButton ({ disabled, content, wide }) {
     </button>
   )
 }
-function PrevNextButton ({ onNextButtonClick, onPrevButtonClick, content, disabled }) {
+function PrevNextButton ({ onClick, content, disabled }) {
   return (
     <button
       disabled={disabled}
-      onClick={onNextButtonClick || onPrevButtonClick}
+      onClick={onClick}
       className='prev-next-button'
     >
       {content}

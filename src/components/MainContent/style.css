@@ -1,16 +1,7 @@
 #message-for-user {
   font-size: 2.5rem;
   text-align: center;
-  padding-top: 2rem;
-}
-.previous-next-container {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
   margin-bottom: 2rem;
-}
-.previous-next-container.hidden {
-  display: none;
 }
 #liked-dogs-btn-container {
   margin-bottom: 2rem;
