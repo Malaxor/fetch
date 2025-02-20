@@ -1,0 +1,7 @@
+#dog-list {
+  padding: 0 5rem 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 30rem);
+  justify-content: center;
+  gap: 2rem;
+}

@@ -3,7 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import './style.css'
 
-export function Dog ({ dog, onDogHeartClick, isLiked }) {
+export function Dog ({ dog, setLikedDogs, likedDogs }) {
+  const isLiked = likedDogs.find(likedDog => likedDog.id === dog.id)
+
+  function onDogHeartClick (dog) {
+    setLikedDogs(likedDogs => {
+      // unlike a dog
+      if (likedDogs.find(likedDog => likedDog.id === dog.id)) {
+        return likedDogs.filter(likedDog => likedDog.id !== dog.id)
+      } // like a dog
+      return [...likedDogs, dog]
+    })
+  }
+  
   return ( 
     <li className='dog'>
       <img 
@@ -19,7 +31,7 @@ export function Dog ({ dog, onDogHeartClick, isLiked }) {
       </ul>
       <FontAwesomeIcon 
         icon={faHeart} 
-        className={`heart ${isLiked ? 'red' : 'white'}`} 
+        className={`heart ${isLiked ? 'red' : 'gray'}`} 
         onClick={() => onDogHeartClick(dog)}
       />
     </li>

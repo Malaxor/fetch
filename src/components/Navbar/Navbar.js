@@ -5,8 +5,6 @@ import fetchLogo from '../../assets/images/fetch-logo.png'
 import { baseURL } from '../../constants'
 import { Input } from '../Controls'
 import { FormButton } from '../Buttons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 export function Navbar ({ setIsLoggedIn, isLoggedIn, likedDogs }) {
   const [formData, setFormData] = useState({
