@@ -4,9 +4,8 @@ import './style.css'
 import { PrevNextButton } from '../Buttons'
 import { baseURL } from '../../constants'
 
-function PrevNextBtns ({ 
+function SearchResultsPrevNextBtns ({ 
   setDogs,
-  likedDogs,
   setNextSearchQuery,
   setPrevSearchQuery,
   prevSearchQuery, 
@@ -54,4 +53,30 @@ function PrevNextBtns ({
   )
 }
 
-export { PrevNextBtns }
+function LikedDogsPrevNextBtns ({ 
+  likedDogs,
+  setLikedDogs
+}) {
+
+  function onNextButtonClick () {
+  }
+
+  function onPrevButtonClick () {
+    
+  }
+  return (
+    <p className={`previous-next-container`}>
+      <PrevNextButton
+        disabled={likedDogs.length < 25 ? true : true}
+        content='Previous'
+        onClick={onPrevButtonClick} 
+      />
+      <PrevNextButton
+        disabled={likedDogs.length > 25 ? false : true}
+        content='Next'
+        onClick={onNextButtonClick} 
+      />
+    </p>
+  )
+}
+export { SearchResultsPrevNextBtns, LikedDogsPrevNextBtns }

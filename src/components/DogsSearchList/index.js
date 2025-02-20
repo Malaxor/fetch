@@ -1,0 +1,1 @@
+export { DogsSearchList } from './DogsSearchList'

@@ -3,6 +3,10 @@ import './style.css'
 import { Dog } from '../Dog'
 
 export function DogList ({ dogs, likedDogs, setLikedDogs }) {
+  if (!dogs) {
+    dogs = likedDogs
+  }
+  
   return (
     <ol id='dog-list'>
       {dogs.map(dog =>
