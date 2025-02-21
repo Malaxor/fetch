@@ -3,7 +3,7 @@
   border-radius: .7rem;
   outline: none;
   border: #fba919 .3rem solid;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
 .input::placeholder {
   color: rgb(185, 184, 184);
@@ -11,10 +11,10 @@
 .input.small {
   text-align: center;
   padding: 0;
-  width: 8rem;
+  width: 9rem;
 }
 .input.medium {
-  width: 8rem;
+  width: 9rem;
 }
 .select:disabled {
   border-color: #cbc9c9;

@@ -8,3 +8,14 @@ html {
   font-size: 62.5%;
   font-family: 'Verdana';
 }
+.link {
+  font-size: 1.7rem;
+  color: #fba919;
+}
+.link:active {
+  color: #300d38;
+}
+.link.disabled {
+  pointer-events: none;
+  color: gray;
+}

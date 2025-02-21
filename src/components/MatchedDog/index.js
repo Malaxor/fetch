@@ -1,0 +1,1 @@
+export { MatchedDog } from './MatchedDog'

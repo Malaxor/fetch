@@ -1,10 +1,15 @@
 import React from 'react';
 import './style.css'
 
-function FormButton ({ disabled, content, wide, onClick }) {
+function Button ({ 
+  disabled, 
+  content, 
+  styling, // no-background, wide
+  onClick 
+}) {
   return (
     <button
-      className={`form-button ${wide}`}
+      className={`form-button ${styling}`}
       disabled={disabled}
       onClick={onClick}
     >
@@ -25,4 +30,4 @@ function PrevNextButton ({ onClick, content, disabled }) {
 }
 
 
-export { FormButton, PrevNextButton }
+export { Button, PrevNextButton }

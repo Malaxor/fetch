@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import './style.css'
 import fetchLogo from '../../assets/images/fetch-logo.png'
 import { baseURL } from '../../constants'
 import { Input } from '../Controls'
-import { FormButton } from '../Buttons'
+import { Button } from '../Buttons'
 
 export function Navbar ({ setIsLoggedIn, isLoggedIn, likedDogs }) {
   const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ export function Navbar ({ setIsLoggedIn, isLoggedIn, likedDogs }) {
     email: ''
   })
   const { name, email } = formData
+
+  const navigate = useNavigate()
 
   const config = { withCredentials: true }
   const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -30,6 +33,7 @@ export function Navbar ({ setIsLoggedIn, isLoggedIn, likedDogs }) {
   async function logout () {
     try {
       await axios.post(`${baseURL}/auth/logout`, {}, config)
+      navigate('/fetch')
     } catch (err) {
       console.log(err)
     }
@@ -56,7 +60,8 @@ export function Navbar ({ setIsLoggedIn, isLoggedIn, likedDogs }) {
     <img id='navbar__logo' src={fetchLogo} alt="fetch logo" />
     <p id='navbar__slogan'>Paws for a Cause</p>
     <form id='navbar__form' onSubmit={onFormSubmit}>
-      {!isLoggedIn && <>
+      {!isLoggedIn &&
+      <>
         <Input
           placeholder='name'
           value={name}
@@ -70,7 +75,8 @@ export function Navbar ({ setIsLoggedIn, isLoggedIn, likedDogs }) {
           onChange={onSetFormData}
         />
       </>}
-      <FormButton
+      <Button
+        styling='no-background'
         disabled={(!name || !email || !regexEmail.test(email)) && !isLoggedIn}
         content={!isLoggedIn ? 'Sign In' : 'Sign Out'} 
       />

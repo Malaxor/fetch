@@ -3,7 +3,7 @@ import axios from 'axios'
 import './style.css'
 import { baseURL } from '../../constants'
 import { Input, Select } from '../Controls'
-import { FormButton } from '../Buttons'
+import { Button } from '../Buttons'
 import { capitalizeFirstLetter } from '../../utils';
 export function DogSearch ({ 
   isLoggedIn, 
@@ -56,13 +56,13 @@ export function DogSearch ({
         config.params.ageMax = ageMax
       }
 
-      // restet shared state
+      // reset shared state
       setNextSearchQuery('')
       setPrevSearchQuery('')
 
       const { data: searchData } = await axios.get(`${baseURL}/dogs/search`, config)
       setFormData({ breed: '', zipCode: '', ageMin: '', ageMax: '' })
-      if (searchData.resultIds.length == config.params.size) {
+      if (searchData.resultIds.length === config.params.size) {
         setNextSearchQuery(searchData.next)
       }
       const { data  } = await axios
@@ -109,7 +109,7 @@ export function DogSearch ({
           onChange={onSetFormData}
           value={ageMin}
         />
-        <FormButton
+        <Button
           content='Search'
           disabled={!isLoggedIn}
         />

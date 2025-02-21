@@ -4,8 +4,11 @@ import './style/global-style.css'
 import { Navbar } from './components/Navbar'
 import { DogsSearchList } from './components/DogsSearchList'
 import { LikedDogs } from './components/LikedDogs'
+import { MatchedDog } from './components/MatchedDog'
 
 export function App() {
+  const [nextSearchQuery, setNextSearchQuery] = useState('')
+  const [prevSearchQuery, setPrevSearchQuery] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [likedDogs, setLikedDogs] = useState([])
   const [dogs, setDogs] = useState([])
@@ -19,12 +22,16 @@ export function App() {
 
   return (
     <>
-    <Navbar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} likedDogs={likedDogs}/>
     <Router>
+    <Navbar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} likedDogs={likedDogs} />
       <Routes>
         <Route
           path='fetch/' 
-          element={<DogsSearchList 
+          element={<DogsSearchList
+            nextSearchQuery={nextSearchQuery}
+            setNextSearchQuery={setNextSearchQuery}
+            prevSearchQuery={prevSearchQuery}
+            setPrevSearchQuery={setPrevSearchQuery}
             dogs={dogs}
             setDogs={setDogs}
             likedDogs={likedDogs} 
@@ -34,7 +41,11 @@ export function App() {
         <Route 
           path='fetch/liked-dogs' 
           element={<LikedDogs  likedDogs={likedDogs} setLikedDogs={setLikedDogs} />}
-        />  
+        />
+        <Route 
+          path='fetch/matched-dog' 
+          element={<MatchedDog />}
+        />    
       </Routes>
     </Router>
     </>

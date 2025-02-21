@@ -1,5 +1,5 @@
 #navbar {
-  height: 17rem;
+  height: 18rem;
   background-color: #300d38;
   display: flex;
   justify-content: space-between;
@@ -15,13 +15,17 @@
 #navbar__slogan {
   color: white;
   font-size: 6rem;
+  margin-left: 8rem;
 }
 #navbar__form {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
   gap: 1rem;
-  width: 25rem;
+  width: 28rem;
+  height: 80%;
 }
-#navbar__form button {
-  align-self: flex-end;
+#navbar__form input {
+  width: 100%;
 }

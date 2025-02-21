@@ -1,5 +1,5 @@
 .form-button {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   background-color: #fba919;
   color: white;
   padding: 1rem;
@@ -8,12 +8,16 @@
   border: none;
   width: 10rem;
 }
-.form-button.wide {
-  width: 13rem;
-}
 .form-button:disabled {
   background-color: #cbc9c9;
   cursor: default;
+}
+.form-button.no-background
+.form-button.no-background:disabled {
+  background-color: transparent;
+}
+.form-button.wide {
+  width: 13rem;
 }
 .prev-next-button {
   border:none;
