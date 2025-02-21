@@ -2,7 +2,6 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { DogList } from '../DogList'
 import { Link } from 'react-router-dom'
-import { LikedDogsPrevNextBtns } from '../PrevNextBtns'
 import { Button } from '../Buttons'
 import { baseURL } from '../../constants'
 
@@ -35,7 +34,6 @@ export function LikedDogs ({ setLikedDogs, likedDogs }) {
         <p id='liked-dogs-btn-container'>
           <Link className='link' to='/fetch'>Go Back</Link>
         </p>
-        <LikedDogsPrevNextBtns likedDogs={likedDogs} setLikedDogs={setLikedDogs}/>
       </>
       <DogList
         dogs={likedDogs}

@@ -7,14 +7,20 @@ function Dog ({ dog, setLikedDogs, likedDogs }) {
   const isLiked = likedDogs.find(likedDog => likedDog.id === dog.id)
 
   function onDogHeartClick (dog) {
-    setLikedDogs(likedDogs => {
+    setLikedDogs((likedDogs) => {
       // unlike a dog
       if (likedDogs.find(likedDog => likedDog.id === dog.id)) {
         return likedDogs.filter(likedDog => likedDog.id !== dog.id)
-      } // like a dog
-      return [...likedDogs, dog]
+      }
+      // can only like 25 dogs
+      if (likedDogs.length < 25) {
+        return [...likedDogs, dog]
+      } else {
+        return [...likedDogs]
+      }
     })
   }
+  const heartColor = isLiked ? 'red' : 'gray'
   
   return ( 
     <li className='dog'>
@@ -31,7 +37,7 @@ function Dog ({ dog, setLikedDogs, likedDogs }) {
       </ul>
       <FontAwesomeIcon 
         icon={faHeart} 
-        className={`heart ${isLiked ? 'red' : 'gray'}`} 
+        className={`heart ${heartColor}`} 
         onClick={() => onDogHeartClick(dog)}
       />
     </li>

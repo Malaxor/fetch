@@ -1,4 +1,1 @@
-export { 
-  SearchResultsPrevNextBtns, 
-  LikedDogsPrevNextBtns 
-} from './PrevNextBtns'
+export { SearchResultsPrevNextBtns } from './PrevNextBtns'
