@@ -22,9 +22,6 @@
 .heart.cursor-auto {
   cursor: auto;
 }
-.heart.matched-dog {
-  cursor: default;
-}
 .heart.red {
   color: red;
 }

@@ -20,13 +20,9 @@ function Dog ({ dog, setLikedDogs, likedDogs }) {
       }
     })
   }
-  const heartColor = isLiked ? 'red' : 'gray'
-  
-  let cursorAuto
-  if (!isLiked && likedDogs.length === 25) {
-    cursorAuto = 'cursor-auto'
-  }
-  
+  const heartColor = isLiked ? 'red' : 'gray'  
+  const cursorAuto = !isLiked && likedDogs.length === 25 ? 'cursor-auto' : ''
+
   return ( 
     <li className='dog'>
       <img 
