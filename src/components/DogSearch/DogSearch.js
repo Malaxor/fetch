@@ -36,8 +36,7 @@ export function DogSearch ({
       const config = {
         withCredentials: true,
         params: {
-          sort,
-          size: 25
+          sort
         }
       }
   
@@ -62,7 +61,7 @@ export function DogSearch ({
 
       const { data: searchData } = await axios.get(`${baseURL}/dogs/search`, config)
       setFormData({ breed: '', zipCode: '', ageMin: '', ageMax: '' })
-      if (searchData.resultIds.length === config.params.size) {
+      if (searchData.next) {
         setNextSearchQuery(searchData.next)
       }
       const { data  } = await axios

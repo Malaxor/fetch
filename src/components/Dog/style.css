@@ -18,8 +18,9 @@
   right: 1.5rem;
   font-size: 4rem;
 }
-.heart.default-cursor {
-  cursor: default;
+.heart.matched-dog,
+.heart.cursor-auto {
+  cursor: auto;
 }
 .heart.matched-dog {
   cursor: default;

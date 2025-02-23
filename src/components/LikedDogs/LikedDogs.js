@@ -8,11 +8,6 @@ import { baseURL } from '../../constants'
 export function LikedDogs ({ setLikedDogs, likedDogs }) {
   const navigate = useNavigate()
   
-  let message = '1 Liked Dog'
-  if (likedDogs.length !== 1) {
-    message = `${likedDogs.length} Liked Dogs`
-  }
-
   async function onMatchWithDog () {
     const payload = likedDogs.map(likedDog => likedDog.id)
     const { data: { match } } = await axios.post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
