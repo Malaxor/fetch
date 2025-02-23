@@ -16,7 +16,7 @@ function Dog ({ dog, setLikedDogs, likedDogs }) {
       if (likedDogs.length < 25) {
         return [...likedDogs, dog]
       } else {
-        return [...likedDogs]
+        return likedDogs
       }
     })
   }
