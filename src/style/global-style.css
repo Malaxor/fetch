@@ -19,3 +19,14 @@ html {
   pointer-events: none;
   color: gray;
 }
+
+@media (max-width: 62.5em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+@media (max-width: 43.75em) {
+  html {
+    font-size: 50.25%;
+  }
+}

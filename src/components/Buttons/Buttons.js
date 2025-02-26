@@ -4,12 +4,12 @@ import './style.css'
 function Button ({ 
   disabled, 
   content, 
-  styling, // no-background, wide
+  styling, // no-background
   onClick 
 }) {
   return (
     <button
-      className={`form-button ${styling}`}
+      className={`button ${styling}`}
       disabled={disabled}
       onClick={onClick}
     >

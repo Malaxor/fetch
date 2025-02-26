@@ -1,4 +1,4 @@
-.form-button {
+.button {
   font-size: 1.8rem;
   background-color: #fba919;
   color: white;
@@ -8,16 +8,11 @@
   border: none;
   width: 10rem;
 }
-.form-button:disabled {
-  background-color: #cbc9c9;
-  cursor: default;
+.button:disabled {
+  background-color: rgb(205, 205, 205);
 }
-.form-button.no-background
-.form-button.no-background:disabled {
+.button.no-background {
   background-color: transparent;
-}
-.form-button.wide {
-  width: 13rem;
 }
 .prev-next-button {
   border:none;
@@ -27,4 +22,10 @@
 }
 .prev-next-button:disabled {
   cursor: default;
+}
+
+@media (max-width: 26em) {
+  .button.no-background {
+    font-size: 1.6rem;
+  }
 }
