@@ -51,8 +51,3 @@
     font-size: 2.5rem;
   }
 }
-@media (max-width: 26em) {
-  #navbar__logo {
-    height: 4rem;
-  }
-}
