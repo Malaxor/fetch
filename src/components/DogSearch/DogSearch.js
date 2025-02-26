@@ -76,38 +76,42 @@ export function DogSearch ({
     <>
       <form id='dog-search-form' onSubmit={onFormSubmit}>
         <Select
+          styling='large'
           name='sort'
           value={sort}
           onChange={onSetFormData} 
         />
         <Input
+          styling='large'
           placeholder='breed'
           name='breed'
           onChange={onSetFormData}
           value={breed}
         />
-        <Input
-          size='medium'
-          placeholder='zip'
-          name='zipCode'
-          onChange={onSetFormData}
-          value={zipCode}
-        />
-        <Input
-          id='age-max'
-          size='small'
-          placeholder='age max'
-          name='ageMax'
-          onChange={onSetFormData}
-          value={ageMax}
-        />
-        <Input
-          size='small'
-          placeholder='age min'
-          name='ageMin'
-          onChange={onSetFormData}
-          value={ageMin}
-        />
+        <div id="inputs-container">
+          <Input
+            styling='medium'
+            placeholder='zip'
+            name='zipCode'
+            onChange={onSetFormData}
+            value={zipCode}
+          />
+          <Input
+            id='age-max'
+            styling='medium center'
+            placeholder='age max'
+            name='ageMax'
+            onChange={onSetFormData}
+            value={ageMax}
+          />
+          <Input
+            styling='medium center'
+            placeholder='age min'
+            name='ageMin'
+            onChange={onSetFormData}
+            value={ageMin}
+          />
+        </div>
         <Button
           content='Search'
           disabled={!isLoggedIn}

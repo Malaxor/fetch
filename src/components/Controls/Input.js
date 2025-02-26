@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.css'
 
-function Input ({ name, value, onChange, placeholder, size }) {
+function Input ({ name, value, onChange, placeholder, styling }) {
   return (
     <input
-      className={`input ${size}`}
+      className={`input ${styling}`}
       type='text'
       placeholder={placeholder}
       name={name}
@@ -14,12 +14,12 @@ function Input ({ name, value, onChange, placeholder, size }) {
   )
 }
 
-function Select ({ name, value, onChange, disabled }) {
+function Select ({ name, value, onChange, disabled, styling }) {
   return (
     <select 
       name={name} 
       value={value} 
-      className="select" 
+      className={`select ${styling}`} 
       onChange={onChange} 
       disabled={disabled}
     >
