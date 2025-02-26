@@ -13,6 +13,8 @@
 }
 .button.no-background {
   background-color: transparent;
+  width: auto;
+  padding: 0;
 }
 .prev-next-button {
   border:none;
