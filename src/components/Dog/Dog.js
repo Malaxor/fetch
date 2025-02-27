@@ -9,7 +9,7 @@ function Dog ({ dog, setLikedDogs, likedDogs }) {
   function onDogHeartClick (dog) {
     setLikedDogs((likedDogs) => {
       // unlike a dog
-      if (likedDogs.find(likedDog => likedDog.id === dog.id)) {
+      if (isLiked) {
         return likedDogs.filter(likedDog => likedDog.id !== dog.id)
       }
       // can only like 25 dogs
