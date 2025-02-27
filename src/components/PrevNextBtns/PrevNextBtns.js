@@ -1,10 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 import './style.css'
-import { PrevNextButton } from '../Buttons'
+import { Button } from '../Buttons'
 import { baseURL } from '../../constants'
 
-export function SearchResultsPrevNextBtns ({ 
+export function PrevNextBtns ({ 
   setDogs,
   setNextSearchQuery,
   setPrevSearchQuery,
@@ -39,12 +39,14 @@ export function SearchResultsPrevNextBtns ({
   }
   return (
     <p className={`previous-next-container`}>
-      <PrevNextButton
+      <Button
+        type='prev-next-btn'
         disabled={prevSearchQuery ? false : true}
         content='Previous'
         onClick={onPrevButtonClick} 
       />
-      <PrevNextButton
+      <Button
+        type='prev-next-btn'
         disabled={nextSearchQuery ? false : true}
         content='Next'
         onClick={onNextButtonClick} 

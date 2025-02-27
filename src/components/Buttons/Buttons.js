@@ -1,15 +1,15 @@
 import React from 'react';
 import './style.css'
 
-function Button ({ 
+export function Button ({ 
   disabled, 
   content, 
-  styling, // no-background
+  type,
   onClick 
 }) {
   return (
     <button
-      className={`button ${styling}`}
+      className={`${type}`}
       disabled={disabled}
       onClick={onClick}
     >
@@ -17,17 +17,3 @@ function Button ({
     </button>
   )
 }
-function PrevNextButton ({ onClick, content, disabled }) {
-  return (
-    <button
-      disabled={disabled}
-      onClick={onClick}
-      className='prev-next-button'
-    >
-      {content}
-    </button>
-  )
-}
-
-
-export { Button, PrevNextButton }

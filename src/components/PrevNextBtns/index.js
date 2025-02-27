@@ -1,1 +1,1 @@
-export { SearchResultsPrevNextBtns } from './PrevNextBtns'
+export { PrevNextBtns } from './PrevNextBtns'

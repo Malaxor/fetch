@@ -113,6 +113,7 @@ export function DogSearch ({
           />
         </div>
         <Button
+          type='btn form-btn'
           content='Search'
           disabled={!isLoggedIn}
         />

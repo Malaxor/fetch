@@ -55,6 +55,7 @@ export function LoginForm ({ login, isModalOpen, closeModal }) {
         onChange={onSetFormData}
       />
       <Button
+        type='btn form-btn'
         disabled={!name || !email || !regexEmail.test(email)}
         content='Login'
       />

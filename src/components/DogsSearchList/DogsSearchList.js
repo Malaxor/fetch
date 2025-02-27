@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import './style.css'
 import { DogSearch } from '../DogSearch'
 import { DogList } from '../DogList'
-import { SearchResultsPrevNextBtns } from '../PrevNextBtns'
+import { PrevNextBtns } from '../PrevNextBtns'
 
 export function DogsSearchList ({ 
   isLoggedIn, 
@@ -36,7 +36,7 @@ export function DogsSearchList ({
           </Link>
         </p>
         {dogs.length > 0 && 
-          <SearchResultsPrevNextBtns
+          <PrevNextBtns
             setDogs={setDogs}
             setNextSearchQuery={setNextSearchQuery}
             setPrevSearchQuery={setPrevSearchQuery} 
