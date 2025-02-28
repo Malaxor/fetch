@@ -20,17 +20,17 @@ export function App() {
     }
   }, [isLoggedIn])
 
-  function logout () {
+  function logoutHandler () {
     setIsLoggedIn(false)
   }
-  function login () {
+  function loginHandler () {
     setIsLoggedIn(true)
   }
 
   return (
     <>
     <Router>
-    <Navbar logout={logout} login={login} isLoggedIn={isLoggedIn} likedDogs={likedDogs} />
+    <Navbar logoutHandler={logoutHandler} loginHandler={loginHandler} isLoggedIn={isLoggedIn} likedDogs={likedDogs} />
       <Routes>
         <Route
           path='fetch/' 

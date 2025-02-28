@@ -10,7 +10,13 @@ export function LikedDogs ({ setLikedDogs, likedDogs }) {
   
   async function onMatchWithDog () {
     const payload = likedDogs.map(likedDog => likedDog.id)
-    const { data: { match } } = await axios.post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
+    let match
+    try {
+      const { data } = await axios.post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
+      match = data.match
+    } catch (err) {
+      console.log(err)
+    }
     const matchedDog = likedDogs.find(likedDog => likedDog.id === match)
     navigate('/fetch/matched-dog', { state: { matchedDog }})
   }
@@ -27,9 +33,7 @@ export function LikedDogs ({ setLikedDogs, likedDogs }) {
               onClick={onMatchWithDog}
             />
         </p>
-        <p id='liked-dogs-btn-container'>
-          <Link className='link' to='/fetch'>Go Back</Link>
-        </p>
+        <Link className='link' to='/fetch'>Go Back</Link>
       </>
       <DogList
         dogs={likedDogs}

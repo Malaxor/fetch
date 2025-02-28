@@ -11,6 +11,8 @@ html {
 .link {
   font-size: 1.7rem;
   color: #fba919;
+  display: table;
+  margin: 0 auto 2rem;
 }
 .link:active {
   color: #300d38;

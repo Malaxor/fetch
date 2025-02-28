@@ -6,7 +6,7 @@ import { baseURL } from '../../constants'
 import { Input } from '../Controls'
 import { Button } from '../Buttons'
 
-export function LoginForm ({ login, isModalOpen, closeModal }) {
+export function LoginForm ({ loginHandler, isModalOpen, closeModalHandler }) {
   const [formData, setFormData] = useState({
     name: '',
     email: ''
@@ -31,15 +31,15 @@ export function LoginForm ({ login, isModalOpen, closeModal }) {
     e.preventDefault()
     await loginUser()
     setFormData({ name: '', email: '' })
-    login()
-    closeModal()
+    loginHandler()
+    closeModalHandler()
   }
   
  return ( 
   <Modal
     id='modal'
     isOpen={isModalOpen}
-    onRequestClose={closeModal}
+    onRequestClose={closeModalHandler}
   >
     <form id='navbar__form' onSubmit={onFormSubmit}>
       <Input

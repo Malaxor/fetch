@@ -7,22 +7,22 @@ import fetchLogo from '../../assets/images/fetch-logo.png'
 import { baseURL } from '../../constants'
 import { Button } from '../Buttons'
 
-export function Navbar ({ isLoggedIn, logout, login }) {
+export function Navbar ({ isLoggedIn, loginHandler, logoutHandler }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const navigate = useNavigate()
 
-  function openModal () {
+  function openModalHandler () {
     setIsModalOpen(true)
   }
-  function closeModal () {
+  function closeModalHandler () {
     setIsModalOpen(false)
   }
   
   async function logoutUser () {
     try {
       await axios.post(`${baseURL}/auth/logout`, {}, { withCredentials: true })
-      logout()
+      logoutHandler()
       navigate('/fetch')
     } catch (err) {
       console.log(err)
@@ -36,12 +36,12 @@ export function Navbar ({ isLoggedIn, logout, login }) {
       <Button
         type='btn sign-in-btn'
         content={!isLoggedIn ? 'Sign In' : 'Sign Out'}
-        onClick={!isLoggedIn ? openModal : logoutUser} 
+        onClick={!isLoggedIn ? openModalHandler : logoutUser} 
       />
       <LoginForm 
         isModalOpen={isModalOpen} 
-        closeModal={closeModal}
-        login={login}
+        closeModalHandler={closeModalHandler}
+        loginHandler={loginHandler}
       />
     </nav>
   )
