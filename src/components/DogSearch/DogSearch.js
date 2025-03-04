@@ -88,7 +88,7 @@ export function DogSearch ({
           onChange={onSetFormData}
           value={breed}
         />
-        <div id="inputs-container">
+        <p id="inputs-container">
           <Input
             styling='medium'
             placeholder='zip'
@@ -111,7 +111,7 @@ export function DogSearch ({
             onChange={onSetFormData}
             value={ageMin}
           />
-        </div>
+        </p>
         <Button
           type='btn form-btn'
           content='Search'

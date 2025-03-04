@@ -1,12 +1,7 @@
 import React from 'react';
 import './style.css'
 
-export function Button ({ 
-  disabled, 
-  content, 
-  type,
-  onClick 
-}) {
+export function Button ({ disabled, content, type, onClick }) {
   return (
     <button
       className={`${type}`}

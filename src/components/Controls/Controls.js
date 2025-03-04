@@ -14,12 +14,12 @@ function Input ({ name, value, onChange, placeholder, styling }) {
   )
 }
 
-function Select ({ name, value, onChange, disabled, styling }) {
+function Select ({ name, value, onChange, disabled }) {
   return (
     <select 
       name={name} 
       value={value} 
-      className={`select ${styling}`} 
+      className='select'
       onChange={onChange} 
       disabled={disabled}
     >
