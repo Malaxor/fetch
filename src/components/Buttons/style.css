@@ -4,13 +4,13 @@
   cursor: pointer;
   border: none;
 }
-.btn.form-btn {
+.form-btn {
   background-color: #fba919;
   padding: 1rem;
   border-radius: 1rem;
   width: 10rem;
 }
-.btn.sign-in-btn {
+.sign-in-btn {
   background-color: transparent;
 }
 

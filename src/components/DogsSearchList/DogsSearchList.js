@@ -30,9 +30,9 @@ export function DogsSearchList ({
           setNextSearchQuery={setNextSearchQuery}
           setPrevSearchQuery={setPrevSearchQuery}
         />
-        <Link className={`link ${!likedDogs.length ? 'disabled' :''}`} to='liked-dogs'>
-          {`View Liked Dogs ${likedDogs.length}`} 
-        </Link>
+          <Link className={`link ${!likedDogs.length ? 'disabled' :''}`} to='liked-dogs'>
+            {`View Liked Dogs ${likedDogs.length}`} 
+          </Link>
         {dogs.length > 0 && 
           <PrevNextBtns
             setDogs={setDogs}
