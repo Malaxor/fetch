@@ -14,13 +14,13 @@ function Dog ({ dog, setLikedDogs, likedDogs }) {
       }
       // can only like 25 dogs
       if (likedDogs.length < 25) {
-        return [...likedDogs, dog]
+        return likedDogs.concat(dog)
       } else {
         return likedDogs
       }
     })
   }
-  const heartColor = isLiked ? 'red' : 'gray'  
+  const heartColor = isLiked ? 'red-heart' : 'gray-heart'  
   const cursorAuto = !isLiked && likedDogs.length === 25 ? 'cursor-auto' : ''
 
   return ( 
@@ -60,7 +60,7 @@ function MatchedDog ({ dog }) {
       </ul>
       <FontAwesomeIcon 
         icon={faHeart} 
-        className='matched-dog heart red'
+        className='heart red-heart cursor-auto'
       />
     </li>
   )

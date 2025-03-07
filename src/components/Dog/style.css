@@ -18,13 +18,12 @@
   right: 1.5rem;
   font-size: 4rem;
 }
-.heart.matched-dog,
-.heart.cursor-auto {
+.cursor-auto {
   cursor: auto;
 }
-.heart.red {
+.red-heart {
   color: red;
 }
-.heart.gray {
+.gray-heart {
   color: rgb(185, 185, 185);
 }

@@ -1,7 +1,6 @@
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { DogList } from '../DogList'
-import { Link } from 'react-router-dom'
 import { Button } from '../Buttons'
 import { baseURL } from '../../constants'
 
