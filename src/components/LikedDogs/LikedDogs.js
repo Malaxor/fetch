@@ -10,15 +10,13 @@ export function LikedDogs ({ setLikedDogs, likedDogs }) {
   
   async function onMatchWithDog () {
     const payload = likedDogs.map(likedDog => likedDog.id)
-    let match
     try {
       const { data } = await axios.post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
-      match = data.match
+      const matchedDog = likedDogs.find(likedDog => likedDog.id === data.match)
+      navigate('/fetch/matched-dog', { state: { matchedDog }})
     } catch (err) {
       console.log(err)
     }
-    const matchedDog = likedDogs.find(likedDog => likedDog.id === match)
-    navigate('/fetch/matched-dog', { state: { matchedDog }})
   }
   
   return ( 

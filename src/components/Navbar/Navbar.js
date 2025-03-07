@@ -22,11 +22,11 @@ export function Navbar ({ isLoggedIn, loginHandler, logoutHandler }) {
   async function logoutUser () {
     try {
       await axios.post(`${baseURL}/auth/logout`, {}, { withCredentials: true })
-      logoutHandler()
-      navigate('/fetch')
     } catch (err) {
       console.log(err)
     }
+    logoutHandler()
+    navigate('/fetch')
   }
 
   return ( 
