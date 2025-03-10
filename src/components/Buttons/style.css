@@ -13,7 +13,6 @@
 .sign-in-btn {
   background-color: transparent;
 }
-
 .btn:disabled {
   background-color: rgb(205, 205, 205);
 }

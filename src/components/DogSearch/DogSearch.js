@@ -9,7 +9,7 @@ export function DogSearch ({
   isLoggedIn, 
   setDogs, 
   setNextSearchQuery,
-  setPrevSearchQuery, 
+  setPrevSearchQuery
 }) {
   const[formData, setFormData] = useState({
     breed: '',
@@ -32,41 +32,41 @@ export function DogSearch ({
 
   async function onFormSubmit (e) {
     e.preventDefault()
+    const config = {
+      withCredentials: true,
+      params: {
+        sort
+      }
+    }
+
+    if (breed) {
+      config.params.breeds = []
+      config.params.breeds.push(capitalizeFirstLetter(breed.toLowerCase()))
+    }
+    if (zipCode) {
+      config.params.zipCodes = []
+      config.params.zipCodes.push(zipCode)
+    }
+    if (ageMin) {
+      config.params.ageMin = ageMin
+    }
+    if (ageMax) {
+      config.params.ageMax = ageMax
+    }
+
+    // reset shared state
+    setNextSearchQuery('')
+    setPrevSearchQuery('')
+
     try {
-      const config = {
-        withCredentials: true,
-        params: {
-          sort
-        }
-      }
-  
-      if (breed) {
-        config.params.breeds = []
-        config.params.breeds.push(capitalizeFirstLetter(breed.toLowerCase()))
-      }
-      if (zipCode) {
-        config.params.zipCodes = []
-        config.params.zipCodes.push(zipCode)
-      }
-      if (ageMin) {
-        config.params.ageMin = ageMin
-      }
-      if (ageMax) {
-        config.params.ageMax = ageMax
-      }
-
-      // reset shared state
-      setNextSearchQuery('')
-      setPrevSearchQuery('')
-
       const { data: searchData } = await axios.get(`${baseURL}/dogs/search`, config)
       setFormData({ breed: '', zipCode: '', ageMin: '', ageMax: '' })
       if (searchData.next) {
         setNextSearchQuery(searchData.next)
       }
-      const { data  } = await axios
-        .post(`${baseURL}/dogs`, searchData.resultIds, { withCredentials: true })
-      setDogs(data)
+      const { data: dogData } = await axios
+        .post(`${baseURL}/dogs`, searchData.resultIds, config.withCredentials)
+      setDogs(dogData)
     } catch (err) {
       console.log(err)
     }

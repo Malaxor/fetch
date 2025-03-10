@@ -9,34 +9,43 @@ export function PrevNextBtns ({
   setNextSearchQuery,
   setPrevSearchQuery,
   prevSearchQuery, 
-  nextSearchQuery,
+  nextSearchQuery
 }) {
 
   async function onNextButtonClick () {
     if (nextSearchQuery) {
-      const { data: searchData } = await axios.get(`${baseURL}${nextSearchQuery}`, 
-        { withCredentials: true }
-      )
-      setNextSearchQuery(searchData.next)
-      setPrevSearchQuery(searchData.prev)
-      const { data } = await axios
-        .post(`${baseURL}/dogs`, searchData.resultIds, { withCredentials: true })
-      setDogs(data)
+      try {
+        const { data: searchData } = await axios.get(`${baseURL}${nextSearchQuery}`, 
+          { withCredentials: true }
+        )
+        setNextSearchQuery(searchData.next)
+        setPrevSearchQuery(searchData.prev)
+        const { data } = await axios
+          .post(`${baseURL}/dogs`, searchData.resultIds, { withCredentials: true })
+        setDogs(data)
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 
   async function onPrevButtonClick () {
     if (prevSearchQuery) {
-      const { data: searchData } = await axios.get(`${baseURL}${prevSearchQuery}`, 
-        { withCredentials: true }
-      )
-      setNextSearchQuery(searchData.next)
-      setPrevSearchQuery(searchData.prev)
-      const { data } = await axios
-        .post(`${baseURL}/dogs`, searchData.resultIds, { withCredentials: true })
-      setDogs(data)
+      try {
+        const { data: searchData } = await axios.get(`${baseURL}${prevSearchQuery}`, 
+          { withCredentials: true }
+        )
+        setNextSearchQuery(searchData.next)
+        setPrevSearchQuery(searchData.prev)
+        const { data } = await axios
+          .post(`${baseURL}/dogs`, searchData.resultIds, { withCredentials: true })
+        setDogs(data)
+      } catch (err) {
+       console.log(err) 
+      }
     }  
   }
+  
   return (
     <p className={`previous-next-container`}>
       <Button

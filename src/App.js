@@ -30,7 +30,7 @@ export function App() {
   return (
     <>
     <Router>
-    <Navbar logoutHandler={logoutHandler} loginHandler={loginHandler} isLoggedIn={isLoggedIn} likedDogs={likedDogs} />
+    <Navbar logoutHandler={logoutHandler} loginHandler={loginHandler} isLoggedIn={isLoggedIn} />
       <Routes>
         <Route
           path='fetch/' 
