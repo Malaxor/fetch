@@ -65,7 +65,7 @@ export function DogSearch ({
         setNextSearchQuery(searchData.next)
       }
       const { data: dogData } = await axios
-        .post(`${baseURL}/dogs`, searchData.resultIds, config.withCredentials)
+        .post(`${baseURL}/dogs`, searchData.resultIds, { withCredentials: true })
       setDogs(dogData)
     } catch (err) {
       console.log(err)
@@ -76,13 +76,13 @@ export function DogSearch ({
     <>
       <form id='dog-search-form' onSubmit={onFormSubmit}>
         <Select
-          styling='large'
+          styling='large-select'
           name='sort'
           value={sort}
           onChange={onSetFormData} 
         />
         <Input
-          styling='large'
+          styling='large-input'
           placeholder='breed'
           name='breed'
           onChange={onSetFormData}
@@ -90,7 +90,7 @@ export function DogSearch ({
         />
         <p id="inputs-container">
           <Input
-            styling='medium'
+            styling='medium-input'
             placeholder='zip'
             name='zipCode'
             onChange={onSetFormData}
@@ -98,14 +98,14 @@ export function DogSearch ({
           />
           <Input
             id='age-max'
-            styling='medium center'
+            styling='medium-input center-text'
             placeholder='age max'
             name='ageMax'
             onChange={onSetFormData}
             value={ageMax}
           />
           <Input
-            styling='medium center'
+            styling='medium-input center-text'
             placeholder='age min'
             name='ageMin'
             onChange={onSetFormData}
@@ -113,7 +113,7 @@ export function DogSearch ({
           />
         </p>
         <Button
-          type='btn form-btn'
+          styling='btn form-btn'
           content='Search'
           disabled={!isLoggedIn}
         />

@@ -27,7 +27,7 @@
 }
 
 @media (max-width: 26em) {
-  .btn.sign-in-btn {
+  .sign-in-btn {
     font-size: 1.6rem;
   }
 }

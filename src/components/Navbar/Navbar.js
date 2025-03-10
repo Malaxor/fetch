@@ -34,7 +34,7 @@ export function Navbar ({ isLoggedIn, loginHandler, logoutHandler }) {
       <img id='navbar__logo' src={fetchLogo} alt="fetch logo" />
       <p id='navbar__slogan'>Paws for a Cause</p>
       <Button
-        type='btn sign-in-btn'
+        styling='btn sign-in-btn'
         content={!isLoggedIn ? 'Sign In' : 'Sign Out'}
         onClick={!isLoggedIn ? openModalHandler : logoutUser} 
       />

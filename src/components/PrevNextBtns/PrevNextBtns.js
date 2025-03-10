@@ -49,13 +49,13 @@ export function PrevNextBtns ({
   return (
     <p className={`previous-next-container`}>
       <Button
-        type='prev-next-btn'
+        styling='prev-next-btn'
         disabled={prevSearchQuery ? false : true}
         content='Previous'
         onClick={onPrevButtonClick} 
       />
       <Button
-        type='prev-next-btn'
+        styling='prev-next-btn'
         disabled={nextSearchQuery ? false : true}
         content='Next'
         onClick={onNextButtonClick} 

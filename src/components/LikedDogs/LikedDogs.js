@@ -24,7 +24,7 @@ export function LikedDogs ({ setLikedDogs, likedDogs }) {
       <>
         <p id='liked-dogs-btn-container'>
             <Button
-              type='btn form-btn'
+              styling='btn form-btn'
               disabled={!likedDogs.length}
               content='Submit'
               onClick={onMatchWithDog}

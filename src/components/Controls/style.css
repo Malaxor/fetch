@@ -6,17 +6,17 @@
   border: #fba919 .3rem solid;
   font-size: 1.8rem;
 }
-.input.large,
-.select.large {
+.large-input,
+.large-select {
   width: 30rem;
 }
 .input::placeholder {
   color: rgb(185, 184, 184);
 }
-.input.center {
+.center-text {
   text-align: center;
 }
-.input.medium {
+.medium-input {
   width: 9rem;
 }
 .select:disabled {
