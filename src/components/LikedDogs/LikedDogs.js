@@ -7,15 +7,15 @@ import { baseURL } from '../../constants'
 export function LikedDogs ({ setLikedDogs, likedDogs }) {
   const navigate = useNavigate()
   
-  async function onMatchWithDog () {
+  function onMatchWithDog () {
     const payload = likedDogs.map(likedDog => likedDog.id)
-    try {
-      const { data } = await axios.post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
-      const matchedDog = likedDogs.find(likedDog => likedDog.id === data.match)
-      navigate('/fetch/matched-dog', { state: { matchedDog }})
-    } catch (err) {
-      console.log(err)
-    }
+    axios
+      .post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
+      .then(({ data }) => {
+        const matchedDog = likedDogs.find(likedDog => likedDog.id === data.match)
+        navigate('/fetch/matched-dog', { state: { matchedDog }})
+      })
+      .catch(err => { console.log(err) })
   }
   
   return ( 
