@@ -12,11 +12,15 @@ export function PrevNextBtns ({
   nextSearchQuery
 }) {
 
+  const config = {
+    withCredentials: true
+  }
+
   async function onNextButtonClick () {
     if (nextSearchQuery) {
       let data
       try {
-        const res = await axios.get(`${baseURL}${nextSearchQuery}`, { withCredentials: true })
+        const res = await axios.get(`${baseURL}${nextSearchQuery}`, config)
         data = res.data
       } catch (err) {
         console.log(err)
@@ -24,8 +28,7 @@ export function PrevNextBtns ({
       setNextSearchQuery(data.next)
       setPrevSearchQuery(data.prev)
       try {
-        const res = await axios
-          .post(`${baseURL}/dogs`, data.resultIds, { withCredentials: true })
+        const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
         data = res.data  
       } catch (err) {
         console.log(err)
@@ -38,7 +41,7 @@ export function PrevNextBtns ({
     if (prevSearchQuery) {
       let data
       try {
-        const res = await axios.get(`${baseURL}${prevSearchQuery}`, { withCredentials: true })
+        const res = await axios.get(`${baseURL}${prevSearchQuery}`, config)
         data = res.data
       } catch (err) {
         console.log(err)
@@ -46,8 +49,7 @@ export function PrevNextBtns ({
       setNextSearchQuery(data.next)
       setPrevSearchQuery(data.prev)
       try {
-        const res = await axios
-          .post(`${baseURL}/dogs`, data.resultIds, { withCredentials: true })
+        const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
         data = res.data  
       } catch (err) {
         console.log(err)

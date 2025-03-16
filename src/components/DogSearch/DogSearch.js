@@ -58,18 +58,24 @@ export function DogSearch ({
     setNextSearchQuery('')
     setPrevSearchQuery('')
 
+    let data
     try {
-      const { data: searchData } = await axios.get(`${baseURL}/dogs/search`, config)
-      setFormData({ breed: '', zipCode: '', ageMin: '', ageMax: '' })
-      if (searchData.next) {
-        setNextSearchQuery(searchData.next)
-      }
-      const { data: dogData } = await axios
-        .post(`${baseURL}/dogs`, searchData.resultIds, { withCredentials: true })
-      setDogs(dogData)
+      const res = await axios.get(`${baseURL}/dogs/search`, config)
+      data = res.data
     } catch (err) {
       console.log(err)
     }
+    console.log({ data })
+    setFormData({ breed: '', zipCode: '', ageMin: '', ageMax: '' })
+    setNextSearchQuery(data.next)
+
+    try {
+      const res = await axios.post(`${baseURL}/dogs`, data.resultIds, { withCredentials: true })
+      data = res.data
+    } catch (err) {
+      console.log(err)
+    }
+    setDogs(data)
   }
 
   return (
