@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import { get, post } from 'axios'
 import './style.css'
 import { Button } from '../Buttons'
 import { baseURL } from '../../constants'
@@ -20,7 +20,7 @@ export function PrevNextBtns ({
     if (nextSearchQuery) {
       let data
       try {
-        const res = await axios.get(`${baseURL}${nextSearchQuery}`, config)
+        const res = await get(`${baseURL}${nextSearchQuery}`, config)
         data = res.data
       } catch (err) {
         console.log(err)
@@ -28,7 +28,7 @@ export function PrevNextBtns ({
       setNextSearchQuery(data.next)
       setPrevSearchQuery(data.prev)
       try {
-        const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
+        const res = await post(`${baseURL}/dogs`, data.resultIds, config)
         data = res.data  
       } catch (err) {
         console.log(err)
@@ -41,7 +41,7 @@ export function PrevNextBtns ({
     if (prevSearchQuery) {
       let data
       try {
-        const res = await axios.get(`${baseURL}${prevSearchQuery}`, config)
+        const res = await get(`${baseURL}${prevSearchQuery}`, config)
         data = res.data
       } catch (err) {
         console.log(err)
@@ -49,7 +49,7 @@ export function PrevNextBtns ({
       setNextSearchQuery(data.next)
       setPrevSearchQuery(data.prev)
       try {
-        const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
+        const res = await post(`${baseURL}/dogs`, data.resultIds, config)
         data = res.data  
       } catch (err) {
         console.log(err)

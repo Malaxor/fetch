@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { post } from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './style.css'
@@ -21,7 +21,7 @@ export function Navbar ({ isLoggedIn, loginHandler, logoutHandler }) {
   
   async function logoutUser () {
     try {
-      await axios.post(`${baseURL}/auth/logout`, {}, { withCredentials: true })
+      await post(`${baseURL}/auth/logout`, {}, { withCredentials: true })
     } catch (err) {
       console.log(err)
     }

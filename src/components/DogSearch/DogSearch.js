@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios'
+import { get, post } from 'axios'
 import './style.css'
 import { baseURL } from '../../constants'
 import { Input, Select } from '../Controls'
@@ -60,7 +60,7 @@ export function DogSearch ({
 
     let data
     try {
-      const res = await axios.get(`${baseURL}/dogs/search`, config)
+      const res = await get(`${baseURL}/dogs/search`, config)
       data = res.data
     } catch (err) {
       console.log(err)
@@ -70,7 +70,7 @@ export function DogSearch ({
     setNextSearchQuery(data.next)
 
     try {
-      const res = await axios.post(`${baseURL}/dogs`, data.resultIds, { withCredentials: true })
+      const res = await post(`${baseURL}/dogs`, data.resultIds, { withCredentials: true })
       data = res.data
     } catch (err) {
       console.log(err)
