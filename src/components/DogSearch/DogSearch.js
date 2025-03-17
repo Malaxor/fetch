@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { get, post } from 'axios'
+import axios from 'axios'
 import './style.css'
 import { baseURL } from '../../constants'
 import { Input, Select } from '../Controls'
@@ -58,24 +58,21 @@ export function DogSearch ({
     setNextSearchQuery('')
     setPrevSearchQuery('')
 
-    let data
     try {
-      const res = await get(`${baseURL}/dogs/search`, config)
+      const res = await axios.get(`${baseURL}/dogs/search`, config)
       data = res.data
     } catch (err) {
       console.log(err)
     }
-    console.log({ data })
     setFormData({ breed: '', zipCode: '', ageMin: '', ageMax: '' })
     setNextSearchQuery(data.next)
 
     try {
-      const res = await post(`${baseURL}/dogs`, data.resultIds, { withCredentials: true })
+      const res = await axios.post(`${baseURL}/dogs`, data.resultIds, { withCredentials: true })
       data = res.data
     } catch (err) {
       console.log(err)
     }
-    setDogs(data)
   }
 
   return (

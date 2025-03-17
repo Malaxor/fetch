@@ -37,7 +37,6 @@ export function LoginForm ({ loginHandler, isModalOpen, closeModalHandler }) {
   
  return ( 
   <Modal
-    ariaHideApp={false}
     id='modal'
     isOpen={isModalOpen}
     onRequestClose={closeModalHandler}
