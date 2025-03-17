@@ -1,4 +1,4 @@
-import { post } from 'axios'
+import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 import { DogList } from '../DogList'
 import { Button } from '../Buttons'
@@ -9,7 +9,7 @@ export function LikedDogs ({ setLikedDogs, likedDogs }) {
   
   function onMatchWithDog () {
     const payload = likedDogs.map(likedDog => likedDog.id)
-    post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
+    axios.post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
       .then(({ data }) => {
         const matchedDog = likedDogs.find(likedDog => likedDog.id === data.match)
         navigate('/fetch/matched-dog', { state: { matchedDog }})

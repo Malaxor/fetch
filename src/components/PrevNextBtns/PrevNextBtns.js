@@ -12,6 +12,10 @@ export function PrevNextBtns ({
   nextSearchQuery
 }) {
 
+  const config = {
+    withCredentials: true
+  }
+  
   async function onNextButtonClick () {
     if (nextSearchQuery) {
       let data

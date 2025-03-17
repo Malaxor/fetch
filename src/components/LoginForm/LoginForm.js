@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Modal from 'react-modal'
-import { post } from 'axios'
+import axios from 'axios'
 import './style.css'
 import { baseURL } from '../../constants'
 import { Input } from '../Controls'
@@ -21,7 +21,7 @@ export function LoginForm ({ loginHandler, isModalOpen, closeModalHandler }) {
   
   async function loginUser () {
     try {
-      await post(`${baseURL}/auth/login`, { name, email }, { withCredentials: true })
+      await axios.post(`${baseURL}/auth/login`, { name, email }, { withCredentials: true })
     } catch (err) {
       console.log(err)
     }

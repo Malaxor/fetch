@@ -58,6 +58,7 @@ export function DogSearch ({
     setNextSearchQuery('')
     setPrevSearchQuery('')
 
+    let data
     try {
       const res = await axios.get(`${baseURL}/dogs/search`, config)
       data = res.data
