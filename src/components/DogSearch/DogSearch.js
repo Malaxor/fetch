@@ -61,11 +61,12 @@ export function DogSearch ({
     let data
     try {
       const res = await axios.get(`${baseURL}/dogs/search`, config)
+      console.log(res)
       data = res.data
     } catch (err) {
       console.log(err)
     }
-    setFormData({ breed: '', zipCode: '', ageMin: '', ageMax: '' })
+
     setNextSearchQuery(data.next)
 
     try {
