@@ -54,8 +54,6 @@ export function DogSearch ({
       config.params.ageMax = ageMax
     }
 
-    // reset shared state
-    setNextSearchQuery('')
     setPrevSearchQuery('')
 
     let data
@@ -75,6 +73,7 @@ export function DogSearch ({
     } catch (err) {
       console.log(err)
     }
+    
     setDogs(data)
   }
 

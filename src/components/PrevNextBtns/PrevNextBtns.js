@@ -25,14 +25,17 @@ export function PrevNextBtns ({
       } catch (err) {
         console.log(err)
       }
+
       setNextSearchQuery(data.next)
       setPrevSearchQuery(data.prev)
+
       try {
         const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
         data = res.data  
       } catch (err) {
         console.log(err)
       }
+      
       setDogs(data)
     }
   }
@@ -46,14 +49,17 @@ export function PrevNextBtns ({
       } catch (err) {
         console.log(err)
       }
+
       setNextSearchQuery(data.next)
       setPrevSearchQuery(data.prev)
+
       try {
         const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
         data = res.data  
       } catch (err) {
         console.log(err)
       }
+
       setDogs(data)
     }
   }
