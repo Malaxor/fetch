@@ -74,6 +74,7 @@ export function DogSearch ({
     } catch (err) {
       console.log(err)
     }
+    setDogs(data)
   }
 
   return (

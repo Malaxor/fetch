@@ -30,10 +30,10 @@ export function App() {
   return (
     <>
     <Router>
-    <Navbar logoutHandler={logoutHandler} loginHandler={loginHandler} isLoggedIn={isLoggedIn} />
+      <Navbar logoutHandler={logoutHandler} loginHandler={loginHandler} isLoggedIn={isLoggedIn} />
       <Routes>
         <Route
-          path='fetch/' 
+          path='fetch' 
           element={<DogsSearchList
             nextSearchQuery={nextSearchQuery}
             setNextSearchQuery={setNextSearchQuery}
