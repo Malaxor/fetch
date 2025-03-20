@@ -35,7 +35,7 @@ export function PrevNextBtns ({
       } catch (err) {
         console.log(err)
       }
-      
+
       setDogs(data)
     }
   }
