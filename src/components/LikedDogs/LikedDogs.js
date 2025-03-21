@@ -21,14 +21,12 @@ export function LikedDogs ({ setLikedDogs, likedDogs }) {
     <section id='liked-dogs'>
       <p id="message-for-user">Click on Submit to match with a dog.</p>
       <>
-        <p id='liked-dogs-btn-container'>
-            <Button
-              styling='btn form-btn'
-              disabled={!likedDogs.length}
-              content='Submit'
-              onClick={onMatchWithDog}
-            />
-        </p>
+        <Button
+          styling='btn form-btn match-dog-btn'
+          disabled={!likedDogs.length}
+          content='Submit'
+          onClick={onMatchWithDog}
+        />
         <Link className='link' to='/fetch'>Go Back</Link>
       </>
       <DogList

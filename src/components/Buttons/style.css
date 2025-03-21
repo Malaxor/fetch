@@ -13,6 +13,10 @@
 .sign-in-btn {
   background-color: transparent;
 }
+.match-dog-btn {
+  display: table;
+  margin: 0 auto 2rem;
+}
 .btn:disabled {
   background-color: rgb(205, 205, 205);
 }
