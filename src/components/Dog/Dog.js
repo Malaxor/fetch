@@ -21,7 +21,7 @@ function Dog ({ dog, setLikedDogs, likedDogs }) {
     })
   }
   const heartColor = isLiked ? 'red-heart' : 'gray-heart'  
-  const cursorAuto = !isLiked && likedDogs.length === 25 ? 'cursor-auto' : ''
+  const cursorType = !isLiked && likedDogs.length === 25 ? 'cursor-auto' : ''
 
   return ( 
     <li className='dog'>
@@ -38,7 +38,7 @@ function Dog ({ dog, setLikedDogs, likedDogs }) {
       </ul>
       <FontAwesomeIcon 
         icon={faHeart} 
-        className={`heart ${heartColor} ${cursorAuto}`} 
+        className={`heart ${heartColor} ${cursorType}`} 
         onClick={() => onDogHeartClick(dog)}
       />
     </li>
