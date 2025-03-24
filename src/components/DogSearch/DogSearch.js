@@ -41,7 +41,7 @@ export function DogSearch ({
 
     if (breed) {
       config.params.breeds = []
-      config.params.breeds.push(capitalizeFirstLetter(breed.toLowerCase()))
+      config.params.breeds.push(capitalizeFirstLetter(breed.trim().toLowerCase()))
     }
     if (zipCode) {
       config.params.zipCodes = []
