@@ -32,3 +32,8 @@ html {
     font-size: 50.25%;
   }
 }
+@media (max-width: 31em) {
+  html {
+    font-size: 48%;
+  }
+}
