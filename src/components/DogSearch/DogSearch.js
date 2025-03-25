@@ -42,16 +42,20 @@ export function DogSearch ({
     if (breed) {
       config.params.breeds = []
       config.params.breeds.push(capitalizeFirstLetter(breed.trim().toLowerCase()))
+      formData.breed = formData.breed.trim().toLowerCase()
     }
     if (zipCode) {
       config.params.zipCodes = []
-      config.params.zipCodes.push(zipCode)
+      config.params.zipCodes.push(zipCode.trim())
+      formData.zipCode = formData.zipCode.trim()
     }
     if (ageMin) {
-      config.params.ageMin = ageMin
+      config.params.ageMin = ageMin.trim()
+      formData.ageMin = formData.ageMin.trim()
     }
     if (ageMax) {
-      config.params.ageMax = ageMax
+      config.params.ageMax = ageMax.trim()
+      formData.ageMax = formData.ageMax.trim()
     }
 
     setPrevSearchQuery('')

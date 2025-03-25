@@ -20,8 +20,12 @@ export function LoginForm ({ loginHandler, isModalOpen, closeModalHandler }) {
   }
   
   async function loginUser () {
+    const payload = {
+      name: name.trim(),
+      email: email.trim()
+    }
     try {
-      await axios.post(`${baseURL}/auth/login`, { name, email }, { withCredentials: true })
+      await axios.post(`${baseURL}/auth/login`, payload, { withCredentials: true })
     } catch (err) {
       console.log(err)
     }
