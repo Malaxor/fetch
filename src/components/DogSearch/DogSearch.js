@@ -47,7 +47,6 @@ export function DogSearch ({
     if (zipCode) {
       config.params.zipCodes = []
       config.params.zipCodes.push(zipCode.trim())
-      formData.zipCode = formData.zipCode.trim()
     }
     if (ageMin) {
       config.params.ageMin = ageMin.trim()
@@ -59,6 +58,7 @@ export function DogSearch ({
     }
 
     setPrevSearchQuery('')
+    setFormData(() => ({ ...formData, zipCode: '' }))
 
     let data
     try {
