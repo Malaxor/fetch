@@ -80,6 +80,33 @@ export function DogSearch ({
     setDogs(data)
   }
 
+  const options = [
+    { 
+      value: 'breed:asc',
+      content: 'Breed - Ascending'
+    },
+    {
+      value: 'breed:desc',
+      content: 'Breed - Descending'
+    },
+    {
+      value: 'name:asc',
+      content: 'Name - Ascending'
+    },
+    {
+      value: 'name:desc',
+      content: 'Name - Descending'
+    },
+    {
+      value: 'age:asc',
+      content: 'Age - Ascending'
+    },
+    {
+      value: 'age:desc',
+      content: 'Age - Desending'
+    }
+  ]
+
   return (
     <>
       <form id='dog-search-form' onSubmit={onFormSubmit}>
@@ -87,7 +114,8 @@ export function DogSearch ({
           styling='large-select'
           name='sort'
           value={sort}
-          onChange={onSetFormData} 
+          onChange={onSetFormData}
+          options={options} 
         />
         <Input
           styling='large-input'
