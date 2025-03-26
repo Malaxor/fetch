@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal'
 import axios from 'axios'
 import './style.css'
@@ -7,6 +8,7 @@ import { Input } from '../Controls'
 import { Button } from '../Buttons'
 
 export function LoginForm ({ loginHandler, isModalOpen, closeModalHandler }) {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     email: ''
@@ -37,6 +39,7 @@ export function LoginForm ({ loginHandler, isModalOpen, closeModalHandler }) {
     setFormData({ name: '', email: '' })
     loginHandler()
     closeModalHandler()
+    navigate('/fetch/dog-search-list')
   }
   
  return ( 

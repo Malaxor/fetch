@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import './style.css'
 import { LoginForm } from '../LoginForm'
 import fetchLogo from '../../assets/images/fetch-logo.png'

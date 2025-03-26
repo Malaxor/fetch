@@ -33,7 +33,7 @@ export function App() {
       <Navbar logoutHandler={logoutHandler} loginHandler={loginHandler} isLoggedIn={isLoggedIn} />
       <Routes>
         <Route
-          path='fetch' 
+          path='fetch/dog-search-list' 
           element={<DogsSearchList
             nextSearchQuery={nextSearchQuery}
             setNextSearchQuery={setNextSearchQuery}
