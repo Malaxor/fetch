@@ -26,7 +26,7 @@ export function Navbar ({ isLoggedIn, loginHandler, logoutHandler }) {
       console.log(err)
     }
     logoutHandler()
-    navigate('/')
+    navigate('fetch')
   }
 
   return ( 

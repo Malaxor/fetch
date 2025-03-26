@@ -12,7 +12,7 @@ export function LikedDogs ({ setLikedDogs, likedDogs }) {
     axios.post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
       .then(({ data }) => {
         const matchedDog = likedDogs.find(likedDog => likedDog.id === data.match)
-        navigate('/matched-dog', { state: { matchedDog }})
+        navigate('/fetch/matched-dog', { state: { matchedDog }})
       })
       .catch(err => { console.log(err) })
   }

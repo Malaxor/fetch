@@ -39,7 +39,7 @@ export function LoginForm ({ loginHandler, isModalOpen, closeModalHandler }) {
     setFormData({ name: '', email: '' })
     loginHandler()
     closeModalHandler()
-    navigate('dog-search-list')
+    navigate('/fetch/dog-search-list')
   }
   
  return ( 
