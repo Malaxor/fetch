@@ -33,7 +33,7 @@ export function App() {
       <Navbar logoutHandler={logoutHandler} loginHandler={loginHandler} isLoggedIn={isLoggedIn} />
       <Routes>
         <Route
-          path='fetch/dog-search-list' 
+          path='dog-search-list' 
           element={<DogsSearchList
             nextSearchQuery={nextSearchQuery}
             setNextSearchQuery={setNextSearchQuery}
@@ -46,11 +46,11 @@ export function App() {
             isLoggedIn={isLoggedIn} />} 
           />
         <Route 
-          path='fetch/liked-dogs' 
+          path='liked-dogs' 
           element={<LikedDogs  likedDogs={likedDogs} setLikedDogs={setLikedDogs} />}
         />
         <Route 
-          path='fetch/matched-dog' 
+          path='matched-dog' 
           element={<MatchedDog />}
         />    
       </Routes>
