@@ -20,7 +20,7 @@ export function DogsSearchList ({
     <section id='dogs-search-list'>
       <p id="message-for-user">{!isLoggedIn 
         ? 'Sign in and find a loving dog to adopt.' 
-        : 'Omitting all the search parameters will return results.'}
+        : 'Omitting all search parameters returns results.'}
       </p>
       {isLoggedIn && 
       <>
