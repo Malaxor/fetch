@@ -1,16 +1,15 @@
 import React from 'react'
 import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
+import { setNextSearchQuery, setPrevSearchQuery, addDogs } from '../../slicers'
 import './style.css'
 import { Button } from '../Buttons'
 import { baseURL } from '../../constants'
 
-export function PrevNextBtns ({ 
-  setDogs,
-  setNextSearchQuery,
-  setPrevSearchQuery,
-  prevSearchQuery, 
-  nextSearchQuery
-}) {
+export function PrevNextBtns () {
+  const dispatch = useDispatch()
+  const nextSearchQuery = useSelector(state => state.searchQueries.nextSearchQuery)
+  const prevSearchQuery = useSelector(state => state.searchQueries.prevSearchQuery)
 
   const config = {
     withCredentials: true
@@ -26,8 +25,8 @@ export function PrevNextBtns ({
         console.log(err)
       }
 
-      setNextSearchQuery(data.next)
-      setPrevSearchQuery(data.prev)
+      dispatch(setNextSearchQuery(data.next))
+      dispatch(setPrevSearchQuery(data.prev))
 
       try {
         const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
@@ -36,7 +35,7 @@ export function PrevNextBtns ({
         console.log(err)
       }
 
-      setDogs(data)
+      dispatch(addDogs(data))
     }
   }
 
@@ -50,8 +49,8 @@ export function PrevNextBtns ({
         console.log(err)
       }
 
-      setNextSearchQuery(data.next)
-      setPrevSearchQuery(data.prev)
+      dispatch(setNextSearchQuery(data.next))
+      dispatch(setPrevSearchQuery(data.prev))
 
       try {
         const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
@@ -60,7 +59,7 @@ export function PrevNextBtns ({
         console.log(err)
       }
 
-      setDogs(data)
+      dispatch(addDogs(data))
     }
   }
   

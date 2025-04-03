@@ -1,27 +1,24 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { addLikedDog, removeLikedDog } from '../../slicers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import './style.css'
 
-function Dog ({ dog, setLikedDogs, likedDogs }) {
+function Dog ({ dog }) {
+  const dispatch = useDispatch()
+  const likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
   const isLiked = likedDogs.find(likedDog => likedDog.id === dog.id)
-
-  function onDogHeartClick (dog) {
-    setLikedDogs((likedDogs) => {
-      // unlike a dog
-      if (isLiked) {
-        return likedDogs.filter(likedDog => likedDog.id !== dog.id)
-      }
-      // can only like 25 dogs
-      if (likedDogs.length < 25) {
-        return likedDogs.concat(dog)
-      } else {
-        return likedDogs
-      }
-    })
-  }
   const heartColor = isLiked ? 'red-heart' : 'gray-heart'  
   const cursorType = !isLiked && likedDogs.length === 25 ? 'cursor-auto' : ''
+
+  function onDogHeartClick (dog) {
+    if (!isLiked) {
+      dispatch(addLikedDog(dog))
+    } else {
+      dispatch(removeLikedDog(dog))
+    }
+  }
 
   return ( 
     <li className='dog'>
@@ -39,7 +36,7 @@ function Dog ({ dog, setLikedDogs, likedDogs }) {
       <FontAwesomeIcon 
         icon={faHeart} 
         className={`heart ${heartColor} ${cursorType}`} 
-        onClick={() => onDogHeartClick(dog)}
+        onClick={() => { onDogHeartClick(dog) }}
       />
     </li>
   )

@@ -1,16 +1,20 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './style.css'
-import { LoginForm } from '../LoginForm'
+import { useSelector, useDispatch } from 'react-redux'
+import { emptyDogsAndLikedDogs } from '../../slicers'
+import { logOut } from '../../slicers'
 import fetchLogo from '../../assets/images/fetch-logo.png'
 import { baseURL } from '../../constants'
+import { LoginForm } from '../LoginForm'
 import { Button } from '../Buttons'
+import './style.css'
 
-export function Navbar ({ isLoggedIn, loginHandler, logoutHandler }) {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
+export function Navbar () {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+  const isLoggedIn = useSelector(state => state.loggedIn.isLoggedIn)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   function openModalHandler () {
     setIsModalOpen(true)
@@ -25,7 +29,8 @@ export function Navbar ({ isLoggedIn, loginHandler, logoutHandler }) {
     } catch (err) {
       console.log(err)
     }
-    logoutHandler()
+    dispatch(logOut())
+    dispatch(emptyDogsAndLikedDogs())
     navigate('fetch')
   }
 
@@ -41,7 +46,6 @@ export function Navbar ({ isLoggedIn, loginHandler, logoutHandler }) {
       <LoginForm 
         isModalOpen={isModalOpen} 
         closeModalHandler={closeModalHandler}
-        loginHandler={loginHandler}
       />
     </nav>
   )

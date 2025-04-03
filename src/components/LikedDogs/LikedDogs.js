@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { DogList } from '../DogList'
 import { Button } from '../Buttons'
 import { baseURL } from '../../constants'
 
-export function LikedDogs ({ setLikedDogs, likedDogs }) {
+export function LikedDogs () {
   const navigate = useNavigate()
+  const likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
   
   function onMatchWithDog () {
     const payload = likedDogs.map(likedDog => likedDog.id)
@@ -29,11 +31,7 @@ export function LikedDogs ({ setLikedDogs, likedDogs }) {
         />
         <Link className='link' to='/fetch/dog-search-list'>Go Back</Link>
       </>
-      <DogList
-        dogs={likedDogs}
-        likedDogs={likedDogs}
-        setLikedDogs={setLikedDogs} 
-      />
+      <DogList dogs={likedDogs} likedDogs={likedDogs} />
     </section> 
   )
 }

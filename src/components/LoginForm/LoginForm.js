@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
 import Modal from 'react-modal'
 import axios from 'axios'
 import './style.css'
+import { logIn } from '../../slicers'
 import { baseURL } from '../../constants'
 import { Input } from '../Controls'
 import { Button } from '../Buttons'
 
-export function LoginForm ({ loginHandler, isModalOpen, closeModalHandler }) {
+export function LoginForm ({ isModalOpen, closeModalHandler }) {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     name: '',
     email: ''
@@ -37,7 +40,7 @@ export function LoginForm ({ loginHandler, isModalOpen, closeModalHandler }) {
     e.preventDefault()
     await loginUser()
     setFormData({ name: '', email: '' })
-    loginHandler()
+    dispatch(logIn())
     closeModalHandler()
     navigate('/fetch/dog-search-list')
   }

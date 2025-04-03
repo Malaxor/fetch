@@ -1,52 +1,25 @@
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import './style.css'
 import { DogSearch } from '../DogSearch'
 import { DogList } from '../DogList'
 import { PrevNextBtns } from '../PrevNextBtns'
 
-export function DogsSearchList ({ 
-  isLoggedIn, 
-  setLikedDogs, 
-  likedDogs,
-  dogs,
-  setDogs,
-  nextSearchQuery, 
-  setNextSearchQuery,
-  prevSearchQuery, 
-  setPrevSearchQuery
-}) {
+export function DogsSearchList () {
+  const dogs = useSelector(state => state.dogsAndLikedDogs.dogs)
+  const likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
 
   return ( 
     <section id='dogs-search-list'>
-      <p id="message-for-user">{!isLoggedIn 
-        ? 'Sign in and find a loving dog to adopt.' 
-        : 'Omitting all search parameters returns results.'}
-      </p>
-      {isLoggedIn && 
+      <p id="message-for-user">Omitting all search parameters returns results.</p>
       <>
-        <DogSearch
-          isLoggedIn={isLoggedIn}
-          setDogs={setDogs}
-          setNextSearchQuery={setNextSearchQuery}
-          setPrevSearchQuery={setPrevSearchQuery}
-        />
-        <Link className={`link ${!likedDogs.length ? 'disabled' :''}`} to='/fetch/liked-dogs'>
-          {`View Liked Dogs ${likedDogs.length}`} 
+        <DogSearch />
+        <Link className={`link ${!likedDogs?.length ? 'disabled' :''}`} to='/fetch/liked-dogs'>
+          {`View Liked Dogs ${likedDogs?.length}`} 
         </Link>
-        {dogs.length > 0 && 
-          <PrevNextBtns
-            setDogs={setDogs}
-            setNextSearchQuery={setNextSearchQuery}
-            setPrevSearchQuery={setPrevSearchQuery} 
-            prevSearchQuery={prevSearchQuery}
-            nextSearchQuery={nextSearchQuery}
-          />}
-      </>}
-      <DogList
-        dogs={dogs}
-        likedDogs={likedDogs}
-        setLikedDogs={setLikedDogs} 
-      />
+        {dogs.length > 0 && <PrevNextBtns />}
+      </>
+      <DogList dogs={dogs} />
     </section> 
   )
 }
