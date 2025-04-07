@@ -101,7 +101,7 @@ export function DogSearch ({ setSearchQueries }) {
     },
     {
       value: 'age:desc',
-      content: 'Age - Desending'
+      content: 'Age - Descending'
     }
   ]
 
