@@ -6,4 +6,3 @@ export {
   emptyDogsAndLikedDogs,
   dogsAndLikedDogsReducer 
 } from './dogsAndLikedDogsSlicer'
-export { searchQueriesReducer, setNextSearchQuery, setPrevSearchQuery } from './searchQueries'
