@@ -1,4 +1,3 @@
-export { loggedInReducer, logIn, logOut } from './loggedinSlicer'
 export { 
   addDogs, 
   addLikedDog, 

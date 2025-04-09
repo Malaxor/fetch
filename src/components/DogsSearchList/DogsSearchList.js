@@ -18,7 +18,7 @@ export function DogsSearchList () {
     <section id='dogs-search-list'>
       <p id="message-for-user">Omitting all search parameters returns results.</p>
       <>
-        <DogSearch setSearchQueries={setSearchQueries}/>
+        <DogSearch setSearchQueries={setSearchQueries} />
         <Link className={`link ${!likedDogs?.length ? 'disabled' :''}`} to='/fetch/liked-dogs'>
           {`View Liked Dogs ${likedDogs?.length}`} 
         </Link>
