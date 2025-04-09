@@ -21,6 +21,12 @@ export function Navbar () {
   function closeModalHandler () {
     setIsModalOpen(false)
   }
+  function logOutHandler () {
+    setIsLoggedIn(false)
+  }
+  function logInHandler () {
+    setIsLoggedIn(true)
+  }
   
   async function logoutUser () {
     try {
@@ -28,7 +34,7 @@ export function Navbar () {
     } catch (err) {
       console.log(err)
     }
-    setIsLoggedIn(false)
+    logOutHandler()
     dispatch(emptyDogsAndLikedDogs())
     navigate('fetch')
   }
@@ -45,7 +51,7 @@ export function Navbar () {
       <LoginForm 
         isModalOpen={isModalOpen} 
         closeModalHandler={closeModalHandler}
-        setIsLoggedIn={setIsLoggedIn}
+        logInHandler={logInHandler}
       />
     </nav>
   )

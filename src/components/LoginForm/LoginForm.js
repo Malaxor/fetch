@@ -7,7 +7,7 @@ import { baseURL } from '../../constants'
 import { Input } from '../Controls'
 import { Button } from '../Buttons'
 
-export function LoginForm ({ isModalOpen, closeModalHandler, setIsLoggedIn }) {
+export function LoginForm ({ isModalOpen, closeModalHandler, logInHandler }) {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
@@ -38,7 +38,7 @@ export function LoginForm ({ isModalOpen, closeModalHandler, setIsLoggedIn }) {
     await loginUser()
     setFormData({ name: '', email: '' })
     closeModalHandler()
-    setIsLoggedIn(true)
+    logInHandler()
     navigate('/fetch/dog-search-list')
   }
   
