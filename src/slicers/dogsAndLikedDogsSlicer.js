@@ -15,7 +15,7 @@ const dogsAndLikedDogsSlicer = createSlice({
       state.likedDogs = []
     },
     addLikedDog: (state, action) => {
-      if (state.likedDogs.length < 25) {
+      if (state.likedDogs.length < 10) {
         state.likedDogs = state.likedDogs.concat(action.payload)
       }
     },

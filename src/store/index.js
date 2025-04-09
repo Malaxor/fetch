@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { dogsAndLikedDogsReducer } from '../slicers'
+import { dogsAndLikedDogsReducer, searchQueriesReducer } from '../slicers'
 
 export const store = configureStore({
   reducer: {
+    searchQueries: searchQueriesReducer,
     dogsAndLikedDogs: dogsAndLikedDogsReducer
   }
 })

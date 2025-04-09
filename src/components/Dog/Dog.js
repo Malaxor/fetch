@@ -10,7 +10,7 @@ function Dog ({ dog }) {
   const likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
   const isLiked = likedDogs.find(likedDog => likedDog.id === dog.id)
   const heartColor = isLiked ? 'red-heart' : 'gray-heart'  
-  const cursorType = !isLiked && likedDogs.length === 25 ? 'cursor-auto' : ''
+  const cursorType = !isLiked && likedDogs.length === 10 ? 'cursor-auto' : ''
 
   function onDogHeartClick (dog) {
     if (!isLiked) {

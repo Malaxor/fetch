@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { addDogs } from '../../slicers'
+import { addDogs, setNextSearchQuery, setPrevSearchQuery } from '../../slicers'
 import { capitalizeFirstLetter } from '../../utils';
 import { baseURL } from '../../constants'
 import './style.css'
 import { Input, Select } from '../Controls'
 import { Button } from '../Buttons'
-export function DogSearch ({ setSearchQueries }) {
+export function DogSearch () {
   const dispatch = useDispatch()
   const[formData, setFormData] = useState({
     breed: '',
@@ -55,7 +55,7 @@ export function DogSearch ({ setSearchQueries }) {
       formData.ageMax = formData.ageMax.trim()
     }
 
-    setSearchQueries(searchQueries => ({ ...searchQueries, prevSearchQuery: '' }))
+    dispatch(setPrevSearchQuery(''))
     setFormData(() => ({ ...formData, zipCode: '' }))
 
     let data
@@ -66,8 +66,8 @@ export function DogSearch ({ setSearchQueries }) {
       console.log(err)
     }
 
-    setSearchQueries(searchQueries => ({ ...searchQueries, nextSearchQuery: data.next }))
-
+    dispatch(setNextSearchQuery(data.next))
+    
     try {
       const res = await axios.post(`${baseURL}/dogs`, data.resultIds, { withCredentials: true })
       data = res.data
