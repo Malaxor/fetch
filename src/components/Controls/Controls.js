@@ -13,14 +13,13 @@ function Input ({ name, value, onChange, placeholder, styling }) {
   )
 }
 
-function Select ({ name, value, onChange, disabled, styling, options }) {
+function Select ({ name, value, onChange, styling, options }) {
   return (
     <select 
       name={name} 
       value={value} 
       className={`select ${styling}`}
       onChange={onChange} 
-      disabled={disabled}
     >
       {options.map(option => 
         <option key={option.value} value={option.value}>{option.content}</option>
