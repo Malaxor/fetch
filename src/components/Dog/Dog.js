@@ -10,7 +10,7 @@ function Dog ({ dog }) {
   const likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
   const isLiked = likedDogs.find(likedDog => likedDog.id === dog.id)
   const heartColor = isLiked ? 'red-heart' : 'gray-heart'  
-  const cursorType = !isLiked && likedDogs.length === 10 ? 'cursor-auto' : ''
+  const btnState = !isLiked && likedDogs.length === 10 ? 'disabled' : ''
 
   function onDogHeartClick (dog) {
     if (!isLiked) {
@@ -35,7 +35,7 @@ function Dog ({ dog }) {
       </ul>
       <FontAwesomeIcon 
         icon={faHeart} 
-        className={`heart ${heartColor} ${cursorType}`} 
+        className={`heart ${heartColor} ${btnState}`} 
         onClick={() => { onDogHeartClick(dog) }}
       />
     </li>

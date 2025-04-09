@@ -19,8 +19,9 @@
   right: 1.5rem;
   font-size: 4rem;
 }
-.cursor-auto {
+.disabled {
   cursor: auto;
+  pointer-events: none;
 }
 .red-heart {
   color: red;
