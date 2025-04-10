@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { DogList } from '../DogList'
-import { Button } from '../Buttons'
+import { DogList } from '../../components/DogList'
+import { Button } from '../../components/Buttons'
 import { baseURL } from '../../constants'
 
 export function LikedDogs () {

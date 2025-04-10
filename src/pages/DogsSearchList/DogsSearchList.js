@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './style.css'
-import { DogSearch } from '../DogSearch'
-import { DogList } from '../DogList'
-import { PrevNextBtns } from '../PrevNextBtns'
+import { DogSearch } from '../../components/DogSearch'
+import { DogList } from '../../components/DogList'
+import { PrevNextBtns } from '../../components/PrevNextBtns'
 
 export function DogsSearchList () {
   const dogs = useSelector(state => state.dogsAndLikedDogs.dogs)

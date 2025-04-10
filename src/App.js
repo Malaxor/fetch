@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './style/global-style.css'
 import { Navbar } from './components/Navbar'
-import { DogsSearchList } from './components/DogsSearchList'
-import { LikedDogs } from './components/LikedDogs'
-import { MatchedDog } from './components/MatchedDog'
+import { DogsSearchList } from './pages/DogsSearchList'
+import { LikedDogs } from './pages/LikedDogs'
+import { MatchedDog } from './pages/MatchedDog'
 
 export function App() {
   return (

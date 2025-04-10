@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import { DogList } from '../DogList'
+import { DogList } from '../../components/DogList'
 export function MatchedDog () {
   const { state: { matchedDog } } = useLocation()
   return ( 
