@@ -8,7 +8,7 @@ import './style.css'
 function Dog ({ dog }) {
   const dispatch = useDispatch()
   const likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
-  const isLiked = likedDogs.find(likedDog => likedDog.id === dog.id)
+  const isLiked = likedDogs.some(likedDog => likedDog.id === dog.id)
   const heartColor = isLiked ? 'red-heart' : 'gray-heart'  
   const btnState = !isLiked && likedDogs.length === 10 ? 'disabled' : ''
 
