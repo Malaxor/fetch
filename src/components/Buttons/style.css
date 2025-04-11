@@ -19,6 +19,7 @@
 }
 .btn:disabled {
   background-color: rgb(205, 205, 205);
+  cursor: auto;
 }
 .prev-next-btn {
   border: none;
