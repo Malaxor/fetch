@@ -3,7 +3,7 @@ import { Dog, MatchedDog } from '../Dog'
 import './style.css'
 
 export function DogList ({ dogs, matchedDog }) {
-  // Dogs = dogs (dog search) and liked dogs; will be undefined when rendering the matched-dog component (route)
+  // Dogs = dogs and liked dogs; will be undefined when rendering the matched-dog page
   const Dogs = dogs?.map(dog => <Dog key={dog.id} dog={dog} />)
 
   return (

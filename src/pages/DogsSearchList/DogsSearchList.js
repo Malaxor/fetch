@@ -12,13 +12,11 @@ export function DogsSearchList () {
   return ( 
     <section id='dogs-search-list'>
       <p id="message-for-user">Omitting all search parameters returns results.</p>
-      <>
-        <DogSearch />
-        <Link className={`link ${!likedDogs?.length ? 'disabled' :''}`} to='/fetch/liked-dogs'>
-          {`View Liked Dogs ${likedDogs?.length}`} 
-        </Link>
-        {dogs.length > 0 && <PrevNextBtns />}
-      </>
+      <DogSearch />
+      <Link className={`link ${!likedDogs?.length ? 'disabled' :''}`} to='/fetch/liked-dogs'>
+        {`View Liked Dogs ${likedDogs?.length}`} 
+      </Link>
+      {dogs.length > 0 && <PrevNextBtns />}
       <DogList dogs={dogs} />
     </section> 
   )
