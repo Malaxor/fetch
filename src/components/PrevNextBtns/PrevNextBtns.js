@@ -15,10 +15,10 @@ export function PrevNextBtns () {
     withCredentials: true
   }
   
-  async function onNextButtonClick () {
+  async function onBtnClick (searchQuery) {
     let data
     try {
-      const res = await axios.get(`${baseURL}${nextSearchQuery}`, config)
+      const res = await axios.get(`${baseURL}${searchQuery}`, config)
       data = res.data
     } catch (err) {
       console.log(err)
@@ -37,41 +37,19 @@ export function PrevNextBtns () {
     dispatch(addDogs(data))
   }
 
-  async function onPrevButtonClick () {
-    let data
-    try {
-      const res = await axios.get(`${baseURL}${prevSearchQuery}`, config)
-      data = res.data
-    } catch (err) {
-      console.log(err)
-    }
-
-    dispatch(setNextSearchQuery(data.next))
-    dispatch(setPrevSearchQuery(data.prev))
-
-    try {
-      const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
-      data = res.data  
-    } catch (err) {
-      console.log(err)
-    }
-
-    dispatch(addDogs(data))
-  }
-  
   return (
     <p className={`previous-next-container`}>
       <Button
         styling='prev-next-btn'
         disabled={prevSearchQuery ? false : true}
         content='Previous'
-        onClick={onPrevButtonClick} 
+        onClick={() => { onBtnClick(prevSearchQuery) }} 
       />
       <Button
         styling='prev-next-btn'
         disabled={nextSearchQuery ? false : true}
         content='Next'
-        onClick={onNextButtonClick} 
+        onClick={() => { onBtnClick(nextSearchQuery) }} 
       />
     </p>
   )
