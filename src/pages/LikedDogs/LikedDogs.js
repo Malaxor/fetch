@@ -31,7 +31,7 @@ export function LikedDogs () {
         />
         <Link className='link' to='/fetch/dog-search-list'>Go Back</Link>
       </>
-      <DogList dogs={likedDogs} />
+      <DogList dogsAndLikedDogs={likedDogs} />
     </section> 
   )
 }

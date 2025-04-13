@@ -17,7 +17,7 @@ export function DogsSearchList () {
         {`View Liked Dogs ${likedDogs?.length}`} 
       </Link>
       {dogs.length > 0 && <PrevNextBtns />}
-      <DogList dogs={dogs} />
+      <DogList dogsAndLikedDogs={dogs} />
     </section> 
   )
 }
