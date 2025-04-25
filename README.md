@@ -15,5 +15,5 @@ Simple app that allows logged in users to adopt dogs.
 * [axios](https://www.npmjs.com/package/axios)
 * [@fortawesome/react-fontawesome](https://www.npmjs.com/package/react-fontawesome)
 * [@fortawesome/free-solid-svg-icon](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons)
-* ["@fortawesome/fontawesome-svg-core](https://www.npmjs.com/package/@fortawesome/fontawesome-svg-core)
+* [@fortawesome/fontawesome-svg-core](https://www.npmjs.com/package/@fortawesome/fontawesome-svg-core)
 * [react-modal](https://www.npmjs.com/package/react-modal)
