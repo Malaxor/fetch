@@ -3,11 +3,7 @@ import './style.css'
 
 export function Button ({ disabled, content, styling, onClick }) {
   return (
-    <button
-      className={`${styling}`}
-      disabled={disabled}
-      onClick={onClick}
-    >
+    <button className={`${styling}`} disabled={disabled} onClick={onClick}>
       {content}
     </button>
   )

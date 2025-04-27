@@ -5,6 +5,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import './style.css'
 
+function DogModel ({ dog, children }) {
+  return ( 
+    <li className='dog'>
+      <img 
+        className='dog__image' 
+        src={dog.img} 
+        alt={`a ${dog.age}-year-old ${dog.breed} named ${dog.name}`}
+       />
+      <ul className='dog__details'>
+        <li>Breed - {dog.breed}</li>
+        <li>Name - {dog.name}</li>
+        <li>Age - {dog.age}</li>
+        <li>Zip - {dog.zip_code}</li>
+      </ul>
+      {children}
+    </li>
+  )
+}
+
 function Dog ({ dog }) {
   const dispatch = useDispatch()
   const likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
@@ -21,45 +40,24 @@ function Dog ({ dog }) {
   }
 
   return ( 
-    <li className='dog'>
-      <img 
-        className='dog__image' 
-        src={dog.img} 
-        alt={`a ${dog.age}-year-old ${dog.breed} named ${dog.name}`}
-       />
-      <ul className='dog__details'>
-        <li>Breed - {dog.breed}</li>
-        <li>Name - {dog.name}</li>
-        <li>Age - {dog.age}</li>
-        <li>Zip - {dog.zip_code}</li>
-      </ul>
+    <DogModel dog={dog}>
       <FontAwesomeIcon 
         icon={faHeart} 
         className={`heart ${heartColor} ${btnState}`} 
         onClick={() => { onDogHeartClick(dog) }}
       />
-    </li>
+    </DogModel>
   )
 }
+
 function MatchedDog ({ dog }) {
   return ( 
-    <li className='dog'>
-      <img 
-        className='dog__image' 
-        src={dog.img} 
-        alt={`a ${dog.age}-year-old ${dog.breed} named ${dog.name}`}
-       />
-      <ul className='dog__details'>
-        <li>Breed - {dog.breed}</li>
-        <li>Name - {dog.name}</li>
-        <li>Age - {dog.age}</li>
-        <li>Zip - {dog.zip_code}</li>
-      </ul>
+    <DogModel dog={dog}>
       <FontAwesomeIcon 
         icon={faHeart} 
         className='heart red-heart cursor-auto'
       />
-    </li>
+    </DogModel>
   )
 }
 export { Dog, MatchedDog }
