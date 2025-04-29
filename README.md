@@ -1,5 +1,5 @@
 # Fetch
-Simple app that allows logged in users to adopt dogs.
+React app that allows logged in users to adopt dogs.
 ### Live Demo: https://malaxor.github.io/fetch/
 
 * Functionalities
