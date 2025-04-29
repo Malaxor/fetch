@@ -9,7 +9,12 @@
   padding: 1rem;
   border-radius: 1rem;
   width: 10rem;
+  transition: .2s background-color; 
 }
+.form-btn:hover {
+  background-color: #fc9a49;
+}
+
 .sign-in-btn {
   background-color: transparent;
 }
