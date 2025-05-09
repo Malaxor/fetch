@@ -7,19 +7,19 @@ const dogsAndLikedDogsSlicer = createSlice({
     likedDogs: []
   },
   reducers: {
-    addDogs: (state, action) => {
+    addDogs(state, action) {
       state.dogs = action.payload
     },
-    emptyDogsAndLikedDogs: (state) => {
+    emptyDogsAndLikedDogs(state) {
       state.dogs = []
       state.likedDogs = []
     },
-    addLikedDog: (state, action) => {
+    addLikedDog(state, action) {
       if (state.likedDogs.length < 10) {
         state.likedDogs = state.likedDogs.concat(action.payload)
       }
     },
-    removeLikedDog: (state, action) => {
+    removeLikedDog(state, action) {
       state.likedDogs = state.likedDogs.filter(likedDog => likedDog.id !== action.payload.id)
     }
   }

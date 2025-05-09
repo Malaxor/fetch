@@ -7,10 +7,10 @@ const searchQueriesSlicer = createSlice({
     nextSearchQuery: ''
   },
   reducers: {
-    setPrevSearchQuery: (state, action) => {
+    setPrevSearchQuery(state, action) {
       state.prevSearchQuery = action.payload
     },
-    setNextSearchQuery: (state, action) => {
+    setNextSearchQuery(state, action) {
       state.nextSearchQuery = action.payload
     }
   }

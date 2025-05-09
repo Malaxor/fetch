@@ -6,6 +6,12 @@ import { LikedDogs } from './pages/LikedDogs'
 import { MatchedDog } from './pages/MatchedDog'
 
 export function App() {
+  const [entries] = performance.getEntriesByType("navigation")
+  const { type: navigationType } = entries
+  if (navigationType === 'reload') {
+    window.location = '/fetch'
+  }
+
   return (
     <Router>
       <Navbar />
