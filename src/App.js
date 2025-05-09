@@ -9,7 +9,7 @@ export function App() {
   const [entries] = performance.getEntriesByType("navigation")
   const { type: navigationType } = entries
   if (navigationType === 'reload') {
-    window.location = '/fetch'
+    window.location = '/'
   }
 
   return (
