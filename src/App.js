@@ -8,8 +8,9 @@ import { MatchedDog } from './pages/MatchedDog'
 export function App() {
   const [entries] = performance.getEntriesByType("navigation")
   const { type: navigationType } = entries
+  console.log(window.location)
   if (navigationType === 'reload') {
-    window.location = '/'
+    window.location.pathname = '/'
   }
 
   return (
