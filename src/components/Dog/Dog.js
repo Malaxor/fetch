@@ -26,17 +26,25 @@ function DogModel ({ dog, children }) {
 
 function Dog ({ dog }) {
   const dispatch = useDispatch()
-  const likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
+  let likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
+  let storedLikedDogs = JSON.parse(sessionStorage.getItem('likedDogs')) || []
+  if (storedLikedDogs.length) {
+    likedDogs = storedLikedDogs
+  }
   const isLiked = likedDogs.some(likedDog => likedDog.id === dog.id)
   const heartColor = isLiked ? 'red-heart' : 'gray-heart'  
   const btnState = !isLiked && likedDogs.length === 10 ? 'disabled' : ''
 
+
   function onDogHeartClick (dog) {
     if (!isLiked) {
       dispatch(addLikedDog(dog))
+      storedLikedDogs.push(dog)
     } else {
       dispatch(removeLikedDog(dog))
+      storedLikedDogs = storedLikedDogs.filter(likedDog => likedDog.id !== dog.id)
     }
+    sessionStorage.setItem('likedDogs', JSON.stringify(storedLikedDogs))
   }
 
   return ( 

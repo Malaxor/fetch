@@ -7,7 +7,13 @@ import { baseURL } from '../../constants'
 
 export function LikedDogs () {
   const navigate = useNavigate()
-  const likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
+  let likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
+  const storedLikedDogs = JSON.parse(sessionStorage.getItem('likedDogs'))
+  console.log({ storedLikedDogs })
+  
+  if (storedLikedDogs) {
+    likedDogs = storedLikedDogs
+  }
   
   function onMatchWithDog () {
     const payload = likedDogs.map(likedDog => likedDog.id)

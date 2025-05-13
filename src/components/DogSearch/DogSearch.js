@@ -74,10 +74,9 @@ export function DogSearch () {
     } catch (err) {
       console.log(err)
     }
-    // sessionStorage.setItem('dogs', JSON.stringify(data))
+    sessionStorage.setItem('dogs', JSON.stringify(data))
     dispatch(addDogs(data))
   }
-
   const options = [
     { 
       value: 'breed:asc',

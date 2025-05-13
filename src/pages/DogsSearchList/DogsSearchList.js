@@ -6,11 +6,17 @@ import { DogList } from '../../components/DogList'
 import { PrevNextBtns } from '../../components/PrevNextBtns'
 
 export function DogsSearchList () {
-  const dogs = useSelector(state => state.dogsAndLikedDogs.dogs)
-  const likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
+  let dogs = useSelector(state => state.dogsAndLikedDogs.dogs)
+  let likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
+  const storedLikedDogs = JSON.parse(sessionStorage.getItem('likedDogs'))
+  const storedDogs = JSON.parse(sessionStorage.getItem('dogs'))
 
-  // const savedDogs = JSON.parse(sessionStorage.getItem('dogs'))
-  // console.log(sessionStorage)
+  if (storedLikedDogs) {
+    likedDogs = storedLikedDogs
+  }
+  if (storedDogs) {
+    dogs = storedDogs
+  }
 
   return ( 
     <section id='dogs-search-list'>

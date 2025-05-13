@@ -15,7 +15,8 @@ export function Navbar () {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  useEffect(() => {
+  useEffect(() => { 
+    // persisting data on page refresh and tab duplication
     const loggedInStatus = JSON.parse(sessionStorage.getItem('isLoggedIn'))
     setIsLoggedIn(loggedInStatus)
   }, [isLoggedIn])
@@ -44,6 +45,7 @@ export function Navbar () {
     logOutHandler()
     dispatch(emptyDogsAndLikedDogs())
     navigate('fetch')
+    sessionStorage.clear()
   }
 
   return ( 
