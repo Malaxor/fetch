@@ -9,7 +9,6 @@ export function LikedDogs () {
   const navigate = useNavigate()
   let likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
   const storedLikedDogs = JSON.parse(sessionStorage.getItem('likedDogs'))
-  console.log({ storedLikedDogs })
   
   if (storedLikedDogs) {
     likedDogs = storedLikedDogs
