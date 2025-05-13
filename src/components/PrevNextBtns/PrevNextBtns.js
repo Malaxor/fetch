@@ -33,7 +33,7 @@ export function PrevNextBtns () {
     } catch (err) {
       console.log(err)
     }
-
+    // sessionStorage.setItem('dogs', JSON.stringify(data))
     dispatch(addDogs(data))
   }
 

@@ -9,6 +9,9 @@ export function DogsSearchList () {
   const dogs = useSelector(state => state.dogsAndLikedDogs.dogs)
   const likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
 
+  // const savedDogs = JSON.parse(sessionStorage.getItem('dogs'))
+  // console.log(sessionStorage)
+
   return ( 
     <section id='dogs-search-list'>
       <p id="message-for-user">Omitting all search parameters returns results.</p>

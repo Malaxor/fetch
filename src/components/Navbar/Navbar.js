@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { emptyDogsAndLikedDogs } from '../../slicers'
@@ -15,6 +15,11 @@ export function Navbar () {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+  useEffect(() => {
+    const loggedInStatus = JSON.parse(sessionStorage.getItem('isLoggedIn'))
+    setIsLoggedIn(loggedInStatus)
+  }, [isLoggedIn])
+
   function openModalHandler () {
     setIsModalOpen(true)
   }
@@ -23,9 +28,11 @@ export function Navbar () {
   }
   function logOutHandler () {
     setIsLoggedIn(false)
+    sessionStorage.setItem('isLoggedIn', false)
   }
   function logInHandler () {
     setIsLoggedIn(true)
+    sessionStorage.setItem('isLoggedIn', true)
   }
   
   async function logoutUser () {
