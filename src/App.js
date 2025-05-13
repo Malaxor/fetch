@@ -10,7 +10,7 @@ export function App() {
   const { type: navigationType } = entries
   console.log(window.location)
   if (navigationType === 'reload') {
-    window.location.pathname = '/fetch'
+    window.location.pathname = '/fetch/'
   }
 
   return (
