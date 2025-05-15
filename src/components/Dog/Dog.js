@@ -28,13 +28,10 @@ function Dog ({ dog }) {
   const dispatch = useDispatch()
   let likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
   let storedLikedDogs = JSON.parse(sessionStorage.getItem('likedDogs')) || []
-  if (storedLikedDogs.length) {
-    likedDogs = storedLikedDogs
-  }
+  likedDogs = storedLikedDogs.length > 0 ? storedLikedDogs : likedDogs
   const isLiked = likedDogs.some(likedDog => likedDog.id === dog.id)
   const heartColor = isLiked ? 'red-heart' : 'gray-heart'  
   const btnState = !isLiked && likedDogs.length === 10 ? 'disabled' : ''
-
 
   function onDogHeartClick (dog) {
     if (!isLiked) {

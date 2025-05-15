@@ -10,13 +10,8 @@ export function DogsSearchList () {
   let likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
   const storedLikedDogs = JSON.parse(sessionStorage.getItem('likedDogs'))
   const storedDogs = JSON.parse(sessionStorage.getItem('dogs'))
-
-  if (storedLikedDogs) {
-    likedDogs = storedLikedDogs
-  }
-  if (storedDogs) {
-    dogs = storedDogs
-  }
+  likedDogs = storedLikedDogs || likedDogs
+  dogs = storedDogs || dogs
 
   return ( 
     <section id='dogs-search-list'>

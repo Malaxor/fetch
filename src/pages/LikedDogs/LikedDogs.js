@@ -9,16 +9,14 @@ export function LikedDogs () {
   const navigate = useNavigate()
   let likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
   const storedLikedDogs = JSON.parse(sessionStorage.getItem('likedDogs'))
-  
-  if (storedLikedDogs) {
-    likedDogs = storedLikedDogs
-  }
-  
+  likedDogs = storedLikedDogs || likedDogs
+
   function onMatchWithDog () {
     const payload = likedDogs.map(likedDog => likedDog.id)
     axios.post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
       .then(({ data }) => {
         const matchedDog = likedDogs.find(likedDog => likedDog.id === data.match)
+        sessionStorage.setItem('matchedDog', JSON.stringify(matchedDog))
         navigate('/fetch/matched-dog', { state: { matchedDog }})
       })
       .catch(err => { console.log(err) })
