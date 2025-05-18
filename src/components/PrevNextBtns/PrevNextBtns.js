@@ -14,8 +14,6 @@ export function PrevNextBtns () {
   nextSearchQuery = nextSearchQuery || storedNextSearchQuery
   prevSearchQuery = prevSearchQuery || storedPrevSearchQuery
 
-  console.log(sessionStorage)
-
   const config = {
     withCredentials: true
   }
