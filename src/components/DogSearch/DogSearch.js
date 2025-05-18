@@ -7,6 +7,7 @@ import { baseURL } from '../../constants'
 import './style.css'
 import { Input, Select } from '../Controls'
 import { Button } from '../Buttons'
+
 export function DogSearch () {
   const dispatch = useDispatch()
   const[formData, setFormData] = useState({
@@ -66,8 +67,9 @@ export function DogSearch () {
       console.log(err)
     }
 
+    sessionStorage.setItem('nextSearchQuery', data.next)
     dispatch(setNextSearchQuery(data.next))
-    
+            
     try {
       const res = await axios.post(`${baseURL}/dogs`, data.resultIds, { withCredentials: true })
       data = res.data

@@ -1,4 +1,3 @@
-import React from 'react'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { addDogs, setNextSearchQuery, setPrevSearchQuery } from '../../slicers'
@@ -8,9 +7,15 @@ import { baseURL } from '../../constants'
 
 export function PrevNextBtns () {
   const dispatch = useDispatch()
-  const nextSearchQuery = useSelector(state => state.searchQueries.nextSearchQuery)
-  const prevSearchQuery = useSelector(state => state.searchQueries.prevSearchQuery)
-  
+  let nextSearchQuery = useSelector(state => state.searchQueries.nextSearchQuery)
+  let prevSearchQuery = useSelector(state => state.searchQueries.prevSearchQuery)
+  const storedNextSearchQuery = sessionStorage.getItem('nextSearchQuery')
+  const storedPrevSearchQuery = sessionStorage.getItem('prevSearchQuery')
+  nextSearchQuery = nextSearchQuery || storedNextSearchQuery
+  prevSearchQuery = prevSearchQuery || storedPrevSearchQuery
+
+  console.log(sessionStorage)
+
   const config = {
     withCredentials: true
   }
@@ -26,6 +31,8 @@ export function PrevNextBtns () {
 
     dispatch(setNextSearchQuery(data.next))
     dispatch(setPrevSearchQuery(data.prev))
+    sessionStorage.setItem('nextSearchQuery', data.next || '')
+    sessionStorage.setItem('prevSearchQuery', data.prev || '')
 
     try {
       const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
