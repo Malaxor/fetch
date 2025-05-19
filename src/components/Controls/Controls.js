@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-function Input ({ name, value, onChange, placeholder, styling }) {
+function Input ({ name, value, onChange, placeholder, styling, type }) {
   return (
     <input
       className={`input ${styling}`}
@@ -9,6 +9,9 @@ function Input ({ name, value, onChange, placeholder, styling }) {
       name={name}
       value={value}
       onChange={onChange}
+      type={type}
+      min={0}
+      max={20}
     />
   )
 }

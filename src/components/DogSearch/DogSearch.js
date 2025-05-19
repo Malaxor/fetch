@@ -139,13 +139,14 @@ export function DogSearch () {
             name='ageMax'
             onChange={onSetFormData}
             value={ageMax}
+            type='number'
           />
           <Input
             styling='medium-input center-text'
             placeholder='age min'
             name='ageMin'
             onChange={onSetFormData}
-            value={ageMin}
+            type='number'
           />
         </p>
         <Button
