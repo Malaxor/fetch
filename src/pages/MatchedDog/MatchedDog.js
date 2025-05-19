@@ -3,9 +3,7 @@ import { DogList } from '../../components/DogList'
 export function MatchedDog () {
   let { state: { matchedDog } } = useLocation()
   const storedMatchedDog = JSON.parse(sessionStorage.getItem('matchedDog'))
-  if (storedMatchedDog) {
-    matchedDog = storedMatchedDog
-  }
+  matchedDog = storedMatchedDog || storedMatchedDog
   
   return ( 
     <section id='matched-dog'>
