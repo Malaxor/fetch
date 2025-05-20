@@ -1,10 +1,10 @@
+import './style.css'
 import axios from 'axios'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { addDogs, setNextSearchQuery, setPrevSearchQuery } from '../../slicers'
 import { capitalizeFirstLetter } from '../../utils';
 import { baseURL } from '../../constants'
-import './style.css'
 import { Input, Select } from '../Controls'
 import { Button } from '../Buttons'
 
@@ -108,52 +108,50 @@ export function DogSearch () {
   ]
 
   return (
-    <>
-      <form id='dog-search-form' onSubmit={onFormSubmit}>
-        <Select
-          styling='large-select'
-          name='sort'
-          value={sort}
+    <form id='dog-search-form' onSubmit={onFormSubmit}>
+      <Select
+        styling='large-select'
+        name='sort'
+        value={sort}
+        onChange={onSetFormData}
+        options={options} 
+      />
+      <Input
+        styling='large-input'
+        placeholder='breed'
+        name='breed'
+        onChange={onSetFormData}
+        value={breed}
+      />
+      <p id="inputs-container">
+        <Input
+          styling='medium-input'
+          placeholder='zip'
+          name='zipCode'
           onChange={onSetFormData}
-          options={options} 
+          value={zipCode}
         />
         <Input
-          styling='large-input'
-          placeholder='breed'
-          name='breed'
+          id='age-max'
+          styling='medium-input center-text'
+          placeholder='age max'
+          name='ageMax'
           onChange={onSetFormData}
-          value={breed}
+          value={ageMax}
+          type='number'
         />
-        <p id="inputs-container">
-          <Input
-            styling='medium-input'
-            placeholder='zip'
-            name='zipCode'
-            onChange={onSetFormData}
-            value={zipCode}
-          />
-          <Input
-            id='age-max'
-            styling='medium-input center-text'
-            placeholder='age max'
-            name='ageMax'
-            onChange={onSetFormData}
-            value={ageMax}
-            type='number'
-          />
-          <Input
-            styling='medium-input center-text'
-            placeholder='age min'
-            name='ageMin'
-            onChange={onSetFormData}
-            type='number'
-          />
-        </p>
-        <Button
-          styling='btn form-btn'
-          content='Search'
+        <Input
+          styling='medium-input center-text'
+          placeholder='age min'
+          name='ageMin'
+          onChange={onSetFormData}
+          type='number'
         />
-      </form>
-    </>
+      </p>
+      <Button
+        styling='btn form-btn'
+        content='Search'
+      />
+    </form>
   )
 }

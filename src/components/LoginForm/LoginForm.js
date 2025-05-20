@@ -1,8 +1,8 @@
+import './style.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal'
 import axios from 'axios'
-import './style.css'
 import { baseURL } from '../../constants'
 import { Input } from '../Controls'
 import { Button } from '../Buttons'

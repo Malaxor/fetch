@@ -1,3 +1,4 @@
+import './style.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -7,7 +8,6 @@ import fetchLogo from '../../assets/images/fetch-logo.png'
 import { baseURL } from '../../constants'
 import { LoginForm } from '../LoginForm'
 import { Button } from '../Buttons'
-import './style.css'
 
 export function Navbar () {
   const dispatch = useDispatch()

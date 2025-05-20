@@ -1,4 +1,3 @@
-import React from 'react';
 import './style.css'
 
 export function Button ({ disabled, content, styling, onClick }) {

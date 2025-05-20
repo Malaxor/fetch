@@ -1,9 +1,8 @@
-import React from 'react';
+import './style.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { addLikedDog, removeLikedDog } from '../../slicers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import './style.css'
 
 function DogModel ({ dog, children }) {
   return ( 
@@ -29,6 +28,7 @@ function Dog ({ dog }) {
   let likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
   let storedLikedDogs = JSON.parse(sessionStorage.getItem('likedDogs')) || []
   likedDogs = storedLikedDogs.length > 0 ? storedLikedDogs : likedDogs
+  
   const isLiked = likedDogs.some(likedDog => likedDog.id === dog.id)
   const heartColor = isLiked ? 'red-heart' : 'gray-heart'  
   const btnState = !isLiked && likedDogs.length === 10 ? 'disabled' : ''

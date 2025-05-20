@@ -1,7 +1,7 @@
+import './style.css'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { addDogs, setNextSearchQuery, setPrevSearchQuery } from '../../slicers'
-import './style.css'
 import { Button } from '../Buttons'
 import { baseURL } from '../../constants'
 

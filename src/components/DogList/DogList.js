@@ -1,6 +1,5 @@
-import React from 'react'
-import { Dog, MatchedDog } from '../Dog'
 import './style.css'
+import { Dog, MatchedDog } from '../Dog'
 
 export function DogList ({ dogsAndLikedDogs, matchedDog }) {
   const Dogs = dogsAndLikedDogs?.map(dog => <Dog key={dog.id} dog={dog} />)

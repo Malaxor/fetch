@@ -1,4 +1,3 @@
-import React from 'react'
 import './style.css'
 
 function Input ({ name, value, onChange, placeholder, styling, type }) {
