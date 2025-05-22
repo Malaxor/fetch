@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom'
 import { DogList } from '../../components/DogList'
+
 export function MatchedDog () {
   let { state: { matchedDog } } = useLocation()
   const storedMatchedDog = JSON.parse(sessionStorage.getItem('matchedDog'))

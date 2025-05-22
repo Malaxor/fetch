@@ -132,7 +132,6 @@ export function DogSearch () {
           value={zipCode}
         />
         <Input
-          id='age-max'
           styling='medium-input center-text'
           placeholder='age max'
           name='ageMax'
@@ -145,6 +144,7 @@ export function DogSearch () {
           placeholder='age min'
           name='ageMin'
           onChange={onSetFormData}
+          value={ageMin}
           type='number'
         />
       </p>
