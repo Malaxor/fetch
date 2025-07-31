@@ -4,7 +4,7 @@ React app that allows logged in users to adopt dogs.
 
 * Functionalities
   * Log in with name and email
-  * Search for and sort dogs by breed, min/max years of age, and zip
+  * Sort and search for dogs by breed, min/max years of age, and zip
   * Click on a heart to like a dog
   * View liked dogs
   * Match with a dog
