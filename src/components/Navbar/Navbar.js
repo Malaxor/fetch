@@ -1,9 +1,9 @@
 import './style.css'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { emptyDogsAndLikedDogs } from '../../slicers'
+import { emptyDogs, emptyLikedDogs } from '../../slicers'
 import fetchLogo from '../../assets/images/fetch-logo.png'
 import { baseURL } from '../../constants'
 import { LoginForm } from '../LoginForm'
@@ -15,12 +15,6 @@ export function Navbar () {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  useEffect(() => { 
-    // persisting data on page refresh and tab duplication
-    const loggedInStatus = JSON.parse(sessionStorage.getItem('isLoggedIn'))
-    setIsLoggedIn(loggedInStatus)
-  }, [isLoggedIn])
-
   function openModalHandler () {
     setIsModalOpen(true)
   }
@@ -29,11 +23,9 @@ export function Navbar () {
   }
   function logOutHandler () {
     setIsLoggedIn(false)
-    sessionStorage.setItem('isLoggedIn', false)
   }
   function logInHandler () {
     setIsLoggedIn(true)
-    sessionStorage.setItem('isLoggedIn', true)
   }
   
   async function logoutUser () {
@@ -43,9 +35,9 @@ export function Navbar () {
       console.log(err)
     }
     logOutHandler()
-    dispatch(emptyDogsAndLikedDogs())
+    dispatch(emptyDogs())
+    dispatch(emptyLikedDogs())
     navigate('fetch')
-    sessionStorage.clear()
   }
 
   return ( 

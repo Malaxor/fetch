@@ -1,6 +1,6 @@
 import './style.css'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 import axios from 'axios'
 import { baseURL } from '../../constants'

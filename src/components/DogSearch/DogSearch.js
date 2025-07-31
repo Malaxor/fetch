@@ -66,8 +66,6 @@ export function DogSearch () {
     } catch (err) {
       console.log(err)
     }
-
-    sessionStorage.setItem('nextSearchQuery', data.next)
     dispatch(setNextSearchQuery(data.next))
             
     try {
@@ -77,7 +75,6 @@ export function DogSearch () {
       console.log(err)
     }
     
-    sessionStorage.setItem('dogs', JSON.stringify(data))
     dispatch(addDogs(data))
   }
   const options = [

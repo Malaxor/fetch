@@ -7,12 +7,8 @@ import { baseURL } from '../../constants'
 
 export function PrevNextBtns () {
   const dispatch = useDispatch()
-  let nextSearchQuery = useSelector(state => state.searchQueries.nextSearchQuery)
-  let prevSearchQuery = useSelector(state => state.searchQueries.prevSearchQuery)
-  const storedNextSearchQuery = sessionStorage.getItem('nextSearchQuery')
-  const storedPrevSearchQuery = sessionStorage.getItem('prevSearchQuery')
-  nextSearchQuery = nextSearchQuery || storedNextSearchQuery
-  prevSearchQuery = prevSearchQuery || storedPrevSearchQuery
+  const nextSearchQuery = useSelector(state => state.searchQueries.nextSearchQuery)
+  const prevSearchQuery = useSelector(state => state.searchQueries.prevSearchQuery)
 
   const config = {
     withCredentials: true
@@ -29,8 +25,6 @@ export function PrevNextBtns () {
 
     dispatch(setNextSearchQuery(data.next))
     dispatch(setPrevSearchQuery(data.prev))
-    sessionStorage.setItem('nextSearchQuery', data.next || '')
-    sessionStorage.setItem('prevSearchQuery', data.prev || '')
 
     try {
       const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
@@ -38,7 +32,7 @@ export function PrevNextBtns () {
     } catch (err) {
       console.log(err)
     }
-    sessionStorage.setItem('dogs', JSON.stringify(data))
+
     dispatch(addDogs(data))
   }
 

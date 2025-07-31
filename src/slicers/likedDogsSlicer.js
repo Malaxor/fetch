@@ -1,17 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const dogsAndLikedDogsSlicer = createSlice({
-  name: 'dogsAndLikedDogs',
+const likedDogsSlicer = createSlice({
+  name: 'likedDogs',
   initialState: {
-    dogs: [],
     likedDogs: []
   },
   reducers: {
-    addDogs(state, action) {
-      state.dogs = action.payload
-    },
-    emptyDogsAndLikedDogs(state) {
-      state.dogs = []
+    emptyLikedDogs(state) {
       state.likedDogs = []
     },
     addLikedDog(state, action) {
@@ -26,6 +21,6 @@ const dogsAndLikedDogsSlicer = createSlice({
 })
 
 export const { 
-  actions: { addDogs, addLikedDog, removeLikedDog, emptyDogsAndLikedDogs }, 
-  reducer: dogsAndLikedDogsReducer 
-} = dogsAndLikedDogsSlicer
+  actions: { addLikedDog, removeLikedDog, emptyLikedDogs }, 
+  reducer: likedDogsReducer 
+} = likedDogsSlicer

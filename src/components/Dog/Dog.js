@@ -1,4 +1,5 @@
 import './style.css'
+import { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addLikedDog, removeLikedDog } from '../../slicers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,13 +11,13 @@ function DogModel ({ dog, children }) {
       <img 
         className='dog__image' 
         src={dog.img} 
-        alt={`a ${dog.age}-year-old ${dog.breed} named ${dog.name}`}
+        alt={`A ${dog.age}-year-old ${dog.breed} named ${dog.name}`}
        />
       <ul className='dog__details'>
-        <li>Breed - {dog.breed}</li>
-        <li>Name - {dog.name}</li>
-        <li>Age - {dog.age}</li>
-        <li>Zip - {dog.zip_code}</li>
+        <li>Breed &mdash; {dog.breed}</li>
+        <li>Name &mdash; {dog.name}</li>
+        <li>Age &mdash; {dog.age}</li>
+        <li>Zip &mdash; {dog.zip_code}</li>
       </ul>
       {children}
     </li>
@@ -25,32 +26,29 @@ function DogModel ({ dog, children }) {
 
 function Dog ({ dog }) {
   const dispatch = useDispatch()
-  let likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
-  let storedLikedDogs = JSON.parse(sessionStorage.getItem('likedDogs')) || []
-  likedDogs = storedLikedDogs.length > 0 ? storedLikedDogs : likedDogs
-  
-  const isLiked = likedDogs.some(likedDog => likedDog.id === dog.id)
-  const heartColor = isLiked ? 'red-heart' : 'gray-heart'  
-  const btnState = !isLiked && likedDogs.length === 10 ? 'disabled' : ''
+  const likedDogs = useSelector(state => state.likedDogs.likedDogs)
+  const isLiked = useMemo(() => 
+    likedDogs.some((liked) => liked.id === dog.id)
+  , [likedDogs, dog.id])
+  const heartClass = `heart ${isLiked ? 'red-heart' : 'gray-heart'}`
+  const isDisabled = !isLiked && likedDogs.length === 10
 
-  function onDogHeartClick (dog) {
-    if (!isLiked) {
-      dispatch(addLikedDog(dog))
-      storedLikedDogs.push(dog)
-    } else {
-      dispatch(removeLikedDog(dog))
-      storedLikedDogs = storedLikedDogs.filter(likedDog => likedDog.id !== dog.id)
-    }
-    sessionStorage.setItem('likedDogs', JSON.stringify(storedLikedDogs))
+  function handleToggleLike () {
+    dispatch(isLiked ? removeLikedDog(dog): addLikedDog(dog))
   }
 
   return ( 
     <DogModel dog={dog}>
-      <FontAwesomeIcon 
-        icon={faHeart} 
-        className={`heart ${heartColor} ${btnState}`} 
-        onClick={() => { onDogHeartClick(dog) }}
-      />
+      <button
+        className={`${heartClass}`} 
+        onClick={handleToggleLike}
+        disabled={isDisabled}
+        aria-label={isLiked ? 'Unlike dog' : 'Like dog'}
+      >
+        <FontAwesomeIcon 
+          icon={faHeart} 
+        />
+      </button>
     </DogModel>
   )
 }
@@ -61,6 +59,7 @@ function MatchedDog ({ dog }) {
       <FontAwesomeIcon 
         icon={faHeart} 
         className='heart red-heart cursor-auto'
+        aria-hidden='true'
       />
     </DogModel>
   )

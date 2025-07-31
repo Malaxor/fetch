@@ -6,8 +6,8 @@ import { DogList } from '../../components/DogList'
 import { PrevNextBtns } from '../../components/PrevNextBtns'
 
 export function DogsSearchList () {
-  let dogs = useSelector(state => state.dogsAndLikedDogs.dogs)
-  let likedDogs = useSelector(state => state.dogsAndLikedDogs.likedDogs)
+  let dogs = useSelector(state => state.dogs.dogs)
+  let likedDogs = useSelector(state => state.likedDogs.likedDogs)
   const storedLikedDogs = JSON.parse(sessionStorage.getItem('likedDogs'))
   const storedDogs = JSON.parse(sessionStorage.getItem('dogs'))
   likedDogs = storedLikedDogs || likedDogs

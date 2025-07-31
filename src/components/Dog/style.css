@@ -13,22 +13,20 @@
   font-size: 2rem;
 }
 .heart {
+  background: transparent;
+  border: none;
   cursor: pointer;
   position: absolute;
   bottom: 1.5rem;
   right: 1.5rem;
   font-size: 4rem;
 }
-.disabled,
 .cursor-auto {
   cursor: auto;
-}
-.disabled {
-  pointer-events: none;
 }
 .red-heart {
   color: red;
 }
 .gray-heart {
-  color: rgb(185, 185, 185);
+  color: #b9b9b9;
 }

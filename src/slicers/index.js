@@ -1,13 +1,18 @@
 export { 
   addDogs, 
+  emptyDogs,
+  dogsReducer 
+} from './dogsSlicer'
+
+export { 
   addLikedDog, 
   removeLikedDog,
-  emptyDogsAndLikedDogs,
-  dogsAndLikedDogsReducer 
-} from './dogsAndLikedDogsSlicer'
+  emptyLikedDogs,
+  likedDogsReducer 
+} from './likedDogsSlicer'
+
 export { 
   setNextSearchQuery,
   setPrevSearchQuery,
   searchQueriesReducer 
 } from './searchQueriesSlicer'
-
