@@ -1,6 +1,15 @@
 import './style.css'
 
-function Input ({ name, value, onChange, placeholder, styling, type }) {
+function Input ({ 
+  name, 
+  value, 
+  onChange, 
+  placeholder, 
+  styling, 
+  type,
+  min = 0,
+  max = 20 
+}) {
   return (
     <input
       className={`input ${styling}`}
@@ -9,8 +18,8 @@ function Input ({ name, value, onChange, placeholder, styling, type }) {
       value={value}
       onChange={onChange}
       type={type}
-      min={0}
-      max={20}
+      min={min}
+      max={max}
     />
   )
 }
@@ -23,9 +32,9 @@ function Select ({ name, value, onChange, styling, options }) {
       className={`select ${styling}`}
       onChange={onChange} 
     >
-      {options.map(option => 
+      {options.map(option => (
         <option key={option.value} value={option.value}>{option.content}</option>
-      )}
+      ))}
     </select>
   )
 }
