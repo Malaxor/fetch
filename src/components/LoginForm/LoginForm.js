@@ -7,68 +7,71 @@ import { baseURL } from '../../constants'
 import { Input } from '../Controls'
 import { Button } from '../Buttons'
 
-export function LoginForm ({ isModalOpen, closeModalHandler, logInHandler }) {
+export function LoginForm({ isOpen, onClose, onLogin }) {
   const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     name: '',
     email: ''
   })
-  const { name, email } = formData
 
-  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  
-  function onSetFormData (e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+  const { name, email } = formData
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+
+  const handleChange = e => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
   }
-  
-  async function loginUser () {
+
+  const handleLogin = async () => {
     const payload = {
       name: name.trim(),
       email: email.trim()
     }
+
     try {
       await axios.post(`${baseURL}/auth/login`, payload, { withCredentials: true })
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.error('Login failed:', error)
     }
   }
 
-  async function onFormSubmit (e) {
+  const handleSubmit = async e => {
     e.preventDefault()
-    await loginUser()
+    await handleLogin()
     setFormData({ name: '', email: '' })
-    closeModalHandler()
-    logInHandler()
+    onClose()
+    onLogin()
     navigate('/fetch/dog-search-list')
   }
-  
- return ( 
-  <Modal
-    ariaHideApp={false}
-    id='modal'
-    isOpen={isModalOpen}
-    onRequestClose={closeModalHandler}
-  >
-    <form id='navbar__form' onSubmit={onFormSubmit}>
-      <Input
-        placeholder='name'
-        value={name}
-        name='name'
-        onChange={onSetFormData}
-      />      
-      <Input
-        placeholder='email'
-        value={email}
-        name='email'
-        onChange={onSetFormData}
-      />
-      <Button
-        styling='btn form-btn'
-        disabled={!name || !email || !regexEmail.test(email)}
-      >
-        Login
-      </Button>
-    </form>
-  </Modal>
- )
+
+  return (
+    <Modal
+      ariaHideApp={false}
+      id='modal'
+      isOpen={isOpen}
+      onRequestClose={onClose}
+    >
+      <form id='navbar__form' onSubmit={handleSubmit}>
+        <Input
+          placeholder='name'
+          value={name}
+          name='name'
+          onChange={handleChange}
+        />
+        <Input
+          placeholder='email'
+          value={email}
+          name='email'
+          onChange={handleChange}
+        />
+        <Button
+          styling='btn form-btn'
+          disabled={!name || !email || !isEmailValid}
+        >
+          Login
+        </Button>
+      </form>
+    </Modal>
+  )
 }

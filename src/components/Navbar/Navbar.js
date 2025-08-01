@@ -9,51 +9,49 @@ import { baseURL } from '../../constants'
 import { LoginForm } from '../LoginForm'
 import { Button } from '../Buttons'
 
-export function Navbar () {
+export function Navbar() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const [isOpen, setIsOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  function openModalHandler () {
-    setIsModalOpen(true)
-  }
-  function closeModalHandler () {
-    setIsModalOpen(false)
-  }
-  function logOutHandler () {
-    setIsLoggedIn(false)
-  }
-  function logInHandler () {
-    setIsLoggedIn(true)
-  }
-  
-  async function logoutUser () {
+  const openModal = () => setIsOpen(true)
+  const closeModal = () => setIsOpen(false)
+  const logIn = () => setIsLoggedIn(true)
+  const logOut = () => setIsLoggedIn(false)
+
+  const logoutUser = async () => {
     try {
       await axios.post(`${baseURL}/auth/logout`, {}, { withCredentials: true })
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.error('Logout failed:', error)
     }
-    logOutHandler()
+
+    logOut()
     dispatch(emptyDogs())
     dispatch(emptyLikedDogs())
     navigate('fetch')
   }
 
-  return ( 
+  const handleAuthClick = () => {
+    isLoggedIn ? logoutUser() : openModal()
+  }
+
+  return (
     <nav id='navbar'>
-      <img id='navbar__logo' src={fetchLogo} alt="fetch logo" />
+      <img id='navbar__logo' src={fetchLogo} alt='fetch logo' />
       <p id='navbar__slogan'>Paws for a Cause</p>
       <Button
         styling='btn sign-in-btn'
-        onClick={!isLoggedIn ? openModalHandler : logoutUser} 
+        onClick={handleAuthClick}
       >
-        {!isLoggedIn ? 'Sign In' : 'Sign Out'}
+        {isLoggedIn ? 'Sign Out' : 'Sign In'}
       </Button>
-      <LoginForm 
-        isModalOpen={isModalOpen} 
-        closeModalHandler={closeModalHandler}
-        logInHandler={logInHandler}
+      <LoginForm
+        isOpen={isOpen}
+        onClose={closeModal}
+        onLogin={logIn}
       />
     </nav>
   )
