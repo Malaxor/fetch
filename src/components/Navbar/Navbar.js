@@ -46,9 +46,10 @@ export function Navbar () {
       <p id='navbar__slogan'>Paws for a Cause</p>
       <Button
         styling='btn sign-in-btn'
-        content={!isLoggedIn ? 'Sign In' : 'Sign Out'}
         onClick={!isLoggedIn ? openModalHandler : logoutUser} 
-      />
+      >
+        {!isLoggedIn ? 'Sign In' : 'Sign Out'}
+      </Button>
       <LoginForm 
         isModalOpen={isModalOpen} 
         closeModalHandler={closeModalHandler}

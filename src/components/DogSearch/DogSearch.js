@@ -145,10 +145,7 @@ export function DogSearch () {
           type='number'
         />
       </p>
-      <Button
-        styling='btn form-btn'
-        content='Search'
-      />
+      <Button styling='btn form-btn'>Search</Button>
     </form>
   )
 }

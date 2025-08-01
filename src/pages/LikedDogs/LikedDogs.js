@@ -26,9 +26,10 @@ export function LikedDogs () {
         <Button
           styling='btn form-btn match-dog-btn'
           disabled={!likedDogs.length}
-          content='Submit'
           onClick={onMatchWithDog}
-        />
+        >
+          Submit  
+        </Button>
         <Link className='link' to='/fetch/dog-search-list'>Go Back</Link>
       </>
       <DogList dogsAndLikedDogs={likedDogs} />

@@ -41,15 +41,17 @@ export function PrevNextBtns () {
       <Button
         styling='prev-next-btn'
         disabled={!prevSearchQuery}
-        content='Previous'
-        onClick={() => { onBtnClick(prevSearchQuery) }} 
-      />
+        onClick={() => onBtnClick(prevSearchQuery)} 
+      >
+        Previous
+      </Button>
       <Button
         styling='prev-next-btn'
         disabled={!nextSearchQuery}
-        content='Next'
-        onClick={() => { onBtnClick(nextSearchQuery) }} 
-      />
+        onClick={() => onBtnClick(nextSearchQuery)} 
+      >
+        Next
+      </Button>
     </p>
   )
 }

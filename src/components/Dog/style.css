@@ -21,6 +21,9 @@
   right: 1.5rem;
   font-size: 4rem;
 }
+.heart:disabled {
+  cursor: default;
+}
 .cursor-auto {
   cursor: auto;
 }

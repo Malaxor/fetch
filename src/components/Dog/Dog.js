@@ -45,9 +45,7 @@ function Dog ({ dog }) {
         disabled={isDisabled}
         aria-label={isLiked ? 'Unlike dog' : 'Like dog'}
       >
-        <FontAwesomeIcon 
-          icon={faHeart} 
-        />
+        <FontAwesomeIcon icon={faHeart} />
       </button>
     </DogModel>
   )

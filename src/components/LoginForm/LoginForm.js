@@ -65,8 +65,9 @@ export function LoginForm ({ isModalOpen, closeModalHandler, logInHandler }) {
       <Button
         styling='btn form-btn'
         disabled={!name || !email || !regexEmail.test(email)}
-        content='Login'
-      />
+      >
+        Login
+      </Button>
     </form>
   </Modal>
  )
