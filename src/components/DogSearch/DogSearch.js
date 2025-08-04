@@ -47,15 +47,11 @@ export function DogSearch () {
     }
 
     if (formData.ageMin) {
-      const trimmed = formData.ageMin.trim()
-      params.ageMin = trimmed
-      formData.ageMin = trimmed
+      params.ageMin = ageMin
     }
 
     if (formData.ageMax) {
-      const trimmed = formData.ageMax.trim()
-      params.ageMax = trimmed
-      formData.ageMax = trimmed
+      params.ageMax = ageMax
     }
 
     return params
@@ -64,7 +60,6 @@ export function DogSearch () {
   async function fetchSearchResults (config) {
     try {
       const res = await axios.get(`${baseURL}/dogs/search`, config)
-      console.log(res.data)
       return res.data // object
     } catch (err) {
       console.error(err)
