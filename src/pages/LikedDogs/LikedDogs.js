@@ -9,14 +9,20 @@ export function LikedDogs () {
   const navigate = useNavigate()
   const likedDogs  = useSelector(state => state.likedDogs.likedDogs)
 
-  function onMatchWithDog () {
-    const payload = likedDogs.map(likedDog => likedDog.id)
-    axios.post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
-      .then(({ data }) => {
-        const matchedDog = likedDogs.find(likedDog => likedDog.id === data.match)
-        navigate('/fetch/matched-dog', { state: { matchedDog }})
-      })
-      .catch(err => { console.log(err) })
+  async function handleMatchSubmit () {
+    try {
+      const payload = likedDogs.map(dog => dog.id)
+      const { data } = await axios.post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
+      const matchedDog = likedDogs.find(dog => dog.id === data.match)
+
+      if (matchedDog) {
+        navigate('/fetch/matched-dog', { state: { matchedDog } })
+      } else {
+        console.warn('Matched dog not found in likedDogs list')
+      }
+    } catch (error) {
+      console.error('Error matching with dog:', error)
+    }
   }
   
   return ( 
@@ -26,13 +32,13 @@ export function LikedDogs () {
         <Button
           styling='btn form-btn match-dog-btn'
           disabled={!likedDogs.length}
-          onClick={onMatchWithDog}
+          onClick={handleMatchSubmit}
         >
           Submit  
         </Button>
         <Link className='link' to='/fetch/dog-search-list'>Go Back</Link>
       </>
-      <DogList dogsAndLikedDogs={likedDogs} />
+      <DogList dogs={likedDogs} />
     </section> 
   )
 }

@@ -8,20 +8,18 @@ import { PrevNextBtns } from '../../components/PrevNextBtns'
 export function DogsSearchList () {
   let dogs = useSelector(state => state.dogs.dogs)
   let likedDogs = useSelector(state => state.likedDogs.likedDogs)
-  const storedLikedDogs = JSON.parse(sessionStorage.getItem('likedDogs'))
-  const storedDogs = JSON.parse(sessionStorage.getItem('dogs'))
-  likedDogs = storedLikedDogs || likedDogs
-  dogs = storedDogs || dogs
 
   return ( 
     <section id='dogs-search-list'>
       <p id="message-for-user">Omitting search parameters still returns results.</p>
       <DogSearch />
-      <Link className={`link ${!likedDogs.length ? 'disabled' : ''}`} to='/fetch/liked-dogs'>
-        {`View Liked Dogs ${likedDogs.length}`} 
-      </Link>
+      {likedDogs.length > 0 && (
+        <Link className="link" to="/fetch/liked-dogs">
+          View Liked Dogs {likedDogs.length}
+        </Link>
+      )}
       {dogs.length > 0 && <PrevNextBtns />}
-      <DogList dogsAndLikedDogs={dogs} />
+      <DogList dogs={dogs} />
     </section> 
   )
 }

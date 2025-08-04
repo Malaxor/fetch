@@ -17,10 +17,6 @@ html {
 .link:active {
   color: #300d38;
 }
-.link.disabled {
-  pointer-events: none;
-  color: gray;
-}
 
 @media (max-width: 62.5em) {
   html {
