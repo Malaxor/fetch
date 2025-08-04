@@ -18,12 +18,11 @@ export function LoginForm({ isOpen, onClose, onLogin }) {
   const { name, email } = formData
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
-  const handleChange = e => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+  function handleChange (e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleLogin = async () => {
+  async function handleLogin () {
     const payload = {
       name: name.trim(),
       email: email.trim()
@@ -36,7 +35,7 @@ export function LoginForm({ isOpen, onClose, onLogin }) {
     }
   }
 
-  const handleSubmit = async e => {
+  async function handleSubmit (e) {
     e.preventDefault()
     await handleLogin()
     setFormData({ name: '', email: '' })
