@@ -29,79 +29,84 @@ export function DogSearch () {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  async function onFormSubmit (e) {
-    e.preventDefault()
-    const config = {
-      withCredentials: true,
-      params: {
-        sort
-      }
+  function clearZipCode () {
+    setFormData({ ...formData, zipCode: '' })
+  }
+
+  function buildSearchConfig() {
+    const params = { sort, withCredentials: true }
+
+    if (formData.breed) {
+      const cleaned = formData.breed.trim().toLowerCase()
+      params.breeds = [capitalizeFirstLetter(cleaned)]
+      formData.breed = cleaned
     }
 
-    if (breed) {
-      config.params.breeds = []
-      config.params.breeds.push(capitalizeFirstLetter(breed.trim().toLowerCase()))
-      formData.breed = formData.breed.trim()
-    }
-    if (zipCode) {
-      config.params.zipCodes = []
-      config.params.zipCodes.push(zipCode.trim())
-    }
-    if (ageMin) {
-      config.params.ageMin = ageMin.trim()
-      formData.ageMin = formData.ageMin.trim()
-    }
-    if (ageMax) {
-      config.params.ageMax = ageMax.trim()
-      formData.ageMax = formData.ageMax.trim()
+    if (formData.zipCode) {
+      params.zipCodes = [formData.zipCode.trim()]
     }
 
-    dispatch(setPrevSearchQuery(''))
-    setFormData(() => ({ ...formData, zipCode: '' }))
+    if (formData.ageMin) {
+      const trimmed = formData.ageMin.trim()
+      params.ageMin = trimmed
+      formData.ageMin = trimmed
+    }
 
-    let data
+    if (formData.ageMax) {
+      const trimmed = formData.ageMax.trim()
+      params.ageMax = trimmed
+      formData.ageMax = trimmed
+    }
+
+    return params
+  }
+
+  async function fetchSearchResults (config) {
     try {
       const res = await axios.get(`${baseURL}/dogs/search`, config)
-      data = res.data
+      console.log(res.data)
+      return res.data // object
     } catch (err) {
-      console.log(err)
+      console.error(err)
+      return {}
     }
-    dispatch(setNextSearchQuery(data.next))
-            
+  }
+
+  async function fetchDogDetails (resultIds) {
     try {
-      const res = await axios.post(`${baseURL}/dogs`, data.resultIds, { withCredentials: true })
-      data = res.data
+      const res = await axios.post(`${baseURL}/dogs`, resultIds, {
+        withCredentials: true
+      })
+      return res.data // array
     } catch (err) {
-      console.log(err)
+      console.error(err)
+      return []
     }
-    
+  }
+
+  async function onFormSubmit(e) {
+    e.preventDefault()
+
+    const config = buildSearchConfig()
+
+    dispatch(setPrevSearchQuery(''))
+    clearZipCode()
+
+    let data = await fetchSearchResults(config)
+    dispatch(setNextSearchQuery(data.next))
+
+    data = await fetchDogDetails(data.resultIds)
     dispatch(addDogs(data))
   }
+
+
   const options = [
-    { 
-      value: 'breed:asc',
-      content: 'Breed - Ascending'
-    },
-    {
-      value: 'breed:desc',
-      content: 'Breed - Descending'
-    },
-    {
-      value: 'name:asc',
-      content: 'Name - Ascending'
-    },
-    {
-      value: 'name:desc',
-      content: 'Name - Descending'
-    },
-    {
-      value: 'age:asc',
-      content: 'Age - Ascending'
-    },
-    {
-      value: 'age:desc',
-      content: 'Age - Descending'
-    }
+    { value: 'breed:asc', content: 'Breed - Ascending' },
+    { value: 'breed:desc', content: 'Breed - Descending' },
+    { value: 'name:asc', content: 'Name - Ascending' },
+    { value: 'name:desc', content: 'Name - Descending' },
+    { value: 'age:asc', content: 'Age - Ascending' },
+    { value: 'age:desc', content: 'Age - Descending' }
   ]
 
   return (
