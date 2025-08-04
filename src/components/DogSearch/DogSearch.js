@@ -72,12 +72,12 @@ export function DogSearch () {
     }
   }
 
-  async function fetchDogDetails (resultIds) {
+  async function fetchDogs (resultIds) {
     try {
       const res = await axios.post(`${baseURL}/dogs`, resultIds, {
         withCredentials: true
       })
-      return res.data // array
+      return res.data // array of dogs
     } catch (err) {
       console.error(err)
       return []
@@ -95,7 +95,7 @@ export function DogSearch () {
     let data = await fetchSearchResults(config)
     dispatch(setNextSearchQuery(data.next))
 
-    data = await fetchDogDetails(data.resultIds)
+    data = await fetchDogs(data.resultIds)
     dispatch(addDogs(data))
   }
 
