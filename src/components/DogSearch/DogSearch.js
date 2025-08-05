@@ -34,32 +34,38 @@ export function DogSearch () {
   }
 
   function buildSearchConfig() {
-    const params = { sort, withCredentials: true }
+    const config = { 
+      withCredentials: true, 
+      params: {
+        sort
+      }
+    }
 
     if (formData.breed) {
       const cleaned = formData.breed.trim().toLowerCase()
-      params.breeds = [capitalizeFirstLetter(cleaned)]
+      config.params.breeds = [capitalizeFirstLetter(cleaned)]
       formData.breed = cleaned
     }
 
     if (formData.zipCode) {
-      params.zipCodes = [formData.zipCode.trim()]
+      config.params.zipCodes = [formData.zipCode.trim()]
     }
 
     if (formData.ageMin) {
-      params.ageMin = ageMin
+      config.params.ageMin = ageMin
     }
 
     if (formData.ageMax) {
-      params.ageMax = ageMax
+      config.params.ageMax = ageMax
     }
 
-    return params
+    return config
   }
 
   async function fetchSearchResults (config) {
     try {
       const res = await axios.get(`${baseURL}/dogs/search`, config)
+      console.log(res)
       return res.data // object
     } catch (err) {
       console.error(err)
