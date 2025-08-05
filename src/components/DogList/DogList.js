@@ -1,7 +1,7 @@
 import './style.css'
 import { Dog, MatchedDog } from '../Dog'
 
-export function DogList({ dogs = [], matchedDog = null }) {
+export function DogList({ dogs = [], matchedDog }) {
   // the dogs prop's value is the dog array and the liked dogs array
   const hasDogs = dogs.length > 0
   return (

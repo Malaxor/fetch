@@ -20,7 +20,7 @@ export function PrevNextBtns () {
       const res = await axios.get(`${baseURL}${searchQuery}`, config)
       data = res.data
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
 
     dispatch(setNextSearchQuery(data.next))
@@ -30,7 +30,7 @@ export function PrevNextBtns () {
       const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
       data = res.data  
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
 
     dispatch(addDogs(data))

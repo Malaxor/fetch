@@ -65,7 +65,6 @@ export function DogSearch () {
   async function fetchSearchResults (config) {
     try {
       const res = await axios.get(`${baseURL}/dogs/search`, config)
-      console.log(res)
       return res.data // object
     } catch (err) {
       console.error(err)
