@@ -5,9 +5,9 @@ export function MatchedDog () {
   let { state: { matchedDog } } = useLocation()
   
   return ( 
-    <section id='matched-dog'>
+    <div id='matched-dog' role="region" aria-labelledby="message-for-user">
       <p id="message-for-user">{`You've matched with ${matchedDog.name}! `}</p>
       <DogList matchedDog={matchedDog} />
-    </section> 
+    </div> 
   )
 }

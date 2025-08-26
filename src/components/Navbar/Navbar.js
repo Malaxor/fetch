@@ -21,7 +21,7 @@ export function Navbar() {
   const logIn = () => setIsLoggedIn(true)
   const logOut = () => setIsLoggedIn(false)
 
-  const logoutUser = async () => {
+  async function logoutUser () {
     try {
       await axios.post(`${baseURL}/auth/logout`, {}, { withCredentials: true })
     } catch (error) {
@@ -34,7 +34,7 @@ export function Navbar() {
     navigate('fetch')
   }
 
-  const handleAuthClick = () => {
+  function handleAuthClick () {
     isLoggedIn ? logoutUser() : openModal()
   }
 

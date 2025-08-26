@@ -10,7 +10,7 @@ export function DogsSearchList () {
   let likedDogs = useSelector(state => state.likedDogs.likedDogs)
 
   return ( 
-    <section id='dogs-search-list'>
+    <div id='dogs-search-list' role="region" aria-labelledby="message-for-user">
       <p id="message-for-user">Omitting search parameters still returns results.</p>
       <DogSearch />
       {likedDogs.length > 0 && (
@@ -20,6 +20,6 @@ export function DogsSearchList () {
       )}
       {dogs.length > 0 && <PrevNextBtns />}
       <DogList dogs={dogs} />
-    </section> 
+    </div> 
   )
 }

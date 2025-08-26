@@ -14,30 +14,23 @@ export function PrevNextBtns () {
     withCredentials: true
   }
   
-  async function onBtnClick (searchQuery) {
-    let data
-    try {
-      const res = await axios.get(`${baseURL}${searchQuery}`, config)
-      data = res.data
-    } catch (err) {
-      console.error(err)
-    }
+async function onBtnClick (searchQuery) {
+  try {
+    const { data: searchData } = await axios.get(`${baseURL}${searchQuery}`,config)
 
-    dispatch(setNextSearchQuery(data.next))
-    dispatch(setPrevSearchQuery(data.prev))
+    dispatch(setNextSearchQuery(searchData.next))
+    dispatch(setPrevSearchQuery(searchData.prev))
 
-    try {
-      const res = await axios.post(`${baseURL}/dogs`, data.resultIds, config)
-      data = res.data  
-    } catch (err) {
-      console.error(err)
-    }
+    const { data: dogsData } = await axios.post(`${baseURL}/dogs`,searchData.resultIds,config)
 
-    dispatch(addDogs(data))
+    dispatch(addDogs(dogsData));
+  } catch (err) {
+    console.error("Error fetching dogs:", err);
   }
+}
 
   return (
-    <p className={`previous-next-container`}>
+    <nav className={`previous-next-container`} aria-label="Search results navigation">
       <Button
         styling='prev-next-btn'
         disabled={!prevSearchQuery}
@@ -52,6 +45,6 @@ export function PrevNextBtns () {
       >
         Next
       </Button>
-    </p>
+    </nav>
   )
 }

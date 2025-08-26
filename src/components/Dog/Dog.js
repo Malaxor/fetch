@@ -31,7 +31,7 @@ function Dog ({ dog }) {
   const isDisabled = !isLiked && likedDogs.length === 10
 
   function handleToggleLike () {
-    dispatch(isLiked ? removeLikedDog(dog): addLikedDog(dog))
+    dispatch(isLiked ? removeLikedDog(dog) : addLikedDog(dog))
   }
 
   return ( 

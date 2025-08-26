@@ -26,7 +26,7 @@ export function LikedDogs () {
   }
   
   return ( 
-    <section id='liked-dogs'>
+    <div id='liked-dogs' role="region" aria-labelledby="message-for-user">
       <p id="message-for-user">Click on Submit to match with a dog.</p>
       <>
         <Button
@@ -39,6 +39,6 @@ export function LikedDogs () {
         <Link className='link' to='/fetch/dog-search-list'>Go Back</Link>
       </>
       <DogList dogs={likedDogs} />
-    </section> 
+    </div> 
   )
 }
