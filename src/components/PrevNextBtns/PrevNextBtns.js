@@ -21,9 +21,9 @@ async function onBtnClick (searchQuery) {
     dispatch(setNextSearchQuery(searchData.next))
     dispatch(setPrevSearchQuery(searchData.prev))
 
-    const { data: dogsData } = await axios.post(`${baseURL}/dogs`,searchData.resultIds, config)
+    const { data: dogs } = await axios.post(`${baseURL}/dogs`,searchData.resultIds, config)
 
-    dispatch(addDogs(dogsData));
+    dispatch(addDogs(dogs));
   } catch (err) {
     console.error("Error fetching dogs:", err);
   }

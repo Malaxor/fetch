@@ -92,10 +92,10 @@ export function DogSearch () {
     dispatch(setPrevSearchQuery(''))
     clearZipCode()
 
-    const resultIds = await fetchResultIds(config)
+    const { data: searchData } = await fetchResultIds(config)
     dispatch(setNextSearchQuery(searchData.next))
 
-    const dogsArr = await fetchDogs(resultIds)
+    const dogsArr = await fetchDogs(searchData.resultIds)
     dispatch(addDogs(dogsArr))
   }
 
