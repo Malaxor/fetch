@@ -16,12 +16,12 @@ export function PrevNextBtns () {
   
 async function onBtnClick (searchQuery) {
   try {
-    const { data: searchData } = await axios.get(`${baseURL}${searchQuery}`,config)
+    const { data: searchData } = await axios.get(`${baseURL}${searchQuery}`, config)
 
     dispatch(setNextSearchQuery(searchData.next))
     dispatch(setPrevSearchQuery(searchData.prev))
 
-    const { data: dogsData } = await axios.post(`${baseURL}/dogs`,searchData.resultIds,config)
+    const { data: dogsData } = await axios.post(`${baseURL}/dogs`,searchData.resultIds, config)
 
     dispatch(addDogs(dogsData));
   } catch (err) {

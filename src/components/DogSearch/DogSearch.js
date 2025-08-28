@@ -62,22 +62,22 @@ export function DogSearch () {
     return config
   }
 
-  async function fetchSearchResults (config) {
+  async function fetchResultIds (config) {
     try {
-      const res = await axios.get(`${baseURL}/dogs/search`, config)
-      return res.data // object
+      const { data: { resultIds } } = await axios.get(`${baseURL}/dogs/search`, config)
+      return resultIds // array
     } catch (err) {
       console.error(err)
-      return {}
+      return []
     }
   }
 
   async function fetchDogs (resultIds) {
     try {
-      const res = await axios.post(`${baseURL}/dogs`, resultIds, {
+      const { data } = await axios.post(`${baseURL}/dogs`, resultIds, {
         withCredentials: true
       })
-      return res.data // array of dogs
+      return data // array
     } catch (err) {
       console.error(err)
       return []
@@ -92,11 +92,11 @@ export function DogSearch () {
     dispatch(setPrevSearchQuery(''))
     clearZipCode()
 
-    let data = await fetchSearchResults(config)
-    dispatch(setNextSearchQuery(data.next))
+    const resultIds = await fetchResultIds(config)
+    dispatch(setNextSearchQuery(searchData.next))
 
-    data = await fetchDogs(data.resultIds)
-    dispatch(addDogs(data))
+    const dogsArr = await fetchDogs(resultIds)
+    dispatch(addDogs(dogsArr))
   }
 
 
