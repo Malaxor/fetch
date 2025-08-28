@@ -62,13 +62,12 @@ export function DogSearch () {
     return config
   }
 
-  async function fetchResultIds (config) {
+  async function fetchSearchData (config) {
     try {
-      const { data: { resultIds } } = await axios.get(`${baseURL}/dogs/search`, config)
-      return resultIds // array
+      const { data } = await axios.get(`${baseURL}/dogs/search`, config)
+      return data // object
     } catch (err) {
       console.error(err)
-      return []
     }
   }
 
@@ -80,7 +79,6 @@ export function DogSearch () {
       return data // array
     } catch (err) {
       console.error(err)
-      return []
     }
   }
 
@@ -92,7 +90,7 @@ export function DogSearch () {
     dispatch(setPrevSearchQuery(''))
     clearZipCode()
 
-    const { data: searchData } = await fetchResultIds(config)
+    const searchData = await fetchSearchData(config)
     dispatch(setNextSearchQuery(searchData.next))
 
     const dogsArr = await fetchDogs(searchData.resultIds)
