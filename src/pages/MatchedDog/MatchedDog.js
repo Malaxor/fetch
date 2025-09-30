@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 import { DogList } from '../../components/DogList'
 
 export function MatchedDog () {
-  const { state: { matchedDog } } = useLocation()
+  const { state: matchedDog  } = useLocation()
   
   return ( 
     <div id='matched-dog' role="region" aria-labelledby="message-for-user">

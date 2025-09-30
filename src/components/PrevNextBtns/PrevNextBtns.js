@@ -21,7 +21,7 @@ async function onBtnClick (searchQuery) {
     dispatch(setNextSearchQuery(searchData.next))
     dispatch(setPrevSearchQuery(searchData.prev))
 
-    const { data: dogs } = await axios.post(`${baseURL}/dogs`,searchData.resultIds, config)
+    const { data: dogs } = await axios.post(`${baseURL}/dogs`, searchData.resultIds, config)
 
     dispatch(addDogs(dogs));
   } catch (err) {
@@ -30,7 +30,7 @@ async function onBtnClick (searchQuery) {
 }
 
   return (
-    <nav className={`previous-next-container`} aria-label="Search results navigation">
+    <nav className='previous-next-container' aria-label="Search results navigation">
       <Button
         styling='prev-next-btn'
         disabled={!prevSearchQuery}
