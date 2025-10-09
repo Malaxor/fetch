@@ -13,7 +13,7 @@ export function DogList({ dogs = [], matchedDog }) {
         <PuffLoader color="#fba919" size={150} cssOverride={{ margin: '0 auto' }} />
       )}
 
-      {hasDogs && dogs.map((dog) => (
+      {hasDogs && !loading && dogs.map((dog) => (
         <Dog key={dog.id} dog={dog} />
       ))}
 
