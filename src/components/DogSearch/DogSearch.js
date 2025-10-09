@@ -2,7 +2,12 @@ import './style.css'
 import axios from 'axios'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { addDogs, setNextSearchQuery, setPrevSearchQuery } from '../../slicers'
+import { 
+  addDogs, 
+  setNextSearchQuery, 
+  setPrevSearchQuery,
+  setLoading, 
+} from '../../slicers'
 import { capitalizeFirstLetter } from '../../utils';
 import { baseURL } from '../../constants'
 import { Input, Select } from '../Controls'
@@ -84,6 +89,7 @@ export function DogSearch () {
 
   async function onFormSubmit(e) {
     e.preventDefault()
+    dispatch(setLoading(true))
 
     const config = buildSearchConfig()
 
@@ -95,6 +101,7 @@ export function DogSearch () {
 
     const dogsArr = await fetchDogs(searchData.resultIds)
     dispatch(addDogs(dogsArr))
+    dispatch(setLoading(false))
   }
 
 
@@ -121,7 +128,7 @@ export function DogSearch () {
         placeholder='breed'
         name='breed'
         onChange={onSetFormData}
-        value={breed}s
+        value={breed}
       />
       <div id="inputs-container">
         <Input

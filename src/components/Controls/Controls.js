@@ -8,7 +8,7 @@ function Input ({
   styling, 
   type,
   min = 0,
-  max = 20 
+  max = 20
 }) {
   return (
     <input

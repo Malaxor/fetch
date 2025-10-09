@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { emptyDogs, emptyLikedDogs } from '../../slicers'
+import { emptyDogs, emptyLikedDogs, setLoading } from '../../slicers'
 import fetchLogo from '../../assets/images/fetch-logo.png'
 import { baseURL } from '../../constants'
 import { LoginForm } from '../LoginForm'
@@ -31,6 +31,7 @@ export function Navbar() {
     logOut()
     dispatch(emptyDogs())
     dispatch(emptyLikedDogs())
+    dispatch(setLoading(false))
     navigate('fetch')
   }
 

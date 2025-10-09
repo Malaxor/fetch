@@ -28,7 +28,7 @@ function Dog ({ dog }) {
   const likedDogs = useSelector(state => state.likedDogs.likedDogs)
   const isLiked = likedDogs.some((liked) => liked.id === dog.id)
   const heartClass = `heart ${isLiked ? 'red-heart' : 'gray-heart'}`
-  const isDisabled = !isLiked && likedDogs.length === 10
+  const isDisabled = !isLiked && likedDogs.length === 10 
 
   function handleToggleLike () {
     dispatch(isLiked ? removeLikedDog(dog) : addLikedDog(dog))

@@ -16,3 +16,8 @@ export {
   setPrevSearchQuery,
   searchQueriesReducer 
 } from './searchQueriesSlicer'
+
+export { 
+  setLoading,
+  loadingReducer 
+} from './loadingSlicer'
