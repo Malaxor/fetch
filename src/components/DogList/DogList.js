@@ -9,13 +9,12 @@ export function DogList({ dogs = [], matchedDog }) {
 
   return (
     <ol id="dog-list">
-      {loading && (
-        <PuffLoader color="#fba919" size={150} cssOverride={{ margin: '0 auto' }} />
-      )}
-
-      {hasDogs && !loading && dogs.map((dog) => (
-        <Dog key={dog.id} dog={dog} />
-      ))}
+      {loading 
+        ? <PuffLoader color="#fba919" size={150} cssOverride={{ margin: '0 auto' }} />
+        : dogs.map((dog) => (
+          <Dog key={dog.id} dog={dog} />
+        ))
+      }
 
       {matchedDog && (
         <MatchedDog key={matchedDog.id} dog={matchedDog} />
