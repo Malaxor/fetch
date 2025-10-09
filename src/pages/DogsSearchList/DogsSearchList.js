@@ -1,5 +1,4 @@
 import './style.css'
-import { PuffLoader	 } from "react-spinners";
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { DogSearch } from '../../components/DogSearch'
