@@ -1,3 +1,7 @@
+#no-dogs-found-msg {
+  font-size: 2rem;
+  justify-self: center;
+}
 #dog-list {
   padding: 0 5rem 5rem;
   display: grid;

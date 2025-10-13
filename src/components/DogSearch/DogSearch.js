@@ -3,10 +3,12 @@ import axios from 'axios'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { 
-  addDogs, 
+  addDogs,
+  emptyDogs, 
   setNextSearchQuery, 
   setPrevSearchQuery,
-  setLoading, 
+  setLoading,
+  setHasDogs 
 } from '../../slicers'
 import { capitalizeFirstLetter } from '../../utils';
 import { baseURL } from '../../constants'
@@ -100,7 +102,13 @@ export function DogSearch () {
     dispatch(setNextSearchQuery(searchData.next))
 
     const dogsArr = await fetchDogs(searchData.resultIds)
-    dispatch(addDogs(dogsArr))
+    if (dogsArr.length > 0) {
+      dispatch(addDogs(dogsArr))
+      dispatch(setHasDogs(true))
+    } else {
+      dispatch(emptyDogs()) // resetting state
+      dispatch(setHasDogs(false))
+    }
     dispatch(setLoading(false))
   }
 

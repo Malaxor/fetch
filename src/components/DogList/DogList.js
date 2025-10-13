@@ -5,20 +5,20 @@ import { Dog, MatchedDog } from '../Dog'
 
 export function DogList({ dogs = [], matchedDog }) {
   const loading = useSelector((state) => state.loading.loading)
-  const hasDogs = dogs.length > 0
+  const hasDogs = useSelector(state => state.hasDogs.hasDogs)
+
+  if (loading) {
+    return <PuffLoader color="#fba919" size={150} cssOverride={{ margin: '0 auto' }} />
+  }
+
+  if (hasDogs === false) {
+    return <p id="no-dogs-found-msg">No dogs found.</p>
+  }
 
   return (
     <ol id="dog-list">
-      {loading 
-        ? <PuffLoader color="#fba919" size={150} cssOverride={{ margin: '0 auto' }} />
-        : dogs.map((dog) => (
-          <Dog key={dog.id} dog={dog} />
-        ))
-      }
-
-      {matchedDog && (
-        <MatchedDog key={matchedDog.id} dog={matchedDog} />
-      )}
+      {matchedDog && <MatchedDog key={matchedDog.id} dog={matchedDog} />}
+      {dogs.map((dog) => <Dog key={dog.id} dog={dog} />)}
     </ol>
   )
 }

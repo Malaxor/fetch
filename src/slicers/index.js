@@ -21,3 +21,8 @@ export {
   setLoading,
   loadingReducer 
 } from './loadingSlicer'
+
+export { 
+  setHasDogs,
+  hasDogsReducer
+} from './hasDogsSlicer'
