@@ -23,10 +23,6 @@
   gap: 1rem;
   width: 28rem;
 }
-#navbar__form input {
-  width: 100%;
-}
-
 @media (max-width: 62.5em) {
   #navbar__logo {
     height: 6.5rem;

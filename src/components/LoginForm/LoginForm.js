@@ -53,19 +53,21 @@ export function LoginForm({ isOpen, onClose, onLogin }) {
     >
       <form id='navbar__form' onSubmit={handleSubmit}>
         <Input
+          styling='w-100'
           placeholder='name'
           value={name}
           name='name'
           onChange={handleChange}
         />
         <Input
+          styling='w-100'
           placeholder='email'
           value={email}
           name='email'
           onChange={handleChange}
         />
         <Button
-          styling='btn form-btn'
+          styling='btn form-btn w-100'
           disabled={!name || !email || !isEmailValid}
         >
           Login

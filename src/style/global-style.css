@@ -18,6 +18,10 @@ html {
   color: #300d38;
 }
 
+.w-100 {
+  width: 100% !important;
+}
+
 @media (max-width: 62.5em) {
   html {
     font-size: 56.25%;
