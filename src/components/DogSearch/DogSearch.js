@@ -92,6 +92,8 @@ export function DogSearch () {
   async function onFormSubmit(e) {
     e.preventDefault()
     dispatch(setLoading(true))
+    dispatch(emptyDogs())
+    dispatch(setHasDogs(null))
 
     const config = buildSearchConfig()
 
@@ -102,13 +104,7 @@ export function DogSearch () {
     dispatch(setNextSearchQuery(searchData.next))
 
     const dogsArr = await fetchDogs(searchData.resultIds)
-    if (dogsArr.length > 0) {
-      dispatch(addDogs(dogsArr))
-      dispatch(setHasDogs(true))
-    } else {
-      dispatch(emptyDogs()) // resetting state
-      dispatch(setHasDogs(false))
-    }
+    dispatch(dogsArr.length > 0 ? addDogs(dogsArr) : setHasDogs(false))
     dispatch(setLoading(false))
   }
 

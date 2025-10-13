@@ -18,7 +18,7 @@ export function DogsSearchList () {
           View Liked Dogs {likedDogs.length}
         </Link>
       )}
-      {dogs.length > 0 && <PrevNextBtns />}
+      {dogs.length > 24 && <PrevNextBtns />}
       <DogList dogs={dogs} />
     </div> 
   )
