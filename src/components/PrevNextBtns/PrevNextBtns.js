@@ -23,7 +23,7 @@ export function PrevNextBtns () {
 
       const { data: dogs } = await axios.post(`${baseURL}/dogs`, searchData.resultIds, config)
 
-      dispatch(addDogs(dogs));
+      dispatch(addDogs(dogs))
     } catch (err) {
       console.error("Error fetching dogs:", err)
     }

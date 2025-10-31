@@ -92,12 +92,11 @@ export function DogSearch () {
   async function onFormSubmit(e) {
     e.preventDefault()
     dispatch(setLoading(true))
-    dispatch(emptyDogs())
     dispatch(setHasDogs(null))
+    dispatch(emptyDogs())
+    dispatch(setPrevSearchQuery(''))
 
     const config = buildSearchConfig()
-
-    dispatch(setPrevSearchQuery(''))
     clearZipCode()
 
     const searchData = await fetchSearchData(config)

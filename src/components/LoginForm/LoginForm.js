@@ -9,14 +9,15 @@ import { Button } from '../Buttons'
 
 export function LoginForm({ isOpen, onClose, onLogin }) {
   const navigate = useNavigate()
-
   const [formData, setFormData] = useState({
     name: '',
     email: ''
   })
 
   const { name, email } = formData
+
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const isDisabled = !name || !email || !isEmailValid
 
   function handleChange (e) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -66,10 +67,7 @@ export function LoginForm({ isOpen, onClose, onLogin }) {
           name='email'
           onChange={handleChange}
         />
-        <Button
-          styling='btn form-btn w-100'
-          disabled={!name || !email || !isEmailValid}
-        >
+        <Button styling='btn form-btn w-100' disabled={isDisabled}>
           Login
         </Button>
       </form>

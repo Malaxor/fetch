@@ -1,6 +1,8 @@
 export { 
   addDogs, 
   emptyDogs,
+  setHasDogs,
+  setLoading,
   dogsReducer 
 } from './dogsSlicer'
 
@@ -16,13 +18,3 @@ export {
   setPrevSearchQuery,
   searchQueriesReducer 
 } from './searchQueriesSlicer'
-
-export { 
-  setLoading,
-  loadingReducer 
-} from './loadingSlicer'
-
-export { 
-  setHasDogs,
-  hasDogsReducer
-} from './hasDogsSlicer'
