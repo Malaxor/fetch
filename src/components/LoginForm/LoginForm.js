@@ -7,7 +7,7 @@ import { baseURL } from '../../constants'
 import { Input } from '../Controls'
 import { Button } from '../Buttons'
 
-export function LoginForm({ isOpen, onClose, onLogin }) {
+export function LoginForm({ isOpen, closeModal, login }) {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
@@ -40,8 +40,8 @@ export function LoginForm({ isOpen, onClose, onLogin }) {
     e.preventDefault()
     await handleLogin()
     setFormData({ name: '', email: '' })
-    onClose()
-    onLogin()
+    closeModal()
+    login()
     navigate('/fetch/dog-search-list')
   }
 

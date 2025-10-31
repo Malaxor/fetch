@@ -52,8 +52,8 @@ export function Navbar() {
       </Button>
       <LoginForm
         isOpen={isOpen}
-        onClose={closeModal}
-        onLogin={logIn}
+        closeModal={closeModal}
+        logIn={logIn}
       />
     </nav>
   )
