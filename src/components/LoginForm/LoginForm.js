@@ -7,7 +7,7 @@ import { baseURL } from '../../constants'
 import { Input } from '../Controls'
 import { Button } from '../Buttons'
 
-export function LoginForm({ isOpen, closeModal, login }) {
+export function LoginForm({ isOpen, closeModal, logIn }) {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
@@ -41,7 +41,7 @@ export function LoginForm({ isOpen, closeModal, login }) {
     await handleLogin()
     setFormData({ name: '', email: '' })
     closeModal()
-    login()
+    logIn()
     navigate('/fetch/dog-search-list')
   }
 
@@ -50,7 +50,7 @@ export function LoginForm({ isOpen, closeModal, login }) {
       ariaHideApp={false}
       id='modal'
       isOpen={isOpen}
-      onRequestClose={onClose}
+      onRequestClose={closeModal}
     >
       <form id='navbar__form' onSubmit={handleSubmit}>
         <Input

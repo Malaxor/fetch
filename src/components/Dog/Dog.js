@@ -26,7 +26,7 @@ function DogModel ({ dog, children }) {
 function Dog ({ dog }) {
   const dispatch = useDispatch()
   const likedDogs = useSelector(state => state.likedDogs.likedDogs)
-  const isLiked = likedDogs.some((liked) => liked.id === dog.id)
+  const isLiked = likedDogs.some(liked => liked.id === dog.id)
   const heartClass = `heart ${isLiked ? 'red-heart' : 'gray-heart'}`
   const isDisabled = !isLiked && likedDogs.length === 10 
 
