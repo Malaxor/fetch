@@ -36,10 +36,6 @@ export function DogSearch () {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  function clearZipCode () {
-    setFormData({ ...formData, zipCode: '' })
-  }
-
   function buildSearchConfig() {
     const config = { 
       withCredentials: true, 
@@ -97,7 +93,6 @@ export function DogSearch () {
     dispatch(setPrevSearchQuery(''))
 
     const config = buildSearchConfig()
-    clearZipCode()
 
     const searchData = await fetchSearchData(config)
     dispatch(setNextSearchQuery(searchData.next))
@@ -140,6 +135,7 @@ export function DogSearch () {
           name='zipCode'
           onChange={onSetFormData}
           value={zipCode}
+          type='number'
         />
         <Input
           styling='medium-input center-text'
@@ -148,6 +144,7 @@ export function DogSearch () {
           onChange={onSetFormData}
           value={ageMax}
           type='number'
+          max='20'
         />
         <Input
           styling='medium-input center-text'
@@ -156,6 +153,7 @@ export function DogSearch () {
           onChange={onSetFormData}
           value={ageMin}
           type='number'
+          min='0'
         />
       </div>
       <Button styling='btn form-btn'>Search</Button>
