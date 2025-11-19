@@ -91,12 +91,17 @@ export function DogSearch () {
     dispatch(setHasDogs(null))
     dispatch(emptyDogs())
     dispatch(setPrevSearchQuery(''))
+    dispatch(setNextSearchQuery(''))
 
     const config = buildSearchConfig()
 
     const searchData = await fetchSearchData(config)
-    dispatch(setNextSearchQuery(searchData.next))
-
+    const { data } = await axios.get(`${baseURL}${searchData.next}`, { withCredentials: true })
+    
+    if (data.resultIds.length) { 
+      dispatch(setNextSearchQuery(searchData.next))
+    }
+      
     const dogsArr = await fetchDogs(searchData.resultIds)
     dispatch(dogsArr.length > 0 ? addDogs(dogsArr) : setHasDogs(false))
     dispatch(setLoading(false))

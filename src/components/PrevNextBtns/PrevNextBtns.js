@@ -18,7 +18,8 @@ export function PrevNextBtns () {
     try {
       const { data: searchData } = await axios.get(`${baseURL}${searchQuery}`, config)
 
-      dispatch(setNextSearchQuery(searchData.next))
+      const { data } = await axios.get(`${baseURL}${searchData.next}`, { withCredentials: true })
+      dispatch(setNextSearchQuery(data.resultIds.length ? searchData.next : ''))
       dispatch(setPrevSearchQuery(searchData.prev))
 
       const { data: dogs } = await axios.post(`${baseURL}/dogs`, searchData.resultIds, config)
