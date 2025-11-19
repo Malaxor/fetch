@@ -85,27 +85,32 @@ export function DogSearch () {
     }
   }
 
-  async function onFormSubmit(e) {
-    e.preventDefault()
-    dispatch(setLoading(true))
-    dispatch(setHasDogs(null))
-    dispatch(emptyDogs())
-    dispatch(setPrevSearchQuery(''))
-    dispatch(setNextSearchQuery(''))
+async function onFormSubmit(e) {
+  e.preventDefault()
 
+  dispatch(setLoading(true))
+  dispatch(setHasDogs(null))
+  dispatch(emptyDogs())
+  dispatch(setPrevSearchQuery(''))
+  dispatch(setNextSearchQuery(''))
+
+  try {
     const config = buildSearchConfig()
-
     const searchData = await fetchSearchData(config)
-    const { data } = await axios.get(`${baseURL}${searchData.next}`, { withCredentials: true })
-    
-    if (data.resultIds.length) { 
+
+    const { data: nextSearchData } = await axios.get(`${baseURL}${searchData.next}`, { withCredentials: true })
+    if (nextSearchData.resultIds.length) {
       dispatch(setNextSearchQuery(searchData.next))
     }
-      
+
     const dogsArr = await fetchDogs(searchData.resultIds)
-    dispatch(dogsArr.length > 0 ? addDogs(dogsArr) : setHasDogs(false))
+
+    dispatch(dogsArr.length ? addDogs(dogsArr) : setHasDogs(false))
     dispatch(setLoading(false))
+  } catch (err) {
+    console.error('Form submit error:', err)
   }
+}
 
 
   const options = [

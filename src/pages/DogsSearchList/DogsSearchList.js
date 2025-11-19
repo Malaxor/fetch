@@ -10,7 +10,6 @@ export function DogsSearchList () {
   const likedDogs = useSelector(state => state.likedDogs.likedDogs)
   const nextSearchQuery = useSelector(state => state.searchQueries.nextSearchQuery)
   const prevSearchQuery = useSelector(state => state.searchQueries.prevSearchQuery)
-  console.log({ prevSearchQuery, nextSearchQuery })
 
   return ( 
     <div id='dogs-search-list' role="region" aria-labelledby="message-for-user">
@@ -21,7 +20,7 @@ export function DogsSearchList () {
           View Liked Dogs {likedDogs.length}
         </Link>
       )}
-      {(nextSearchQuery || prevSearchQuery) && <PrevNextBtns />}
+      {(prevSearchQuery || nextSearchQuery) && <PrevNextBtns />}
       <DogList dogs={dogs} />
     </div> 
   )
