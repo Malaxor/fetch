@@ -7,8 +7,8 @@ function Input ({
   placeholder, 
   styling, 
   type,
-  min = 0,
-  max = 20
+  min,
+  max
 }) {
   return (
     <input

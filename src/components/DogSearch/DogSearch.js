@@ -136,8 +136,6 @@ export function DogSearch () {
           onChange={onSetFormData}
           value={zipCode}
           type='number'
-          min={null}
-          max={null}
         />
         <Input
           styling='medium-input center-text'
@@ -146,6 +144,8 @@ export function DogSearch () {
           onChange={onSetFormData}
           value={ageMax}
           type='number'
+          min={0}
+          max={20}
         />
         <Input
           styling='medium-input center-text'
@@ -154,6 +154,8 @@ export function DogSearch () {
           onChange={onSetFormData}
           value={ageMin}
           type='number'
+          min={0}
+          max={20}
         />
       </div>
       <Button styling='btn form-btn'>Search</Button>
