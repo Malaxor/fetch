@@ -5,29 +5,31 @@ import { addDogs, setSearchQueries } from '../../slicers'
 import { Button } from '../Buttons'
 import { baseURL } from '../../constants'
 
-export function PrevNextBtns () {
+export function PrevNextBtns() {
   const dispatch = useDispatch()
   const { prevSearchQuery, nextSearchQuery } = useSelector(state => state.searchQueries)
 
-  const config = {
-    withCredentials: true
-  }
-  
-  async function onBtnClick (searchQuery) {
+  const config = { withCredentials: true }
+
+  async function onBtnClick(searchQuery) {
     try {
+      // 1️⃣ Fetch the current page
       const { data: searchData } = await axios.get(`${baseURL}${searchQuery}`, config)
 
-      const { data: nextSearchData } = await axios.get(`${baseURL}${searchData.next}`, config)
-      dispatch(setSearchQueries({ 
-        nextSearchQuery: nextSearchData.resultIds.length ? searchData.next : '',
-        prevSearchQuery: searchData.prev 
+      // 2️⃣ fetch dogs and next page in parallel
+      const fetchDogs = axios.post(`${baseURL}/dogs`, searchData.resultIds, config)
+      const fetchNextData = axios.get(`${baseURL}${searchData.next}`, config)
+
+      const [dogsResponse, nextDataResponse] = await Promise.all([fetchDogs, fetchNextData])
+
+      // 3️⃣ Update Redux store
+      dispatch(addDogs(dogsResponse.data))
+      dispatch(setSearchQueries({
+        prevSearchQuery: searchData.prev,
+        nextSearchQuery: nextDataResponse.data.resultIds.length ? searchData.next : ''
       }))
-
-      const { data: dogs } = await axios.post(`${baseURL}/dogs`, searchData.resultIds, config)
-
-      dispatch(addDogs(dogs))
     } catch (err) {
-      console.error("Error fetching dogs:", err)
+      console.error("Error fetching dogs or search pages:", err)
     }
   }
 
@@ -36,14 +38,14 @@ export function PrevNextBtns () {
       <Button
         styling='prev-next-btn'
         disabled={!prevSearchQuery}
-        onClick={() => onBtnClick(prevSearchQuery)} 
+        onClick={() => onBtnClick(prevSearchQuery)}
       >
         Previous
       </Button>
       <Button
         styling='prev-next-btn'
         disabled={!nextSearchQuery}
-        onClick={() => onBtnClick(nextSearchQuery)} 
+        onClick={() => onBtnClick(nextSearchQuery)}
       >
         Next
       </Button>
