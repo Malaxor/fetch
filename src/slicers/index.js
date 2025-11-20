@@ -14,7 +14,6 @@ export {
 } from './likedDogsSlicer'
 
 export { 
-  setNextSearchQuery,
-  setPrevSearchQuery,
+  setSearchQueries,
   searchQueriesReducer 
 } from './searchQueriesSlicer'

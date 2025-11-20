@@ -7,16 +7,16 @@ const searchQueriesSlicer = createSlice({
     nextSearchQuery: ''
   },
   reducers: {
-    setPrevSearchQuery(state, action) {
-      state.prevSearchQuery = action.payload
-    },
-    setNextSearchQuery(state, action) {
-      state.nextSearchQuery = action.payload
+    setSearchQueries(state, action) {
+      return { 
+        prevSearchQuery: action.payload.prevSearchQuery,
+        nextSearchQuery: action.payload.nextSearchQuery 
+      }
     }
   }
 })
 
 export const { 
-  actions: { setNextSearchQuery, setPrevSearchQuery }, 
+  actions: { setSearchQueries }, 
   reducer: searchQueriesReducer 
 } = searchQueriesSlicer

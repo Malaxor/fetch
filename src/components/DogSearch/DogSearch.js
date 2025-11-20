@@ -4,9 +4,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { 
   addDogs,
-  emptyDogs, 
-  setNextSearchQuery, 
-  setPrevSearchQuery,
+  emptyDogs,
+  setSearchQueries,
   setLoading,
   setHasDogs 
 } from '../../slicers'
@@ -67,23 +66,15 @@ export function DogSearch () {
     return config
   }
 
-  async function fetchSearchData (searchConfig) {
-    try {
-      const { data } = await axios.get(`${baseURL}/dogs/search`, searchConfig)
-      return data // object
-    } catch (err) {
-      console.error(err)
-    }
-  }
+async function fetchSearchData(searchConfig) {
+  const { data } = await axios.get(`${baseURL}/dogs/search`, searchConfig)
+  return data
+}
 
-  async function fetchDogs (resultIds) {
-    try {
-      const { data } = await axios.post(`${baseURL}/dogs`, resultIds, config)
-      return data // array
-    } catch (err) {
-      console.error(err)
-    }
-  }
+async function fetchDogs(resultIds) {
+  const { data } = await axios.post(`${baseURL}/dogs`, resultIds, config)
+  return data
+}
 
 async function onFormSubmit(e) {
   e.preventDefault()
@@ -91,8 +82,10 @@ async function onFormSubmit(e) {
   dispatch(setLoading(true))
   dispatch(setHasDogs(null))
   dispatch(emptyDogs())
-  dispatch(setPrevSearchQuery(''))
-  dispatch(setNextSearchQuery(''))
+  dispatch(setSearchQueries({
+    prevSearchQuery: '',
+    nextSearchQuery: ''
+  }))
 
   try {
     const searchConfig = buildSearchConfig()
@@ -101,15 +94,16 @@ async function onFormSubmit(e) {
     const { data: nextSearchData } = await axios.get(`${baseURL}${searchData.next}`, config)
     
     if (nextSearchData.resultIds.length) {
-      dispatch(setNextSearchQuery(searchData.next))
+      dispatch(setSearchQueries({ nextSearchQuery: searchData.next }))
     }
 
     const dogsArr = await fetchDogs(searchData.resultIds)
 
     dispatch(dogsArr.length ? addDogs(dogsArr) : setHasDogs(false))
-    dispatch(setLoading(false))
   } catch (err) {
     console.error('Form submit error:', err)
+  } finally {
+    dispatch(setLoading(false))
   }
 }
 

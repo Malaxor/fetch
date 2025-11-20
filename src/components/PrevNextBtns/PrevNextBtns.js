@@ -1,14 +1,13 @@
 import './style.css'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { addDogs, setNextSearchQuery, setPrevSearchQuery } from '../../slicers'
+import { addDogs, setSearchQueries } from '../../slicers'
 import { Button } from '../Buttons'
 import { baseURL } from '../../constants'
 
 export function PrevNextBtns () {
   const dispatch = useDispatch()
-  const nextSearchQuery = useSelector(state => state.searchQueries.nextSearchQuery)
-  const prevSearchQuery = useSelector(state => state.searchQueries.prevSearchQuery)
+  const { prevSearchQuery, nextSearchQuery } = useSelector(state => state.searchQueries)
 
   const config = {
     withCredentials: true
@@ -19,8 +18,10 @@ export function PrevNextBtns () {
       const { data: searchData } = await axios.get(`${baseURL}${searchQuery}`, config)
 
       const { data: nextSearchData } = await axios.get(`${baseURL}${searchData.next}`, config)
-      dispatch(setNextSearchQuery(nextSearchData.resultIds.length ? searchData.next : ''))
-      dispatch(setPrevSearchQuery(searchData.prev))
+      dispatch(setSearchQueries({ 
+        nextSearchQuery: nextSearchData.resultIds.length ? searchData.next : '',
+        prevSearchQuery: searchData.prev 
+      }))
 
       const { data: dogs } = await axios.post(`${baseURL}/dogs`, searchData.resultIds, config)
 
