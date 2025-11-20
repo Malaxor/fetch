@@ -36,7 +36,9 @@ export function DogSearch () {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  function buildSearchConfig() {
+  const config = { withCredentials: true }
+
+  function buildSearchConfig () {
     const config = { 
       withCredentials: true, 
       params: {
@@ -65,9 +67,9 @@ export function DogSearch () {
     return config
   }
 
-  async function fetchSearchData (config) {
+  async function fetchSearchData (searchConfig) {
     try {
-      const { data } = await axios.get(`${baseURL}/dogs/search`, config)
+      const { data } = await axios.get(`${baseURL}/dogs/search`, searchConfig)
       return data // object
     } catch (err) {
       console.error(err)
@@ -76,9 +78,7 @@ export function DogSearch () {
 
   async function fetchDogs (resultIds) {
     try {
-      const { data } = await axios.post(`${baseURL}/dogs`, resultIds, {
-        withCredentials: true
-      })
+      const { data } = await axios.post(`${baseURL}/dogs`, resultIds, config)
       return data // array
     } catch (err) {
       console.error(err)
@@ -95,10 +95,11 @@ async function onFormSubmit(e) {
   dispatch(setNextSearchQuery(''))
 
   try {
-    const config = buildSearchConfig()
-    const searchData = await fetchSearchData(config)
+    const searchConfig = buildSearchConfig()
+    const searchData = await fetchSearchData(searchConfig)
 
-    const { data: nextSearchData } = await axios.get(`${baseURL}${searchData.next}`, { withCredentials: true })
+    const { data: nextSearchData } = await axios.get(`${baseURL}${searchData.next}`, config)
+    
     if (nextSearchData.resultIds.length) {
       dispatch(setNextSearchQuery(searchData.next))
     }
@@ -111,7 +112,6 @@ async function onFormSubmit(e) {
     console.error('Form submit error:', err)
   }
 }
-
 
   const options = [
     { value: 'breed:asc', content: 'Breed - Ascending' },
