@@ -7,7 +7,7 @@ import { baseURL } from '../../constants'
 
 export function LikedDogs () {
   const navigate = useNavigate()
-  const likedDogs  = useSelector(state => state.likedDogs.likedDogs)
+  const { likedDogs }  = useSelector(state => state.dogs)
 
   async function handleMatchSubmit () {
     try {

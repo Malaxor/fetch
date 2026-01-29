@@ -4,8 +4,7 @@ import { PuffLoader } from 'react-spinners'
 import { Dog, MatchedDog } from '../Dog'
 
 export function DogList({ dogs = [], matchedDog }) {
-  const loading = useSelector(state => state.dogs.loading)
-  const hasDogs = useSelector(state => state.dogs.hasDogs)
+  const { loading, hasDogs } = useSelector(state => state.dogs)
 
   if (loading) {
     return <PuffLoader color="#fba919" size={150} cssOverride={{ margin: '0 auto' }} />

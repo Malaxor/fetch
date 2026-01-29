@@ -6,9 +6,7 @@ import { DogList } from '../../components/DogList'
 import { PrevNextBtns } from '../../components/PrevNextBtns'
 
 export function DogsSearchList () {
-  const dogs = useSelector(state => state.dogs.dogs)
-  const likedDogs = useSelector(state => state.likedDogs.likedDogs)
-  const { nextSearchQuery, prevSearchQuery } = useSelector(state => state.searchQueries)
+  const { nextSearchQuery, prevSearchQuery, dogs, likedDogs } = useSelector(state => state.dogs)
 
   return ( 
     <div id='dogs-search-list' role="region" aria-labelledby="message-for-user">

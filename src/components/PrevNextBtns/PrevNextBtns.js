@@ -7,22 +7,21 @@ import { baseURL } from '../../constants'
 
 export function PrevNextBtns() {
   const dispatch = useDispatch()
-  const { prevSearchQuery, nextSearchQuery } = useSelector(state => state.searchQueries)
+  const { prevSearchQuery, nextSearchQuery } = useSelector(state => state.dogs)
 
   const config = { withCredentials: true }
 
   async function onBtnClick(searchQuery) {
     try {
-      // 1️⃣ Fetch the current page
+      // 1️⃣ fetch the current page
       const { data: searchData } = await axios.get(`${baseURL}${searchQuery}`, config)
 
       // 2️⃣ fetch dogs and next page in parallel
       const fetchDogs = axios.post(`${baseURL}/dogs`, searchData.resultIds, config)
       const fetchNextData = axios.get(`${baseURL}${searchData.next}`, config)
-
       const [dogsResponse, nextDataResponse] = await Promise.all([fetchDogs, fetchNextData])
 
-      // 3️⃣ Update Redux store
+      // 3️⃣ update redux store
       dispatch(addDogs(dogsResponse.data))
       dispatch(setSearchQueries({
         prevSearchQuery: searchData.prev,

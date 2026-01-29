@@ -3,17 +3,10 @@ export {
   emptyDogs,
   setHasDogs,
   setLoading,
-  dogsReducer 
-} from './dogsSlicer'
-
-export { 
-  addLikedDog, 
+  addLikedDog,
   removeLikedDog,
   emptyLikedDogs,
-  likedDogsReducer 
-} from './likedDogsSlicer'
-
-export { 
   setSearchQueries,
-  searchQueriesReducer 
-} from './searchQueriesSlicer'
+  resetState,
+  dogsReducer 
+} from './dogsSlicer'
