@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const baseURL = 'https://frontend-take-home-service.fetch.com'
+const baseURL = 'https://frontend-take-home-service.fetch.com'
 const config = { withCredentials: true }
 
 async function axiosLogIn (payload) {
@@ -11,7 +11,7 @@ async function axiosLogOut () {
   await axios.post(`${baseURL}/auth/logout`, {}, config)
 } 
 
-async function fetchSearchData (searchParams = {}) { 
+async function fetchSearchData (searchParams) { 
   const { data: searchData } = await axios.get(`${baseURL}/dogs/search`, { ...config, params: searchParams })
   const nextSearchData = await fetchNextSearchData(searchData.next)
 
