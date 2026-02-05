@@ -1,11 +1,10 @@
 import './style.css'
-import axios from 'axios'
+import fetchLogo from '../../assets/images/fetch-logo.png'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { resetState } from '../../slicers'
-import fetchLogo from '../../assets/images/fetch-logo.png'
-import { baseURL } from '../../constants'
+import { axiosLogOut } from '../../api'
 import { LoginForm } from '../LoginForm'
 import { Button } from '../Buttons'
 
@@ -23,7 +22,7 @@ export function Navbar() {
 
   async function logoutUser () {
     try {
-      await axios.post(`${baseURL}/auth/logout`, {}, { withCredentials: true })
+      await axiosLogOut()
     } catch (error) {
       console.error('Logout failed:', error)
     }

@@ -2,8 +2,7 @@ import './style.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
-import axios from 'axios'
-import { baseURL } from '../../constants'
+import { axiosLogIn } from '../../api'
 import { Input } from '../Controls'
 import { Button } from '../Buttons'
 
@@ -30,7 +29,7 @@ export function LoginForm({ isOpen, closeModal, logIn }) {
     }
 
     try {
-      await axios.post(`${baseURL}/auth/login`, payload, { withCredentials: true })
+      await axiosLogIn(payload)
     } catch (error) {
       console.error('Login failed:', error)
     }

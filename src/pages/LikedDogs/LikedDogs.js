@@ -1,9 +1,8 @@
-import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { DogList } from '../../components/DogList'
 import { Button } from '../../components/Buttons'
-import { baseURL } from '../../constants'
+import { fetchMachedDogId } from '../../api'
 
 export function LikedDogs () {
   const navigate = useNavigate()
@@ -12,8 +11,8 @@ export function LikedDogs () {
   async function handleMatchSubmit () {
     try {
       const payload = likedDogs.map(dog => dog.id)
-      const { data } = await axios.post(`${baseURL}/dogs/match`, payload, { withCredentials: true })
-      const matchedDog = likedDogs.find(dog => dog.id === data.match)
+      const matchedDogId = await fetchMachedDogId(payload)
+      const matchedDog = likedDogs.find(dog => dog.id === matchedDogId)
 
       if (matchedDog) {
         navigate('/fetch/matched-dog', { state: matchedDog  })

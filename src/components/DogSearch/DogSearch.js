@@ -1,5 +1,4 @@
 import './style.css'
-import axios from 'axios'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { 
@@ -10,7 +9,7 @@ import {
   setHasDogs 
 } from '../../slicers'
 import { capitalizeFirstLetter } from '../../utils';
-import { baseURL } from '../../constants'
+import { fetchDogs, fetchSearchData } from '../../api'
 import { Input, Select } from '../Controls'
 import { Button } from '../Buttons'
 
@@ -35,65 +34,48 @@ export function DogSearch () {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const config = { withCredentials: true }
-
-  function buildSearchConfig () {
-    const config = { 
-      withCredentials: true, 
-      params: {
-        sort
-      }
+  function buildSearchParams () {
+    const params =  {
+      sort
     }
-
+    
     if (formData.breed) {
       const cleaned = formData.breed.trim().toLowerCase()
-      config.params.breeds = [capitalizeFirstLetter(cleaned)]
+      params.breeds = [capitalizeFirstLetter(cleaned)]
       formData.breed = cleaned
     }
 
     if (formData.zipCode) {
-      config.params.zipCodes = [formData.zipCode.trim()]
+      params.zipCodes = [formData.zipCode.trim()]
     }
 
     if (formData.ageMin) {
-      config.params.ageMin = ageMin
+      params.ageMin = ageMin
     }
 
     if (formData.ageMax) {
-      config.params.ageMax = ageMax
+      params.ageMax = ageMax
     }
 
-    return config
+    return params
   }
 
-async function fetchSearchData(searchConfig) {
-  const { data } = await axios.get(`${baseURL}/dogs/search`, searchConfig)
-  return data
-}
+  async function onFormSubmit(e) {
+    e.preventDefault()
 
-async function fetchDogs(resultIds) {
-  const { data } = await axios.post(`${baseURL}/dogs`, resultIds, config)
-  return data
-}
-
-async function onFormSubmit(e) {
-  e.preventDefault()
-
-  dispatch(setLoading(true))
-  dispatch(setHasDogs(null))
-  dispatch(emptyDogs())
-  dispatch(setSearchQueries({
-    prevSearchQuery: '',
-    nextSearchQuery: ''
-  }))
+    dispatch(setLoading(true))
+    dispatch(setHasDogs(null))
+    dispatch(emptyDogs())
+    dispatch(setSearchQueries({
+      prevSearchQuery: '',
+      nextSearchQuery: ''
+    }))
 
   try {
-    const searchConfig = buildSearchConfig()
-    const searchData = await fetchSearchData(searchConfig)
-
-    const { data: nextSearchData } = await axios.get(`${baseURL}${searchData.next}`, config)
+    const searchParams = buildSearchParams()
+    const searchData = await fetchSearchData(searchParams)
     
-    if (nextSearchData.resultIds.length) {
+    if (searchData.next) {
       dispatch(setSearchQueries({ nextSearchQuery: searchData.next }))
     }
 
