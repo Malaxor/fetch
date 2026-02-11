@@ -1,4 +1,4 @@
-# Fetch
+# PupMatch Rescue
 React app that allows logged in users to adopt dogs.
 ### Live Demo: https://malaxor.github.io/fetch/
 
