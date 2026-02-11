@@ -13,7 +13,7 @@ export function DogsSearchList () {
       <p id="message-for-user">Omitting search parameters still returns results.</p>
       <DogSearch />
       {likedDogs.length > 0 && (
-        <Link className="link" to="/fetch/liked-dogs">
+        <Link className="link" to="/PupMatch-Rescue/liked-dogs">
           View Liked Dogs {likedDogs.length}
         </Link>
       )}

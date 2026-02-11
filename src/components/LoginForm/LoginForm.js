@@ -41,7 +41,7 @@ export function LoginForm({ isOpen, closeModal, logIn }) {
     setFormData({ name: '', email: '' })
     closeModal()
     logIn()
-    navigate('/fetch/dog-search-list')
+    navigate('/PupMatch-Rescue/dog-search-list')
   }
 
   return (

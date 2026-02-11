@@ -15,7 +15,7 @@ export function LikedDogs () {
       const matchedDog = likedDogs.find(dog => dog.id === matchedDogId)
 
       if (matchedDog) {
-        navigate('/fetch/matched-dog', { state: matchedDog  })
+        navigate('/PupMatch-Rescue/matched-dog', { state: matchedDog  })
       } else {
         console.warn('Matched dog not found in likedDogs list')
       }
