@@ -39,7 +39,7 @@ export function Navbar() {
   return (
     <nav id='navbar'>
       <img id='navbar__logo' src={fetchLogo} alt='fetch logo' />
-      <p id='navbar__slogan'>Paws for a Cause</p>
+      <p id='navbar__slogan'>PupMatch Rescue</p>
       <Button styling='btn sign-in-btn' onClick={handleAuthClick}>
         {isLoggedIn ? 'Sign Out' : 'Sign In'}
       </Button>
