@@ -11,10 +11,10 @@ export function App () {
       <Navbar />
       <Routes>
         <Route path="/" element={<Navigate to="/fetch" replace />} />
-        <Route path="/pup-match-rescue/dog-search-list" element={<DogsSearchList />} />
-        <Route path="/pup-match-rescue/liked-dogs" element={<LikedDogs />} />
-        <Route path="/pup-match-rescue/matched-dog" element={<MatchedDog />} />
-        <Route path="*" element={<Navigate to="/pup-match-rescue" replace />} />
+        <Route path="/PupMatch-Rescue/dog-search-list" element={<DogsSearchList />} />
+        <Route path="/PupMatch-Rescue/liked-dogs" element={<LikedDogs />} />
+        <Route path="/PupMatch-Rescue/matched-dog" element={<MatchedDog />} />
+        <Route path="*" element={<Navigate to="/PupMatch-Rescue" replace />} />
       </Routes>
     </Router>
   )
