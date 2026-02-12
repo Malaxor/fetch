@@ -11,18 +11,8 @@ async function axiosLogOut () {
   await axios.post(`${baseURL}/auth/logout`, {}, config)
 } 
 
-async function fetchSearchData (searchParams) { 
-  const { data: searchData } = await axios.get(`${baseURL}/dogs/search`, { ...config, params: searchParams })
-  const nextSearchData = await fetchNextSearchData(searchData.next)
-
-  return {
-    ...searchData,
-    next: nextSearchData.resultIds.length ? searchData.next : ''
-  }
-}
-
-async function fetchSearchQuery (searchQuery) { 
-  const { data: searchData } = await axios.get(`${baseURL}${searchQuery}`, config)
+async function fetchSearchData (url, searchParams = {}) { 
+  const { data: searchData } = await axios.get(`${baseURL}${url}`, { ...config, params: searchParams })
   const nextSearchData = await fetchNextSearchData(searchData.next)
   
   return {
@@ -51,7 +41,6 @@ export {
   axiosLogIn,
   axiosLogOut,
   fetchSearchData,
-  fetchSearchQuery,
   fetchDogs,
   fetchMachedDogId
 }

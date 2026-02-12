@@ -2,7 +2,7 @@ import './style.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { addDogs, setSearchQueries } from '../../slicers'
 import { Button } from '../Buttons'
-import { fetchDogs, fetchSearchQuery } from '../../api'
+import { fetchDogs, fetchSearchData } from '../../api'
 
 export function PrevNextBtns() {
   const dispatch = useDispatch()
@@ -10,7 +10,7 @@ export function PrevNextBtns() {
 
   async function onBtnClick(searchQuery) {
     try {
-      const searchData = await fetchSearchQuery(searchQuery)
+      const searchData = await fetchSearchData(searchQuery)
       const dogs = await fetchDogs(searchData.resultIds)
 
       dispatch(addDogs(dogs))

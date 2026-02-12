@@ -73,7 +73,7 @@ export function DogSearch () {
 
   try {
     const searchParams = buildSearchParams()
-    const searchData = await fetchSearchData(searchParams)
+    const searchData = await fetchSearchData('/dogs/search', searchParams)
     
     if (searchData.next) {
       dispatch(setSearchQueries({ nextSearchQuery: searchData.next }))
