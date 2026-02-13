@@ -2,11 +2,11 @@ import './style.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
-import { axiosLogIn } from '../../api'
+import { login } from '../../api'
 import { Input } from '../Controls'
 import { Button } from '../Buttons'
 
-export function LoginForm({ isOpen, closeModal, logIn }) {
+export function LoginForm({ isOpen, handleCloseModal, handleLogin }) {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
@@ -22,14 +22,14 @@ export function LoginForm({ isOpen, closeModal, logIn }) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  async function handleLogin () {
+  async function loginUser () {
     const payload = {
       name: name.trim(),
       email: email.trim()
     }
 
     try {
-      await axiosLogIn(payload)
+      await login(payload)
     } catch (error) {
       console.error('Login failed:', error)
     }
@@ -37,10 +37,10 @@ export function LoginForm({ isOpen, closeModal, logIn }) {
 
   async function handleSubmit (e) {
     e.preventDefault()
-    await handleLogin()
+    await loginUser()
     setFormData({ name: '', email: '' })
-    closeModal()
-    logIn()
+    handleCloseModal()
+    handleLogin()
     navigate('/PupMatch-Rescue/dog-search-list')
   }
 

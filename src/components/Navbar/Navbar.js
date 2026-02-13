@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { resetState } from '../../slicers'
-import { axiosLogOut } from '../../api'
+import { logout } from '../../api'
 import { LoginForm } from '../LoginForm'
 import { Button } from '../Buttons'
 
@@ -15,25 +15,25 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const openModal = () => setIsOpen(true)
-  const closeModal = () => setIsOpen(false)
-  const logIn = () => setIsLoggedIn(true)
-  const logOut = () => setIsLoggedIn(false)
+  const handleOpenModal = () => setIsOpen(true)
+  const handleCloseModal = () => setIsOpen(false)
+  const handleLogin = () => setIsLoggedIn(true)
+  const handleLogout = () => setIsLoggedIn(false)
 
   async function logoutUser () {
     try {
-      await axiosLogOut()
+      await logout()
     } catch (error) {
       console.error('Logout failed:', error)
     }
 
-    logOut()
+    handleLogout()
     dispatch(resetState())
     navigate('fetch')
   }
 
   function handleAuthClick () {
-    isLoggedIn ? logoutUser() : openModal()
+    isLoggedIn ? logoutUser() : handleOpenModal()
   }
 
   return (
@@ -43,7 +43,7 @@ export function Navbar() {
       <Button styling='btn sign-in-btn' onClick={handleAuthClick}>
         {isLoggedIn ? 'Sign Out' : 'Sign In'}
       </Button>
-      <LoginForm isOpen={isOpen} closeModal={closeModal} logIn={logIn} />
+      <LoginForm isOpen={isOpen} handleCloseModal={handleCloseModal} handleLogin={handleLogin} />
     </nav>
   )
 }

@@ -3,27 +3,22 @@ import axios from 'axios'
 const baseURL = 'https://frontend-take-home-service.fetch.com'
 const config = { withCredentials: true }
 
-async function axiosLogIn (payload) {
+async function login (payload) {
   await axios.post(`${baseURL}/auth/login`, payload, config)
 }
 
-async function axiosLogOut () {
+async function logout () {
   await axios.post(`${baseURL}/auth/logout`, {}, config)
 } 
 
-async function fetchSearchData (url, searchParams = {}) { 
+async function fetchSearchData (url, searchParams) { 
   const { data: searchData } = await axios.get(`${baseURL}${url}`, { ...config, params: searchParams })
-  const nextSearchData = await fetchNextSearchData(searchData.next)
+  const { data: nextSearchData } = await axios.get(`${baseURL}${searchData.next}`, config)
   
   return {
     ...searchData,
     next: nextSearchData.resultIds.length ? searchData.next : ''
   }
-}
-
-async function fetchNextSearchData (next) {
-  const { data } = await axios.get(`${baseURL}${next}`, config)
-  return data 
 }
 
 async function fetchDogs (resultIds) {
@@ -38,8 +33,8 @@ async function fetchMachedDogId (payload) {
 
 
 export {
-  axiosLogIn,
-  axiosLogOut,
+  login,
+  logout,
   fetchSearchData,
   fetchDogs,
   fetchMachedDogId
