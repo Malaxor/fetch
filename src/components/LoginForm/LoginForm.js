@@ -49,7 +49,7 @@ export function LoginForm({ isOpen, handleCloseModal, handleLogin }) {
       ariaHideApp={false}
       id='modal'
       isOpen={isOpen}
-      onRequestClose={closeModal}
+      onRequestClose={handleCloseModal}
     >
       <form id='navbar__form' onSubmit={handleSubmit}>
         <Input
