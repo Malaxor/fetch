@@ -33,7 +33,11 @@ export function Navbar() {
   }
 
   function handleAuthClick () {
-    isLoggedIn ? logoutUser() : handleOpenModal()
+    if (isLoggedIn) {
+      logoutUser()
+    } else {
+      handleOpenModal()
+    }
   }
 
   return (

@@ -31,7 +31,6 @@ async function fetchMachedDogId (payload) {
   return matchedDogId
 }
 
-
 export {
   login,
   logout,
