@@ -6,7 +6,7 @@ import {
   emptyDogs,
   setSearchQueries,
   setLoading,
-  setHasDogs 
+  setHasResults 
 } from '../../slicers'
 import { capitalizeFirstLetter } from '../../utils';
 import { fetchDogs, fetchSearchData } from '../../api'
@@ -64,7 +64,7 @@ export function DogSearch () {
     e.preventDefault()
 
     dispatch(setLoading(true))
-    dispatch(setHasDogs(null))
+    dispatch(setHasResults(null))
     dispatch(emptyDogs())
     dispatch(setSearchQueries({
       prevSearchQuery: '',
@@ -81,7 +81,7 @@ export function DogSearch () {
 
     const dogsArr = await fetchDogs(searchData.resultIds)
 
-    dispatch(dogsArr.length ? addDogs(dogsArr) : setHasDogs(false))
+    dispatch(dogsArr.length > 0 ? addDogs(dogsArr) : setHasResults(false))
   } catch (err) {
     console.error('Form submit error:', err)
   } finally {

@@ -4,13 +4,13 @@ import { PuffLoader } from 'react-spinners'
 import { Dog, MatchedDog } from '../Dog'
 
 export function DogList({ dogs = [], matchedDog }) {
-  const { loading, hasDogs } = useSelector(state => state.dogs)
+  const { loading, hasResults } = useSelector(state => state.dogs)
 
   if (loading) {
     return <PuffLoader color="#fba919" size={150} cssOverride={{ margin: '0 auto' }} />
   }
 
-  if (hasDogs === false && dogs.length < 1) {
+  if (hasResults === false && dogs.length < 1 && !matchedDog) {
     return <p id="no-dogs-found-msg">No dogs found.</p>
   }
 
