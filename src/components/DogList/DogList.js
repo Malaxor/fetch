@@ -10,7 +10,7 @@ export function DogList({ dogs = [], matchedDog }) {
     return <PuffLoader color="#fba919" size={150} cssOverride={{ margin: '0 auto' }} />
   }
 
-  if (hasDogs === false) {
+  if (hasDogs === false && dogs.length < 1) {
     return <p id="no-dogs-found-msg">No dogs found.</p>
   }
 

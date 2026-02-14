@@ -35,7 +35,7 @@ export function LikedDogs () {
         >
           Submit  
         </Button>
-        <Link className='link' to='/fetch/dog-search-list'>Go Back</Link>
+        <Link className='link' to='/PupMatch-Rescue/dog-search-list'>Go Back</Link>
       </>
       <DogList dogs={likedDogs} />
     </div> 
