@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { PuffLoader } from 'react-spinners'
 import { Dog, MatchedDog } from '../Dog'
 
-export function DogList({ dogs = [], matchedDog }) {
+export function DogList({ dogs, matchedDog }) {
   const { loading, hasResults } = useSelector(state => state.dogs)
 
   if (loading) {
