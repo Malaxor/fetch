@@ -19,7 +19,7 @@ export function PrevNextBtns() {
         nextSearchQuery: searchData.next
       }))
     } catch (err) {
-      console.error("Error fetching dogs or search pages:", err)
+      console.error("Error fetching dogs or search pages: ", err)
     }
   }
 

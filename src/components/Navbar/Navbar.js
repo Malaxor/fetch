@@ -23,13 +23,13 @@ export function Navbar() {
   async function logoutUser () {
     try {
       await logout()
+      handleLogout()
+      dispatch(resetState())
+      navigate('fetch')
+
     } catch (error) {
       console.error('Logout failed:', error)
     }
-
-    handleLogout()
-    dispatch(resetState())
-    navigate('fetch')
   }
 
   function handleClick () {
