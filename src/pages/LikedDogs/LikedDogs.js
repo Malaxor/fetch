@@ -13,12 +13,8 @@ export function LikedDogs () {
       const payload = likedDogs.map(dog => dog.id)
       const matchedDogId = await fetchMachedDogId(payload)
       const matchedDog = likedDogs.find(dog => dog.id === matchedDogId)
-
-      if (matchedDog) {
-        navigate('/PupMatch-Rescue/matched-dog', { state: matchedDog  })
-      } else {
-        console.warn('Matched dog not found in likedDogs list')
-      }
+      
+      navigate('/PupMatch-Rescue/matched-dog', { state: { matchedDog }})
     } catch (error) {
       console.error('Error matching with dog:', error)
     }
