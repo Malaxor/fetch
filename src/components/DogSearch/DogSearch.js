@@ -80,12 +80,10 @@ export function DogSearch () {
     }
 
     const dogsArr = await fetchDogs(searchData.resultIds)
-
+    dispatch(setLoading(false))
     dispatch(dogsArr.length > 0 ? addDogs(dogsArr) : setHasResults(false))
   } catch (err) {
     console.error('Form submit error:', err)
-  } finally {
-    dispatch(setLoading(false))
   }
 }
 
