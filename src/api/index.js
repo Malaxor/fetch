@@ -3,12 +3,12 @@ import axios from 'axios'
 const baseURL = 'https://frontend-take-home-service.fetch.com'
 const config = { withCredentials: true }
 
-async function login (payload) {
-  await axios.post(`${baseURL}/auth/login`, payload, config)
+function login (payload) {
+  return axios.post(`${baseURL}/auth/login`, payload, config)
 }
 
-async function logout () {
-  await axios.post(`${baseURL}/auth/logout`, {}, config)
+function logout () {
+  return axios.post(`${baseURL}/auth/logout`, {}, config)
 } 
 
 async function fetchSearchData (url, searchParams) { 
