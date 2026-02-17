@@ -25,8 +25,7 @@ export function Navbar() {
       await logout()
       handleLogout()
       dispatch(resetState())
-      navigate('fetch')
-
+      navigate('PupMatch-Rescue')
     } catch (error) {
       console.error('Logout failed:', error)
     }

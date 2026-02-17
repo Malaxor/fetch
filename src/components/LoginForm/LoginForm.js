@@ -35,7 +35,7 @@ export function LoginForm({ isOpen, handleCloseModal, handleLogin }) {
       handleLogin()
       navigate('/PupMatch-Rescue/dog-search-list')
     } catch (error) {
-      console.error('Login failed:', error)
+      console.error('Login failed: ', error)
     }
   }
 
