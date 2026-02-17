@@ -13,7 +13,6 @@ async function logout () {
 
 async function fetchSearchData (url, searchParams) { 
   const { data: searchData } = await axios.get(`${baseURL}${url}`, { ...config, params: searchParams })
-  console.log(searchData)
   const { data: nextSearchData } = await axios.get(`${baseURL}${searchData.next}`, config)
   
   return {
